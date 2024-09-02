@@ -1,0 +1,52 @@
+\ifx\allfiles\undefined
+\input{../config/config}
+\begin{document}
+	% \input{../config/cover} 
+	\else
+	\fi
+	%  ############################ 正文部分
+\appendix
+\chapter{$Supplementary \,\, Content$}\label{appendix A}
+
+\section{区域边界的光滑性}
+	下面我们来给出\textbf{区域边界的光滑性}的定义.
+	
+	\begin{defn}\label{def A.1.1}
+		Suppose $\Omega \subset \R^n$ is open, $\partial \Omega \neq \varnothing$. 如果对于$\forall p \in \partial \Omega$, $\exists p$ 的邻域$U$, $\st$ 在适当的空间直角坐标系下, 
+		\begin{align}
+			\partial \Omega \cap U &= \{ (x^{'} , x^{n}) \in \R^{n - 1} \times \R \mid x^{'} \in D , \,\, x^n = \varphi(x^{'}) \} \\
+			\Omega \cap U &= \{ (x^{'} , x^n) \in \R^{n - 1} \times \R \mid x^{'} \in D , \,\, x^n > \varphi(x^{'}) \} \cap U
+		\end{align}
+		where $\varphi \in C^{k}(\Omega) , \,\, D \subset \R^{n - 1}$ open. 我们称\underline{\textcolor{blue}{\textbf{$\partial \Omega \in C^k$}}}, 这里$k = 0 , 1 , 2 , \cdots$ 或$\infty$.
+		
+		\begin{figure}[thbp!]
+			\centering
+			\includegraphics[width=0.5\linewidth]{figure/A.1-1}
+			\caption{边界的光滑性}
+			\label{pic : A.1-1} % 添加图像引用标签
+		\end{figure}
+		
+		\begin{rmk}
+			在\textbf{定义 \ref{def A.1.1}} 中, 设$k \leq 1$, $\,\, x_{0}^{'} \in \partial \Omega$, $\,\, p = (x_{0}^{'} , \varphi(x_{0}^{'}))$. 记
+			\[ n_p = \frac{(\nabla \varphi(x_{0}^{'}) , -1)}{\sqrt{1 + \left| \nabla \varphi(x_{0}^{'}) \right|^2}} \]
+			称$n_p$ 为$\partial \Omega$ 在$p$ 点的\underline{\textcolor{blue}{\textbf{单位外法向}}}. $n_p$ 的定义与空间直角坐标系的选择无关. 记
+			\begin{align}
+				n : \partial \Omega &\longrightarrow \R^n \\
+				p &\longmapsto n(p) = n_p 
+			\end{align}
+			称$n$ 为$\partial \Omega$ 的\underline{\textcolor{blue}{\textbf{单位外法向}}}. 因为$\partial \Omega \in C^k$, $k \geq 1$, 所以$n \in C(\partial \Omega ; \R^n)$.
+		\end{rmk}
+		
+		
+	\end{defn}
+
+
+
+
+
+
+
+	%  ############################
+	\ifx\allfiles\undefined
+\end{document}
+\fi
