@@ -498,9 +498,149 @@
 			\end{align}
 		\end{rmk}
 	\end{thm}
-		
-	
 
+\newpage
+
+\section{Transport Equation}
+\subsection{定性分析}
+	下面我们开始介绍4种最基本的\textbf{线性PDE}, 首先是最简单的\textbf{Transport Equation}. 
+	\begin{align}
+		u_t + b \cdot Du = 0 , \,\, (x , t) \in \R^n \times (0 , \infty)
+	\end{align}
+	where $b = (b_1 , \cdots , b_n) \in \R^n$ is fixed, and $u : \R^n \times [0 , \infty)$ is the unknown, $u = u(x , t)$. 
+	
+	\vspace*{2em}
+	
+	\begin{rmk}
+		此处\textbf{Transport Equation} 中的$Du = D_{x}u = (u_{x_1} , \cdots , u_{x_n})$, 即\textbf{$u$ 仅关于空间$x$ 的梯度}.
+	\end{rmk}
+	
+	\vspace*{4em}
+	
+	下面给出\textbf{Transport Equation}在几何上的理解. 为了方便起见, 此处讨论$n = 1$ 的情形. 此时$b \in \R$, $b \cdot Du$ 即为$u$ 在某一时刻沿$b$ 所在方向的方向导数. 不妨假设$b < 0$, 则有：
+	
+	\begin{figure}[thbp!]
+		\centering
+		\includegraphics[width=0.5\linewidth]{figure/1.7.1-1}
+		\caption{$u(x , t)$ 在某一时刻$t$ 的图像}
+		\label{pic : 1.7.1-1} % 添加图像引用标签
+	\end{figure}
+	
+	如图, 固定一个$x_0 \in \R$, $u$ 在该点处沿$b$ 所在方向 ($x$ 轴负方向)的方向导数为正, 因此根据方程
+	\[ u_t + b \cdot Du = 0 \]
+	$u$ 关于时间的偏导数$u_t$ 在$x_0$ 处的值应为负数, 即在$t + \Delta t$ 时刻, $x_0$ 处的值应减少, 对应如下图像：
+	
+	\begin{figure}[thbp!]
+		\centering
+		\includegraphics[width=0.5\linewidth]{figure/1.7.1-2}
+		\caption{$u(x , t)$ 在时刻$t + \Delta t$ 的图像}
+		\label{pic : 1.7.1-2} % 添加图像引用标签
+	\end{figure}
+	
+	其中最高点的函数值保持不变, 此时函数图像随着时间变化就像是被\textbf{“平移”}了, 此即为方程\textbf{“Transport”}名字的几何含义.
+	
+\newpage
+
+\subsection{特征线法}
+\paragraph{猜想}
+	在$\S 1.7.1$ 中我们讨论了\textbf{Transport Equation}在几何上随时间的\textbf{“平移性”}. 在这节我们换个更高的角度, 假设方程随时间平移的速度恒定, 则在整个时空$x-t$ 轴上, 每个点的轨迹都应该是一条直线. 即$u$ 在$x-t$ 轴中, 沿着某一固定方向的函数值应当不变, 下面我们就来猜测这样一个方向. \\
+	根据方程
+	\[ u_t + b \cdot Du = 0 \]
+	若想保持$u$ 恒定, 则$u$ 分别沿着$x$ 与$t$ 的行进速率之比应为$\left| b \right| : 1$, 即沿着$(b , 1) \in \R^n \times (0 , \infty)$ 方向移动应当保持恒定. 
+	
+	\vspace*{1em}
+	
+	此时在时空$\R^n \times \R = \R^{n + 1}$ 空间中, 就存在着一族平行线, 使得在每一条平行线上$u$ 的函数值均不变. 而此时若得到了某一个与这些线相交的超平面上$u$ 的值, 则可通过平移得到全空间$\R^n \times (0 , \infty)$ 上$u$ 的取值. 下面来证明这一猜想.
+	
+	\vspace*{6em}
+	
+	Let
+	\begin{align}
+		z : \R^n \times (0 , \infty) \times \R &\longrightarrow \R \\
+		(x , t , s) &\longmapsto u(x + sb , t + s) = u \Big|_{(x , t) + s(b , 1)}
+	\end{align}
+	when $(x , t) \in \R^n \times (0 , \infty)$ is fixed we also write $z(x , t , s) = z(s)$. Then
+	\begin{align}
+		\frac{\partial z}{\partial s} 
+		&= \frac{\partial u}{\partial x}(x + sb , t + s) \cdot b + \frac{\partial u}{\partial t}(x + sb , t + s) \\
+		&= \left( b \cdot Du + u_{t} \right) \Big|_{(x + sb , t + s)} \\
+		&= 0
+	\end{align}
+	从而$u$ 在每一条沿着$(b , 1) \in \R^n \times (0 , \infty)$ 方向的直线上为常值, 这就证明了我们的猜想. i.e.
+	\begin{center}
+		$u$ is constant on the line through each $(x , t)$ with direction $(b , 1) \in \R^{n + 1}$.
+	\end{center}
+	
+	\vspace*{4em}
+	
+	在发现这样一个规律之后, 我们便可以来解决一些初值问题了.
+	
+\newpage
+\paragraph{初值问题}
+	\begin{align}
+		\begin{cases}
+			u_t + b \cdot Du = 0 \hspace*{2em} \text{in} \,\, \R^n \times (0 , \infty) \\
+			u(x , 0) = g(x) \hspace*{2em} \text{in} \,\, \R^n \times \{ 0 \}
+		\end{cases}
+	\end{align}
+	where $b \in \R^n$, $g : \R^n \longrightarrow \R$ are known. 
+	
+	\vspace*{2em}
+	
+	\begin{rmk}
+		上述初值问题事实上给出了$u$ 在$t = 0$ 时的取值, 即给出了时空空间$\R^{n + 1}$ 中超平面$\{ t = 0 \}$ 上的取值. 根据前文中的猜想, $u$ 在全空间$\R^{n + 1}$ 中的取值均可通过沿着$(b , 1)$ 方向的直线平移至该超平面上得到.
+	\end{rmk}
+	
+	\begin{figure}[thbp!]
+		\centering
+		\includegraphics[width=0.7\linewidth]{figure/1.7.2-1}
+		\caption{$(x , t)$ 点沿方向$(b , 1)$ 平移至超平面$\{ t = 0 \}$}
+		\label{pic : 1.7.2-1} % 添加图像引用标签
+	\end{figure}
+	
+	$\forall (x , t) \in \R^n \times (0 , \infty)$, 设$(x , t) + s(b , 1) = (x + sb , t + s)$, 令$t + s = 0$, 得到：
+	\[ s = -t , \,\, x + sb = x - tb \]
+	于是$u(x , t) = u(x - tb , 0) = g(x - tb) , \,\, \forall (x , t) \in \R^n \times (0 , \infty)$.
+	
+\newpage
+\paragraph{非齐次初值问题 (Non-homogeneous)}
+	上面我们解决了\textbf{齐次初值问题}的求解, 下面我们仍用类似的方法, 求解一般的\textbf{非齐次初值问题}.
+	\begin{align}
+		\begin{cases}
+			u_t + b \cdot Du = f \hspace*{2em} \text{in} \,\, \R^n \times (0 , \infty) \\
+			u(x , 0) = g(x) \hspace*{2em} \text{in} \,\, \R^n \times \{ 0 \}
+		\end{cases}
+	\end{align}
+	where $b \in \R^n$, $g : \R^n \longrightarrow \R$ and $f : \R^n \times (0 , \infty) \longrightarrow \R$ are known. 
+	
+	\vspace*{6em}
+	
+	\begin{solution}
+		此时对于$z(x , t , s) = u(x + sb , t + s) = u \Big|_{(x , t) + s(b , 1)}$, 
+		\begin{align}
+			\frac{\partial z}{\partial s} 
+			&= \frac{\partial u}{\partial x}(x + sb , t + s) \cdot b + \frac{\partial u}{\partial t}(x + ts , t + s) \\
+			&= \left( b \cdot Du + u_t \right)\Big|_{(x + sb , t + s)} \\
+			&= f(x + sb , t + s)
+		\end{align}
+		Fix $(x , t) \in \R^n \times (0 , \infty)$. Denote $z(s) = z(x , t , s)$, then
+		\begin{align}
+			\begin{cases}
+				z(0) = u(x , t) \\
+				z(-t) = u(x - tb , 0) = g(x - tb)
+			\end{cases}
+		\end{align}
+		Thus
+		\[
+			z(0) - z(-t) 
+			= \int_{-t}^{0} \frac{\partial z}{\partial s}(s) \, ds 
+			= \int_{-t}^{0} f(x + sb , t + s) \, ds
+		\]
+		i.e. for $\forall (x , t) \in \R^n \times (0 , \infty)$
+		\begin{align}
+			u(x , t) = g(x - tb) + \int_{-t}^{0} f(x + ts , t + s) \, ds 
+		\end{align}
+	\end{solution}
 
 
 	%  ############################

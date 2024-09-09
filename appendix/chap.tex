@@ -36,9 +36,246 @@
 			\end{align}
 			称$n$ 为$\partial \Omega$ 的\underline{\textcolor{blue}{\textbf{单位外法向}}}. 因为$\partial \Omega \in C^k$, $k \geq 1$, 所以$n \in C(\partial \Omega ; \R^n)$.
 		\end{rmk}
-		
-		
 	\end{defn}
+
+\newpage
+
+\section{含参变量的积分}
+	在分析中, 我们常遇到如下形式的积分定义的函数：
+	\[ \varphi(x) = \int_{c}^d f(x , t) \, dt , \,\, x \in [a , b] \]
+	上式右端的积分称为\textbf{含参变量 (参变量为$x$) 的积分}. 下面我们来给出由含参变量的积分所定义的函数的\textbf{连续性}、\textbf{可积性}和\textbf{可微性}. 
+	
+	\begin{thm}\label{thm A.2.1}
+		设$f \in C([a , b] \times [c , d])$. 记$\varphi : [a , b] \longrightarrow \R$, 
+		\[ \varphi(x) = \int_{c}^d f(x , t) \, dt , \,\, \forall x \in [a , b] \]
+		则
+		\begin{enumerate}
+			\item[(\rmnum{1})] $\varphi \in C[a , b]$. 
+			
+			\item[(\rmnum{2})] If $D_{1}f \in C([a , b] \times [c , d])$, then $\varphi \in C^{1}([a , b])$ and 
+			\[ \varphi^{'}(x) = \int_{c}^d D_{1}f(x , t) \,  dt , \,\, \forall x \in [a , b] \]
+			
+			\item[(\rmnum{3})] $\varphi$ Riemann可积, 并且
+			\[ \int_{a}^b \varphi = \int_{c}^d \left( \int_{a}^b f(x , t) \, dx \right) \, dt \]
+		\end{enumerate}
+	
+		\vspace{4em}
+		
+		\begin{rmk}
+			\begin{itemize}
+				\item (\rmnum{1})中$\varphi \in C[a , b]$ 表明了\textbf{积分与极限可交换次序}, 即
+				\[ \lim_{x \to x_0} \int_{c}^d f(x , t) \, dt = \int_{c}^d \lim_{x \to x_0} f(x , t) \, dt = \int_{c}^d f(x_0 , t) \, dt , \,\, \forall x_0 \in [a , b] \]
+				同理, (\rmnum{2})和(\rmnum{3})也分别告诉我们\textbf{求导和积分、积分和积分之间可交换次序}.
+				
+				\vspace{4em}
+				
+				\item 根据数学归纳法, 如果$f \in C^{k}([a , b] \times [c , d])$, 则$\varphi \in C^{k}[a , b]$, 
+				\[ \varphi^{(i)}(x) = \int_{c}^d \frac{d^i}{d x^i} f(x , t) \, dt , \,\, \forall i = 1 \sim k \]
+				即\textbf{任意$k$ 阶内积分与求导可交换次序}, 即
+				\[ \frac{d^i}{dx^{i}} \int_{c}^d f(x , t) \, dt = \int_{c}^d \frac{d^i}{d x^i} f(x , t) \, dt , \,\, \forall i = 1 \sim k \]
+			\end{itemize}
+		\end{rmk}
+	\end{thm}
+
+\newpage
+
+\section{含参变量的广义积分的一致收敛}
+	为了考察\textbf{含参变量的广义积分的连续性、可积性和可微性}, 我们先来给出\textbf{含参变量广义积分的一致收敛}的概念.
+	
+	\begin{defn}\label{def A.3.1}
+		设$f : D \times [a , \infty) \longrightarrow \R$, 对于$\forall x \in D$, $b > a$, $f(x , \cdot)$ 在$[a , b]$ 上Riemann可积. 如果对于$\forall x \in D$, 积分$\int_{a}^{\infty} f(x , t) \, dt$ 收敛, 并且对于$\forall \epsilon > 0$, $\exists M > a$, $\st$
+		\[ \left| \int_{A}^{\infty} f(x , t) \, dt \right| \leq \epsilon , \,\, \forall A > M , \,\, \forall x \in D \]
+		称\underline{\textcolor{blue}{\textbf{积分$\int_{a}^\infty f(x , t) \, dt$ 关于$x$  一致收敛}}}. 
+		
+		\vspace{4em}
+		
+		\begin{rmk}
+			\begin{itemize}
+				\item 设$A > a$. Let
+				\begin{align}
+					\varphi(x) &= \int_{a}^{\infty} f(x , t) \, dt , \,\, x \in D \\
+					\widetilde{\varphi}(x) &= \int_{a}^A f(x , t) \, dt , \,\, x \in D
+				\end{align}
+				由定义, 如果积分$\int_{a}^\infty f(x , t) \, dt$ 关于$x$ 一致收敛, 则当$A$ 充分大时, 积分$\int_{a}^{\infty} f(x , t) \, dt$ 关于$x$ 一致地小. 此时
+				\[ \varphi(x) = \int_{a}^A f(x , t) \, dt + \int_{A}^{\infty} f(x , t) \, dt \approx \widetilde{\varphi}(x) \]
+				所以我们可以期望
+				\begin{center}
+					\textbf{一致收敛的}由含参变量的无穷限积分所定义的函数$\varphi$ \\
+					与 \\
+					由含参变量的常义积分所定义的$\widetilde{\varphi}$ 有相同的性质.
+				\end{center}
+				
+				\vspace{4em}
+				
+				\item $\forall a_1 > a$, 
+				\begin{center}
+					$\int_{a}^{\infty} f(x , t) \, dt$ 一致收敛 $\,\, \Leftrightarrow \,\, \int_{a_1}^{\infty} f(x , t) \, dt$ 一致收敛
+				\end{center}
+			\end{itemize}
+		\end{rmk}
+	\end{defn}
+
+\newpage
+
+	下面给出判定积分$\int_{a}^{\infty} f(x , t) \, dt$ 是否一致收敛的一些判定准则. 
+
+	\begin{proposition}\label{prop A.3.1}
+		\textbf{[Cauchy收敛原理]}. \\
+		设$f : D \times [a , \infty) \longrightarrow \R$, 对于$\forall x \in D$, $b > a$, $f(x , \cdot)$ 在$[a , b]$ 上Riemann可积, 则
+		\begin{center}
+			积分$\int_{a}^\infty f(x , t) \, dt$ 一致收敛 $\,\, \Leftrightarrow \,\,$ 对于$\forall \epsilon > 0$, $\exists M > a$, $\st$
+			\[ \left| \int_{A_1}^{A_2} f(x , t) \, dt \right| \leq \epsilon , \,\, \forall A_2 > A_1 \geq M , \,\, \forall x\ in D \]
+		\end{center}
+	\end{proposition}
+
+	\vspace{8em}
+
+	\begin{proposition}\label{prop A.3.2}
+		\textbf{[比较判别法]}. \\
+		设$f : D \times [a , \infty) \longrightarrow \R$, 对于$\forall x \in D$, $b > a$, $f(x , \cdot)$ 在$[a , b]$ 上Riemann可积. 设$g : [a , \infty) \longrightarrow \R$, $g \geq 0$, 对于$\forall b > a$, $g$ 在$[a , b]$ 上Riemann可积. 如果
+		\[ \left| f(x  ,t) \right| \leq g(t) , \,\, \forall (x ,t) \in D \times [a , \infty) \]
+		并且$\int_{a}^{\infty} g(t) \, dt < \infty$, 则积分$\int_{a}^{\infty} f(x , t) \, dt$ 一致收敛.
+	\end{proposition}
+
+	\vspace{8em}
+	
+	\begin{proposition}\label{prop A.3.3}
+		\textbf{[Dirichlet判别法]}. \\
+		设$f , g : D \times [a , \infty) \longrightarrow \R$, 对于$\forall x \in D$, $b > a$, $f(x , \cdot) , g(x , \cdot)$ 在$[a , b]$ 上Riemann可积. 设对于$\forall x \in D$, $g(x , \cdot)$ 单调. 如果
+		\begin{enumerate}
+			\item[(\rmnum{1})] $\forall \epsilon > 0$, $\exists M > a$, $\st$
+			\[ \left| g(x , t) \right| \leq \epsilon , \,\, \forall t \geq M , x \in D \]
+			
+			\item[(\rmnum{2})] $\exists L \in \R$, $\st$
+			\[ \left| \int_{a}^b f(x , t) \, dt \right| \leq L , \,\, \forall b \geq a , \,\, \forall x \in D \]
+		\end{enumerate}
+		则积分$\int_{a}^{\infty} f(x , t) g(x , t) \, dt$ 一致收敛.
+	\end{proposition}
+	
+	\newpage
+	
+	\begin{proposition}\label{prop A.3.4}
+		\textbf{[Abel判别法]}. \\
+		设$f , g : D \times [a , \infty) \longrightarrow \R$, 对于$\forall x \in D$, $b > a$, $f(x , \cdot) , g(x , \cdot)$ 在$[a , b]$ 上Riemann可积. 设对于$\forall x \in D$, $g(x , \cdot)$ 单调. 如果
+		\begin{enumerate}
+			\item[(\rmnum{1})] $\exists L \in \R$, $\st$
+			\[ \left| g(x , t) \right| \leq L , \,\, \forall (x  , t) \in D \times [a , \infty) \]
+			
+			\item[(\rmnum{2})] 积分$\int_{a}^\infty f(x , t) \, dt$ 一致收敛
+		\end{enumerate}
+		则积分$\int_{a}^{\infty} f(x , t) g(x , t) \, dt$ 一致收敛.
+	\end{proposition}
+
+\newpage
+
+\section{含参变量的广义积分的性质}
+	下面讨论由含参变量的广义积分所定义的函数的\textbf{连续性}、\textbf{可积性}和\textbf{可微性}, 即\textbf{积分与极限交换次序}、\textbf{积分与积分交换次序}、\textbf{积分与求导交换次序}的问题. 
+	
+	\vspace{1em}
+	
+	首先给出\textbf{一致收敛}时积分$\int_{c}^{\infty} f(x , t) \, dt$ 的\textbf{连续性}和\textbf{可积性}. 
+	
+	\begin{proposition}\label{prop A.4.1}
+		设$f \in C([a , b] \times [c , \infty])$. 设积分$\int_{c}^{\infty} f(x , t) \, dt$ 关于$x$ 一致收敛. 记
+		\[ \varphi(x) = \int_{c}^{\infty} f(x , t) \, dt , \,\, \forall x \in [a , b] \]
+		则
+		\begin{enumerate}
+			\item[(\rmnum{1})] $\varphi \in C[a , b]$. 
+			
+			\item[(\rmnum{2})] 积分$\int_{c}^{\infty} \left( \int_{a}^b f(x , t) \, dx \right) \, dt$ 收敛, 并且
+			\[ \int_{a}^b \varphi = \int_{c}^{\infty} \left( \int_{a}^b f(x , t) \, dx \right) \, dt \]
+		\end{enumerate}
+	\end{proposition}
+
+	\vspace{12em}
+	
+	下面再给出积分$\int_{c}^{\infty} f(x , t) \, dt$ 的\textbf{可微性}.
+	
+	\begin{proposition}\label{prop A.4.2}
+		设$f : [a , b] \times [c , d] \longrightarrow \R , \,\, f , D_{1}f \in C([a , b] \times [c  ,d])$. 如果
+		\begin{center}
+			\begin{enumerate}
+				\item[(\rmnum{1})] $\exists x_0 \in [a , b]$, $\st$ 积分$\int_{c}^{\infty} f(x_0 , t) \, dt$ 收敛.
+				
+				\item[(\rmnum{2})] 积分$\int_{c}^{\infty} D_{1}f(x , t) \, dt$ 关于$x$ 一致收敛.
+			\end{enumerate}
+		\end{center}
+		则积分$\int_{c}^{\infty} f(x , t) \, dt$ 关于$x$ 一致收敛. 记
+		\[ \varphi(x) = \int_{c}^{\infty} f(x , t) \, dt , \,\, \forall x \in [a , b] \]
+		则$\varphi \in C^{1}[a , b]$, 并且
+		\[ \varphi^{'}(x) = \int_{c}^{\infty} D_{1}f(x , t) \, dt , \,\, \forall x \in [a , b] \]
+	\end{proposition}
+
+	\newpage
+	
+	根据\textbf{命题 \ref{prop A.4.2}}, 运用数学归纳法可得到如下推论.
+	
+	\begin{corollary}\label{cor A.4.1}
+		设$f \in C^{k}([a , b] \times [c , d])$, $k \in \N$. 设积分
+		\[ \int_{c}^{\infty} \frac{\partial^i}{\partial x^i} f(x , t) \, dt , \,\, i = 0 \sim k \]
+		均关于$x$ 一致收敛. 记
+		\[ \varphi(x) = \int_{c}^{\infty} f(x , t) \, dt , \,\, \forall x \in [a , b] \]
+		则$\varphi \in C^{k}[a , b]$, 且
+		\[ \varphi^{(i)}(x) = \int_{c}^{\infty} \frac{\partial^i}{\partial x^i} f(x , t) \, dt , \,\, \forall x \in [a , b] \]
+	\end{corollary}
+
+\newpage
+
+\section{卷积的性质}
+	首先给出卷积的定义.
+	\begin{defn}\label{def A.5.1}
+		设$f , g \in C(\R^n)$, 并且$f$ 或$g$ 有紧支集. 定义
+		\begin{align}
+			f * g : \R^n &\longrightarrow \R \\
+			x &\longmapsto \int_{\R^n} f(x - y) g(y) \, dy
+		\end{align}
+		称$f*g$ 为\underline{\textcolor{blue}{\textbf{$f , g$ 的卷积}}}. 
+		
+		\begin{rmk}
+			不难证明卷积具有\textbf{对称性}, 即
+			\[ f*g = g*f \]
+		\end{rmk}
+	\end{defn}
+
+	\vspace{4em}
+	
+	下面给出卷积的性质. 
+	\begin{proposition}\label{prop A.5.1}
+		If $f \in C^{k}(\R^n)$, $g \in C_{c}^{l}(\R^n)$, then $f * g \in C^{k + l}(\R^n)$ and
+		\[ \frac{d}{dx}(f * g) = \left( \frac{d}{dx} f \right) * g = f * \left( \frac{d}{dx} g \right) \]
+		where $k = 0 , 1 , 2 , \cdots$ or $\infty$, and $l = 1 , 2 , \cdots$ or $\infty$.
+		
+		\vspace{6em}
+		
+		\begin{proof}
+			下面证明$n = 1$ 的情形, 可推广至高维情形. \\
+			Since $g \in C_{c}^{l}(\R)$, then $\exists M , m \in \R$, $\st supp \, g \subset [m , M]$. Thus
+			\[ f*g (x) 
+			= \int_{\R} f(t) g(x - t) \, dt 
+			= \int_{x - M}^{x - m} f(t) g(x - t) \, dt , \,\, \forall x \in \R \]
+			Fix $x \in \R$. Since
+			\begin{align}
+				\left| \frac{f*g (x + h) - f*g(x)}{h} - f* g^{'}(x) \right| 
+				\leq \int_{x - M}^{x - m} \left| f(t) \right| \left| g^{'}(\xi) - g^{'}(x) \right| \, dt
+			\end{align}
+			where $\xi$ stands between $x - t$ and $x - t + h$. \\
+			Since $g^{'} \in C_{c}(\R)$ converges uniformly on $\R$, then for $\left| h \right| > 0$ small enough, 
+			\[ \left| g^{'}(\xi) - g^{'}(x) \right| \leq \epsilon , \,\, \forall t \in \R \]
+			Thus
+			\begin{align}
+				\left| \frac{f*g (x + h) - f*g(x)}{h} - f* g^{'}(x) \right| 
+				\leq \epsilon \int_{x - M}^{x - m} \left| f(t) \right| \, dt
+			\end{align}
+			Since $f$ is continous, $[x - M , x - m] \subset \R$ is compact, then $\exists A_x > 0$, $\st$
+			\[ \left| \frac{f*g (x + h) - f*g(x)}{h} - f* g^{'}(x) \right| \leq A_x \epsilon \]
+			Letting $\epsilon \to 0$, we get
+			\[ \frac{d}{dx}(f * g)(x) = f * \left( \frac{d}{dx} g \right) (x) , \,\, \forall x \in \R  \]
+			Similarly, we get
+			\[ \frac{d}{dx}(f * g) = \left( \frac{d}{dx} f \right) * g = f * \left( \frac{d}{dx} g \right) \]
+		\end{proof}
+	\end{proposition}
+	
+	
 
 
 
