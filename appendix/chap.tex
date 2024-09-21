@@ -239,8 +239,9 @@
 
 	\vspace{4em}
 	
-	下面给出卷积的性质. 
+	下面给出\textbf{卷积的可微性}. 
 	\begin{proposition}\label{prop A.5.1}
+		\textbf{[卷积的可微性]}. \\
 		If $f \in C^{k}(\R^n)$, $g \in C_{c}^{l}(\R^n)$, then $f * g \in C^{k + l}(\R^n)$ and
 		\[ \frac{d}{dx}(f * g) = \left( \frac{d}{dx} f \right) * g = f * \left( \frac{d}{dx} g \right) \]
 		where $k = 0 , 1 , 2 , \cdots$ or $\infty$, and $l = 1 , 2 , \cdots$ or $\infty$.
@@ -274,6 +275,74 @@
 			\[ \frac{d}{dx}(f * g) = \left( \frac{d}{dx} f \right) * g = f * \left( \frac{d}{dx} g \right) \]
 		\end{proof}
 	\end{proposition}
+
+\newpage
+
+\section{球坐标变换}
+	在计算$n$ 重积分时, 我们常常使用球坐标变换的方法来简化运算, 下面给出具体计算方法. 
+	
+	\vspace{1em}
+	
+	\begin{defn}\label{def A.6.1}
+		\textbf{[n维球坐标变换]}.
+		\begin{align}
+			\begin{cases}
+				x_1 = r \cos{\vartheta_1} \\
+				x_2 = r \sin{\vartheta_1} \cos{\vartheta_2} \\
+				\cdots \\
+				x_{n - 1} = r \sin{\vartheta_1} \sin{\vartheta_2} \cdots \cos{\vartheta_{n - 1}} \\
+				x_n = r \sin{\vartheta_1} \sin{\vartheta_2} \cdots \sin{\vartheta_{n - 1}}
+			\end{cases} , 
+			\,\, \text{with} \,\, 
+			\vartheta_i \in [0 , \pi) , \,\, \forall 1 \leq i \leq n - 1 
+			\,\, \text{and} \,\, 
+			\vartheta_n \in [0 , 2\pi)
+		\end{align}
+		称为\underline{\textcolor{blue}{\textbf{$n$ 维球坐标变换}}}. 它把闭$n$ 维长方体
+		\[ 0 \leq r \leq a , \,\, 0 \leq \vartheta_1 , \cdots , \vartheta_{n - 2} \leq \pi , \,\, 0 \leq \vartheta_{n - 1} \leq 2\pi \]
+		映为闭球$\overline{B}(0 , a)$：
+		\[ x_{1}^2 + x_{2}^2 + \cdots + x_{n}^2 \leq a^2 \]
+		根据\textbf{隐函数定理}, 得到该变换的\textbf{Jacobi行列式}为：
+		\begin{align}
+			\frac{\partial (x_1 , \cdots , x_n)}{\partial (r , \vartheta_1 , \cdots , \vartheta_{n - 1})} = r^{n - 1} \sin^{n - 2} \vartheta_1 \sin^{n - 3} \vartheta_{2} \cdots \sin \vartheta_{n - 2}
+		\end{align}
+		于是计算闭球$\overline{B}(0 , a)$ 内$n$ 重积分时可得到
+		\begin{align}
+			&\int_{B(0 , a)} f(x_1 , \cdots , x_n) \, dx_1 \cdots dx_n \\
+			&= \int_{0}^\pi \cdots \int_{0}^{2\pi} \left( \int_{0}^a r^{n - 1} f(r\cos \vartheta_1 , \cdots , r \sin \vartheta_1 \cdots \sin \vartheta_{n - 1}) \cdot \sin^{n - 2} \vartheta_1 \sin^{n - 3} \vartheta_{2} \cdots \sin \vartheta_{n - 2}  \, dr \right) \, d \vartheta_{n - 1} \cdots d\vartheta_1
+		\end{align}
+	\end{defn}
+	
+	\vspace{6em}
+	
+	下面给出该变换公式的一个应用. 
+	
+	\begin{example}\label{ex A.6.1}
+		\textbf{[以模长为自变量的函数在球体上的积分]}. \\
+		设$f$ 是一个单变量函数, 计算积分
+		\[ A = \int_{B(0 , a)} f\left( \sqrt{x_{1}^2 + \cdots + x_{n}^2} \right) \, dx_1 \cdots dx_n \]
+		
+		\newpage
+		
+		\begin{solution}
+			利用\textbf{球坐标变换 (Def \ref{def A.6.1})}, 可得
+			\[ A = \int_{0}^a r^{n - 1} f(r) \, dr 
+			\int_{0}^\pi \cdots \int_{0}^\pi \left( \int_{0}^{2\pi} \sin^{n - 2} \vartheta_1 \sin^{n - 3} \vartheta_{2} \cdots \sin \vartheta_{n - 2} \, d \vartheta_{n - 1} \right) \, d \vartheta_{n - 2} \cdots d\vartheta_1 \]
+			为了计算积分
+			\[ I = \int_{0}^\pi \cdots \int_{0}^\pi \left( \int_{0}^{2\pi} \sin^{n - 2} \vartheta_1 \sin^{n - 3} \vartheta_{2} \cdots \sin \vartheta_{n - 2} \, d \vartheta_{n - 1} \right) \, d \vartheta_{n - 2} \cdots d\vartheta_1 \]
+			把等式$1 = n \int_{0}^1 r^{n - 1} \, dr$ 乘上式两端, 并注意到
+			\[ r^{n - 1} \sin^{n - 2} \vartheta_1 \sin^{n - 3} \vartheta_{2} \cdots \sin \vartheta_{n - 2} \, d \vartheta_{n - 1} \, d \vartheta_{n - 2} \cdots d\vartheta_1 \]
+			是$n$ 维球的体积元, 即
+			\begin{align}
+				I 
+				&= n \int_{0}^1 r^{n - 1} \, dr \int_{0}^\pi \cdots \int_{0}^\pi \left( \int_{0}^{2\pi} \sin^{n - 2} \vartheta_1 \sin^{n - 3} \vartheta_{2} \cdots \sin \vartheta_{n - 2} \, d \vartheta_{n - 1} \right) \, d \vartheta_{n - 2} \cdots d\vartheta_1 \\
+				&= n \alpha(n)
+			\end{align}
+			于是
+			\[ A = n \alpha(n) \cdot \int_{0}^a r^{n - 1} f(r) \, dr \]
+			其中$\alpha(n)$ 为$n$ 维单位球的体积.
+		\end{solution}
+	\end{example}
 	
 	
 

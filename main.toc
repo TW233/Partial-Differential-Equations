@@ -16,9 +16,11 @@
 \contentsline {chapter}{\numberline {第二章\hspace {.3em}}Laplace's Equation}{19}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Laplace's Equation}{19}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Laplace's Equation的基本解}{20}{subsection.2.1.1}%
-\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}$Supplementary \,\, Content$}{21}{appendix.A}%
-\contentsline {section}{\numberline {A.1}区域边界的光滑性}{21}{section.A.1}%
-\contentsline {section}{\numberline {A.2}含参变量的积分}{22}{section.A.2}%
-\contentsline {section}{\numberline {A.3}含参变量的广义积分的一致收敛}{23}{section.A.3}%
-\contentsline {section}{\numberline {A.4}含参变量的广义积分的性质}{26}{section.A.4}%
-\contentsline {section}{\numberline {A.5}卷积的性质}{28}{section.A.5}%
+\contentsline {subsection}{\numberline {2.1.2}求解Possion方程}{21}{subsection.2.1.2}%
+\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}$Supplementary \,\, Content$}{25}{appendix.A}%
+\contentsline {section}{\numberline {A.1}区域边界的光滑性}{25}{section.A.1}%
+\contentsline {section}{\numberline {A.2}含参变量的积分}{26}{section.A.2}%
+\contentsline {section}{\numberline {A.3}含参变量的广义积分的一致收敛}{27}{section.A.3}%
+\contentsline {section}{\numberline {A.4}含参变量的广义积分的性质}{30}{section.A.4}%
+\contentsline {section}{\numberline {A.5}卷积的性质}{32}{section.A.5}%
+\contentsline {section}{\numberline {A.6}球坐标变换}{34}{section.A.6}%
