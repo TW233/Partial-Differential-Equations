@@ -5,629 +5,478 @@
 	\else
 	\fi
 	%  ############################ 正文部分
-\chapter{Prologue}
-\section{Partial Differential Equations}
-	下面我们给出\textbf{偏微分方程 (PDE)}的定义.
+\chapter{The Single First-Order Equation}
+
+\section{一阶线性方程的特征线解法}
+	对于\textbf{波动方程}来说, 经典的解题方法有两类：\textbf{分离变量法$\&$ 特征线法}. 这两类方法也可以应用于除波动方程外的很多PDE. 这一节我们以\textbf{一阶线性方程}为例, 引出\textbf{特征线}的概念. 
+	
+\subsection{一阶常系数线性方程}
+	首先先来考虑最简单的情形：在区域$\R \times (0 , \infty)$ 上求解Cauchy问题：
+	\begin{equation}
+		\begin{cases}
+			\dfrac{\partial \rho}{\partial t} + a \dfrac{\partial \rho}{\partial x} = 0 \\
+			\rho(x , 0) = \rho_0(x)
+		\end{cases}\label{1.1}
+	\end{equation}
+	
+	\vspace*{1em}
+	
+	对于该问题, 给出\textbf{特征线}的定义. 
 	\begin{defn}\label{def 1.1.1}
-		An expression of the form
-		\[ F(D^k u , D^{k - 1}u , \cdots , Du , u , x) = 0 , \,\, x \in U \subset \R^n \]
-		is called a \underline{\textcolor{blue}{\textbf{$k^{th}$-order partial differential equation}}}, where
-		\[ F : \R^{n^{k}} \times \R^{n^{k - 1}} \times \cdots \times \R^n \times \R \times U \longrightarrow \R \]
-		and
-		\[ u : U \subset \R^n \longrightarrow \R \]
+		我们称下列ODE初值问题
+		\begin{align*}
+			\begin{cases}
+				\dfrac{dx}{dt} = a \\
+				x(0) = c
+			\end{cases}
+		\end{align*}
+		的解$x(t , c) = at + c$ 为方程(\ref{1.1})的\underline{\textcolor{blue}{\textbf{特征线}}}, 其中$c \in \R$ 为常数. 
+			
+		\vspace*{3em}
+		
+		\begin{rmk}
+			\textbf{“特征线”}的含义如下：\\
+			沿着特征线$x = x(t , c)$, 待求函数表达式为$\rho = \rho\Big( x(t , c) , t \Big)$, $\st$
+			\[ \frac{d\rho}{dt} = \frac{\partial \rho}{\partial t} + \frac{\partial \rho}{\partial x} \cdot \frac{dx}{dt} = \rho_t + a\rho_x = 0 \]
+			即$\rho(x , t)$ 在特征线$x = x(t , c)$ 上恒为常数. \\
+			故只需知道特征线上一点取值即可得到整条线上的函数值. 而在特征线的起点$x = c , \,\, t = 0$ 处, 
+			\[ \rho\Big( x(0 , c) , 0 \Big) = \rho(c , 0) = \rho_0(c) \]
+			于是在特征线$x = x(t , c)$ 上, 
+			\[ \rho\Big( x(t , c) , t \Big) = \rho(at + c , c) = \rho_0(c) \]
+			根据$x = at + c$, 解得$c = x - at$, 代入上式, 得到$\rho(x , t)$ 的解
+			\[ \rho(x , t) = \rho_0(x - at) , \,\, \forall (x , t) \in \R \times (0 , \infty) \]
+		\end{rmk}
+	\end{defn}
+	
+\vspace*{5em}
+	
+\subsection{一阶变系数线性方程}
+	更一般地, 我们考虑变系数方程
+	\begin{align}
+		\frac{\partial \rho}{\partial t} &+ \frac{\partial}{\partial x} \Big( v(x) \cdot \rho \Big) = 0 \\
+		\Leftrightarrow \,\, \frac{\partial \rho}{\partial t} &+ v(x) \frac{\partial \rho}{\partial x} + v^{'}(x) \rho = 0 \label{1.3}
+	\end{align}
+	
+	\vspace*{1em}
+	
+	类似地, 对于该变系数问题, 同样给出\textbf{特征线}的定义. 
+	
+	\begin{defn}\label{def 1.1.2}
+		设曲线$x = x(t , c)$ 满足
+		\begin{align*}
+			\begin{cases}
+				\dfrac{dx}{dt} = v\Big( x(t) \Big) \\
+				x(0) =c
+			\end{cases}
+		\end{align*}
+		这条积分曲线$x = x(t , c)$ 称为方程(\ref{1.3}) 的\underline{\textcolor{blue}{\textbf{特征线}}}, 其中$c \in \R$ 为常数. 沿着特征线$x = x(t , c)$, 待求函数$\rho = \rho\Big( x(t , c) , t \Big)$ 满足：
+		\begin{align}
+			\begin{cases}
+				\dfrac{d \rho}{dt} = - v^{'}\Big( x(t , c) \Big) \cdot \rho \\
+				\rho \Big( x(0 , c) , 0 \Big) = \rho(c , 0) = \rho_0(c)
+			\end{cases}\label{1.4}
+		\end{align}
+		
+		\vspace*{2em}
+		
+		\begin{rmk}
+			 事实上, 此处我们已经将PDE问题(\ref{1.3}) 转化为了求解ODE问题(\ref{1.4}). 但在处理积分时要留意, 方程(\ref{1.4}) 中等号右端函数$v^{'}$ 的自变量为$x(t , c)$ 而非$t$, 因此要进行变量替换, 即
+			 \begin{align*}
+			 	\frac{d \rho}{\rho} &= - v^{'} \Big( x(t , c) \Big) dt \\
+			 	\ln \rho \Big( x(t , c) , t \Big) - \ln \rho_0(c) &= \int_{0}^t - v^{'} \Big( x(\tau , c) \Big) \, d\tau \\
+			 	&= \int_{c}^{x(t , c)} - v^{'} \Big( x(t , c) \Big) \cdot \dfrac{1}{\dfrac{dx}{d\tau}} \cdot dx
+			 \end{align*}
+		 	由于特征线方程满足
+		 	\[ \frac{dx}{dt} = v \Big( x(t , c) \Big) \]
+		 	因此
+		 	\begin{align*}
+		 		\ln \rho \Big( x(t , c) , t \Big) - \ln \rho_0(c) 
+		 		&= \int_{c}^{x(t , c)} - v^{'} \Big( x(t , c) \Big) \cdot \dfrac{1}{\dfrac{dx}{d\tau}} \cdot dx \\
+		 		&= \int_{c}^{x(t , c)} \frac{- v^{'} \Big( x(t , c) \Big)}{v \Big( x(t , c) \Big)} \, dx \\
+		 		&= -\ln v \Big( x(t , c) \Big) + \ln v(c)
+		 	\end{align*}
+	 		从而容易得到特征线$x = x(t , c)$ 上函数$\rho = \rho\Big( x(t , c) , t \Big)$为
+	 		\[ \rho\Big( x(t , c) , c \Big) = \rho_0(c) \cdot \frac{v(c)}{v \Big( x(t , c) \Big)}\]
+	 		从特征线方程$x = x(t , c)$ 中解出$c = \varphi(x , t)$, 代入上式, 解得
+	 		\[ \rho(x , t) = \rho_0\Big( \varphi(x , t) \Big) \cdot \frac{v \Big( \varphi(x , t) \Big)}{v(x)} \]
+	 		可以验证, 上述表达式确实是方程(\ref{1.3}) 的解. 
+		\end{rmk}
+	\end{defn}
+
+\newpage
+
+\subsection{一阶线性方程的特征线解法}
+	下面对前两个小节所给出的\textbf{特征线法}进行总结归纳, 大致分为以下步骤：
+	
+	\vspace*{1em}
+	
+	\begin{enumerate}
+		\item 求特征线$x = x(t , c)$. 
+		
+		\vspace*{1em}
+		
+		\item 沿特征线$x = x(t , c)$, 将原方程化为关于$\rho = \rho \Big( x(t , c) , t \Big)$ 的ODE方程(其中$c \in \R$ 为参数), 并求出$\rho = u(t , c)$. 
+		
+		\vspace*{1em}
+		
+		\item 从特征线方程$x = x(t , c)$ 中解出$c = \varphi(x , t)$, 代入$\rho = u(t , c)$ 中, 解得$\rho(x , t) = u \Big( t , \varphi(x , t) \Big)$.
+	\end{enumerate}
+	
+	\vspace*{4em}
+	
+	下面给出一个实例. 
+	\begin{example}\label{ex 1.1.1}
+		求下列Cauchy问题的解. 
+		\begin{align*}
+			\begin{cases}
+				\dfrac{\partial u}{\partial t} + (x + t) \dfrac{\partial u}{\partial x} + u = x , \,\, x \in \R , \,\, t > 0 \\
+				u(x , 0) = x
+			\end{cases}
+		\end{align*}
+		
+		\vspace*{2em}
+		
+		\begin{solution}
+			\begin{enumerate}
+				\item[\textbf{Step 1}]. 求特征线. 特征方程
+				\begin{align*}
+					\begin{cases}
+						\dfrac{dx}{dt} = x + t \\
+						x(0) = c
+					\end{cases}
+				\end{align*}
+				的解为
+				\[ x = x(t) = e^t (1 + c) - (1 + t) \]
+				
+				\vspace*{2em}
+				
+				\item[\textbf{Step 2}]. 令$U(t) = u\Big( x(t) , t \Big)$, then
+				\begin{align*}
+					\begin{cases}
+						\dfrac{dU}{dt} = x(t) - u\Big( x(t) , t \Big) = -U(t) + e^t (1 + c) - (1 + t) \\
+						U(0) = u\Big( x(0), 0 \Big) = u(c , 0) = c
+					\end{cases}
+				\end{align*}
+				解得
+				\[ U(t) = u \Big( x(t) , t \Big) = \frac{1}{2}(c + 1) e^t + \frac{1}{2}(c - 1) e^{-t} - t \]
+				
+				\item[\textbf{Step 3}]. 从特征线方程$x = e^t (1 + c) - (1 + t)$ 中, 解得
+				\[ c = (x + t + 1)e^{-t} - 1 \]
+				代入$u \Big( x(t) , t \Big)$ 中, 得到
+				\[ u(x , t) = \frac{1}{2} e^{-2t} (x + t + 1) - e^{-t} + \frac{1}{2}(x - t + 1) \]
+			\end{enumerate}
+		\end{solution}
+	\end{example}
+
+\newpage
+
+\section{Quasi-Linear Equations}
+	这一节我们将会把\textbf{线性方程}中的\textbf{特征线法}拓展到更一般的\textbf{Quasi-Linear} 方程中, 并将给出\textbf{Integral Surfaces (积分曲面)}等概念. 此处我们为了简化问题, 均讨论\textbf{含2个自变量的一阶Quasi-Linear方程}, 即
+	\begin{align}
+		a(x , y , u) u_x + b(x , y , u)u_y = c(x , y , u) \label{1.5}
+	\end{align}
+	
+\subsection{Integral Surfaces}
+	为了直观地理解方程(\ref{1.5}), 我们不妨令$z = u(x , y)$ 代表$\R^3$ 中的曲面, 方程(\ref{1.5}) 可化为
+	\[ (a , b , c) \cdot (u_x , u_y , -1) = 0 \]
+	根据\textbf{外法向的定义 (\ref{def B.1.1})}, $(u_x , u_y , -1)$ 即为曲面$z = u(x , y)$ 在各点处的外法向. 于是对于$\R^3$ 中向量场$(a , b , c)$, 其与曲面$z = u(x , y)$ 在各点处的法向量垂直. 
+	
+	\vspace*{3em}
+	
+	\hspace*{-1.85em}从而我们的问题可由\textbf{“求解方程(\ref{1.5})”}, 转化为：
+	\begin{center}
+		\textbf{对于$\R^3$ 中的向量场$(a , b , c)$, 我们要找到一个曲面$z = u(x , y)$, \\
+			$\st$ 曲面上每个点的切线均平行于$(a , b , c)$}.
+	\end{center}
+	
+	\vspace*{1em}
+	
+	\begin{figure}[thbp!]
+		\centering
+		\includegraphics[width=0.3\linewidth]{figure/1.2-1}
+		\caption{曲面$z = u(x , y)$}
+		\label{pic : 1.2-1} % 添加图像引用标签
+	\end{figure}
+	
+	\hspace*{-1.85em}由此, 引出\textbf{Integral Surfaces} 的概念. 
+	
+	\begin{defn}\label{def 1.2.1}
+		Surfaces corresponding to solutions of a P.D.E. are called \underline{\textcolor{blue}{\textbf{integral surfaces}}} of the P.D.E.
+	\end{defn}
+
+\newpage
+
+\subsection{Characteristic Curves}
+	为了求解\textbf{Quasi-Linear Equations}, 我们来拓展\textbf{Def \ref{def 1.1.1}}及\textbf{Def \ref{def 1.1.2}} 中关于\textbf{特征线}的概念. Assume $a , b , c \in C^1(\Omega)$, where $\Omega \subset \R^3$ is a bounded region. 对于方程(\ref{1.5}), 
+	\[ a(x , y , u) u_x + b(x , y , u)u_y = c(x , y , u) \]
+	我们给出\textbf{特征线}的定义. 
+	
+	\vspace*{1em}
+	
+	\begin{defn}\label{def 1.2.2}
+		设曲线$\gamma : (x(t) , y(t) , z(t)) \subset \R^3$. 若曲线$\gamma$ 满足ODE方程组
+		\begin{align}
+			\begin{cases}
+				\dfrac{dx}{dt} = a(x , y , z) \\
+				x(0) = x_0
+			\end{cases} , \,\, 
+			\begin{cases}
+				\dfrac{dy}{dt} = b(x , y , z) \\
+				y(0) = y_0
+			\end{cases} , \,\, 
+			\begin{cases}
+				\dfrac{dz}{dt} = c(x , y , z) \\
+				z(0) = z_0
+			\end{cases}\label{1.6}
+		\end{align}
+		则称这条积分曲线$\gamma : (x(t) , y(t) , z(t))$ 为方程(\ref{1.5}) 在点$P_0(x_0 , y_0 , z_0)$ 处的\underline{\textcolor{blue}{\textbf{特征线}}}. 
 		
 		\vspace*{2em}
 		
 		\begin{rmk}
 			\begin{itemize}
-				\item 此处的函数$u$ 未必$k$ 阶连续可微, 因此其$k$ 阶偏导的偏导算子不一定能交换次序, 故符号$D^{k}u$ 中包含了$n^k$ 种$k$ 阶偏导.
+				\item 由于$a , b , c \in C^1(\Omega)$, 因此$a , b , c$  Lipschitz连续, 根据\textbf{ODE解的存在唯一性定理 (Thm \ref{thm B.2.1})}, 对于给定的初值点$(x_0 , y_0 , z_0) \in \R^3$, 该特征线\textbf{存在且唯一}. 
 				
-				\vspace{2em}
+				\vspace*{2em}
 				
-				\item \textbf{[高阶偏导数计数问题]}. 对于$u \in C^k$, 此时$k$ 阶偏导算子可任意交换次序, 则对于符号$D^k u$, 其代表了几种$k$ 阶偏导数？
-				
-				\vspace{2em}
-				
-				\begin{solution}
-					即考虑$D^{\alpha} u (\left| \alpha \right| = k)$ 的种数. 可转化为求非负数不定方程
-					\[ \alpha_1 + \alpha_2 + \cdots + \alpha_n = k \]
-					的解的个数的问题, 其中$\alpha_i$ 表示$u$ 对自变量$x$ 的第$i$ 个分量所求偏导阶数, 即$(\dfrac{\partial}{\partial x_i})^{\alpha_i}$. \\
-					利用\textbf{插板法}, 往$k$ 个球插入$n - 1$ 个板即可得到$n$ 份, 球和板共$k + n - 1$ 个, 即可视作往$k + n - 1$ 个空位中任意排列$k$ 个球和$n - 1$ 个板, 即有
-					\[ {k + n - 1 \choose k} = {k + n - 1 \choose n - 1} \text{种}  \]
-				\end{solution}
+				\item 此处仅为\textbf{含2个自变量的1阶Quasi-Linear Equation}的特征线, 事实上, 对于$n$ 维可类似推广, 即对于\textbf{含n个自变量的1阶Quasi-Linear Equation}
+				\[ a_1(x_1 , \cdots , x_n , u)u_{x_1} + \cdots + a_{n}(x_1 , \cdots , x_n , u)u_{x_n} = a_{n + 1}(x_1 , \cdots , x_n , u) \]
+				对于$\R^{n + 1}$ 中的曲线$\gamma : (x_1(t) , \cdots , x_n (t) , x_{n + 1}(t))$, 若$\gamma$ 满足
+				\begin{align*}
+					\begin{cases}
+						\dfrac{dx_{1}}{dt} = a_1(x_1 , \cdots , x_n , x_{n + 1}) \\
+						\cdots \\
+						\dfrac{dx_{n + 1}}{dt} = a_{n + 1}(x_1 , \cdots , x_n , x_{n + 1}) \\
+						x_1(0) = x_{0}^1 , \cdots , x_{n + 1}(0) = x_{0}^{n + 1}
+					\end{cases}
+				\end{align*}
+				则称$\gamma \subset \R^{n + 1}$ 为上述含n个自变量的1阶Quasi-Linear Equation的特征线. 
 			\end{itemize}
 		\end{rmk}
 	\end{defn}
-	
-	\vspace{6em}	
-	
-	下面给出\textbf{偏微分方程 (PDE)} 的一些\textbf{线性}的概念.
-	\begin{defn}\label{def 1.1.2}
-		\begin{itemize}
-			\item The PDE is called \underline{\textcolor{blue}{\textbf{linear}}} if it has the form
-			\[ \sum_{\left| \alpha \right| \leq k} a_{\alpha}(x) D^{\alpha}u = f(x) \]
-			for given $a_\alpha$ and $f$. Moreover, it is called \underline{\textcolor{blue}{\textbf{homogenuous (齐次)}}} if $f \equiv 0$.
-			
-			\vspace{2em}
-			
-			\item The PDE is \underline{\textcolor{blue}{\textbf{semilinear}}} if it has the form
-			\[ \sum_{\left| \alpha \right| = k} a_{\alpha}(x) D^{\alpha}u + a_0(D^{k - 1}u , \cdots , Du , u , x) = 0 \]
-			
-			\vspace*{2em}
-			
-			\item The PDE is \underline{\textcolor{blue}{\textbf{quasilinear}}} if it has the form
-			\[ \sum_{\left| \alpha \right| = k} a_{\alpha}(D^{k - 1}u , \cdots , Du , u , x) D^{\alpha}u + a_0(D^{k - 1}u , \cdots , Du , u , x) = 0 \]
-			
-			\vspace*{2em}
-			
-			\item The PDE is \underline{\textcolor{blue}{\textbf{fully nonlinear}}} if it depends nonlinearly upon the highest order derivatives.
-		\end{itemize}
-		
-		\vspace{2em}
-		
-		\begin{rmk}
-			上述几种\textbf{线性}的概念为逐层宽泛的, 即存在如下的包含关系：
-			\begin{center}
-				\textbf{homogenuous $\,\, \subset \,\,$ linear $\,\, \subset \,\,$ semilinear $\,\, \subset \,\,$ quasilinear}
-			\end{center}
-		\end{rmk}
-	\end{defn}
 
-	\vspace{6em}
+	\vspace*{4em}
 	
-	同理, 对于\textbf{偏微分方程组 (System of PDEs)}, 可给出如下定义.
-	\begin{defn}\label{def 1.1.3}
-		An expression of the form
-		\[ \vec{F}(D^k \vec{u} , \cdots , D \vec{u} , \vec{u} , x) = \vec{0} , \,\, x \in U \]
-		is called a \underline{\textcolor{blue}{\textbf{$k^{th}$-order system of PDEs}}},  where
-		\[ \vec{F} : \R^{m \cdot n^k} \times \R^{m \cdot n^{k - 1}} \times \cdots \times \R^{mn} \times \R^m \times U \longrightarrow \R^m \]
-		and
-		\[ \vec{u} : U \subset \R^n \longrightarrow \R^m , \,\, \vec{u} = (u^1 , u^2 , \cdots , u^m) \]
-		
-		\vspace{2em}
-		
-		\begin{rmk}
-			对于符号$D^{\alpha} \vec{u}$, 其表达的意思即为对$\vec{u}$ 的每个分量$u^i$ 做相同的偏微分算子运算, 从而得到新的向量, 即
-			\[ D^{\alpha} \vec{u} = (D^{\alpha} u^1 , \cdots , D^{\alpha} u^m) \]
-		\end{rmk}
-	\end{defn}
-
-\newpage	
-	
-\section{多项式定理}
-	下面我们用多重指标的形式给出\textbf{多项式定理}.
-	\begin{thm}\label{thm 1.2.1}
-		\textbf{[Multinomial Theorem]}. 
-		\begin{align}
-			\left( \sum_{i = 1}^{n} x_i \right)^k = \sum_{\left| \alpha \right| = k} 
-			{\left| \alpha \right| \choose \alpha}
-			x^{\alpha}
-		\end{align}
-		where
-		\begin{align}
-			{\left| \alpha \right| \choose \alpha}
-			\coloneqq \frac{\left| \alpha \right| !}{\alpha !} 
-			\hspace*{2em} , \hspace*{2em}  
-			\begin{cases}
-				\alpha ! \coloneqq \alpha_1 ! \alpha_2 ! \cdots \alpha_n ! \\
-				x^{\alpha} \coloneqq x_{1}^{\alpha_1} x_{2}^{\alpha_2} \cdots x_{n}^{\alpha_n}
-			\end{cases}
-		\end{align}
-	
-		\vspace{4em}
-		
-		\begin{proof}
-			\begin{itemize}
-				\item \textbf{[法一]}: 对于等式左侧$k$ 项因子
-				\begin{align}
-					(x_1 + x_2 &+ \cdots + x_n) \\
-					(x_1 + x_2 &+ \cdots + x_n) \\
-					&\cdots \\
-					(x_1 + x_2 &+ \cdots + x_n)
-				\end{align}
-				在其中任取$\alpha_1$ 项作为$x^{\alpha} = x_{1}^{\alpha_1} x_{2}^{\alpha_2} \cdots x_{n}^{\alpha_n}$ 中$x_1$ 的来源. 再在剩下的$k - \alpha_1$ 项中任取$\alpha_2$ 项作为$x_2$ 的来源, 以此类推, 最终可得到$x_\alpha$ 的个数为：
-				\begin{align}
-					&{k \choose \alpha_1} 
-					{k - \alpha_1 \choose \alpha_2} 
-					\cdots 
-					{k - \alpha_1 - \alpha_2 - \cdots - \alpha_{n - 1} \choose \alpha_n} \\
-					&= \frac{k!}{\alpha_1 ! (k - \alpha_1) !} 
-					\cdot
-					\frac{(k - \alpha_1) !}{\alpha_2 ! (k - \alpha_1 - \alpha_2) !} 
-					\cdots
-					\frac{(k - \alpha_1 - \alpha_2 - \cdots - \alpha_{n - 1}) !}{\alpha_n ! 0 !} \\
-					&= \frac{k !}{\alpha_1 ! \alpha_2 ! \cdots \alpha_n !} \\
-					&= \frac{\left| \alpha \right| !}{\alpha !} \\
-					&= {\left| \alpha \right| \choose \alpha}
-				\end{align} 
-			
-				\newpage
-				
-				\item \textbf{[法二]}: 原式左侧$k$ 项因子可看作$k$ 个空位, 这$k$ 个空位已经按顺序划分成了$n$ 个区域, 即
-				\[ ( \hspace*{2em} \alpha_1 \hspace*{2em}) (\alpha_2) \cdots ( \hspace*{1em} \alpha_n \hspace*{1em} ) \]
-				现在有$k$ 个人入座, 在同一区域内的人我们不考虑其排列问题, 比如人员$A$ 与人员$B$ 均坐在区域$1$ 中, 则不考虑$A , B$ 的前后顺序. 那么我们可得到总共的排列种数为：
-				\[ \dfrac{k !}{\alpha_1 ! \alpha_2 ! \cdots \alpha_n !} = {\left| \alpha \right| \choose \alpha} \]
-				此即为右式中各项的系数.
-			\end{itemize}
-		\end{proof}
-	\end{thm}
-
-\newpage
-
-\section{Leibniz公式 -- 高阶偏导版本}
-	先来回顾以下数学分析中学到的一维实值函数的\textbf{Leibniz公式}：
-	\[ (uv)^{(n)} = \sum_{k = 0}^{n} {n \choose k} u^{(k)} v^{(n - k)} , \,\, \forall u , v \in C^n \]
-	
-	\vspace{6em}
-	
-	与之相对应的, 我们来给出\textbf{高阶偏导版本的Leibniz公式}.
-	\begin{thm}\label{thm 1.3.1}
-		\textbf{[Leibniz's Formula]}. 
-		\begin{align}
-			D^{\alpha}(uv) = \sum_{\beta \leq \alpha} {\alpha \choose \beta} D^{\beta}u \,\, D^{\alpha - \beta}v
-		\end{align}
-		where $u , v \in C^{\infty}(\R^n)$, 
-		\[ {\alpha \choose \beta} \coloneqq \dfrac{\alpha !}{\beta ! (\alpha - \beta) !} 
-		\hspace*{2em} \text{and} \hspace*{2em} 
-		\beta \leq \alpha \,\, \text{means} \,\, \beta_i \leq \alpha_i , \,\, \forall i = 1 \sim n\]
-		
-		\vspace{6em}
-		
-		\begin{proof}
-			先给出几个记号方便下述证明：
-			\begin{itemize}
-				\item $u_i$ 表示$u$ 对自变量$x$ 的第$i$个分量求一阶偏导, 即$\dfrac{\partial}{\partial x_i} u$.
-				
-				\item $u_{i}^k$ 即表示求$k$ 阶偏导, 即$\left( \dfrac{\partial}{\partial x_i} \right)^k u$.
-				
-				\item $u_{i}^{k_i} u_{j}^{k_j}$ 表示$u$ 先对$x_i $求$k_i$ 阶偏导后再对$x_j$ 求$k_j$ 阶偏导, 即$\dfrac{\partial^{k_i + k_j}}{\partial x_{i}^{k_i} \partial x_{j}^{k_j}} u$. \\
-				(事实上由于此处$u , v \in C^{\infty}(\R^n)$, 因此无需考虑先后顺序)
-			\end{itemize}
-			由于根据\textbf{一维实值Leibniz公式}, $uv$ 对$x_1$ 求$\alpha_1$ 阶偏导可写为如下形式：
-			\begin{align}
-				\left( \frac{\partial}{\partial x_1} \right)^{\alpha_1} (uv) 
-				&= \sum_{k_1 = 0}^{\alpha_1} {\alpha_1 \choose k_1} \left( \frac{\partial}{\partial x_1} \right)^{k_1} u \left( \frac{\partial}{\partial x_1} \right)^{\alpha_1 - k_1} v \\
-				&= \sum_{k_1 = 0}^{\alpha_1} {\alpha_1 \choose k_1} u_{1}^{k_1} v_{1}^{\alpha_1 - k_1} \\
-				&\coloneqq (u_1 + v_1)^{\alpha_1}
-			\end{align}
-			因此, $D^{\alpha}(uv)$ 可写成$(u_1 + v_1)^{\alpha_1} (u_2 + v_2)^{\alpha_2} \cdots (u_n + v_n)^{\alpha_n}$. 从而
-			\begin{align}
-				D^{\alpha}(uv) 
-				&= (u_1 + v_1)^{\alpha_1} (u_2 + v_2)^{\alpha_2} \cdots (u_n + v_n)^{\alpha_n} \\
-				&= \sum_{\substack{0 \leq \beta_i \leq \alpha_i \\ 1 \leq i \leq n}} 
-				{\alpha_1 \choose \beta_1} {\alpha_2 \choose \beta_2} \cdots {\alpha_n \choose \beta_n} 
-				u_{1}^{\beta_1} u_{2}^{\beta_2} \cdots u_{n}^{\beta_n} v_{1}^{\alpha_1 - \beta_1} v_{2}^{\alpha_2 - \beta_2} \cdots v_{n}^{\alpha_n - \beta_n} \\
-				&= \sum_{\beta \leq \alpha} {\alpha \choose \beta} D^{\beta}u \,\, D^{\alpha - \beta}v
-			\end{align}
-		\end{proof}
-	\end{thm}
-
-\newpage
-
-\section{Taylor公式 -- 多元版本}
-	先来回顾一元实解析函数在原点处的\textbf{Taylor公式}：
-	\[ f(x) = \sum_{k = 0}^{n} \frac{f^{(k)}(0)}{k !} x^k + O(\left| x \right|^{n + 1}) \,\, \text{as} \,\, x \to 0 \]
-	
-	\vspace{6em}	
-	
-	下面给出\textbf{多元 (实解析)函数的Taylor公式}, 此处为讨论方便直接假设$f$ 光滑.
-	\begin{thm}\label{thm 1.4.1}
-		\textbf{[Taylor's Formula]}. \\
-		Assume that $f : \R^n \longrightarrow \R$ is smooth. Then
-		\begin{align}
-			f(x) 
-			= \sum_{\left| \alpha \right| \leq k} \frac{1}{\alpha !} D^{\alpha}f(0) x^{\alpha} + O(\left| x \right|^{k + 1}) 
-			\,\, \text{as} \,\, x \to 0 , \,\, \forall k \in \N
-		\end{align}
-		This is Taylor's Formula in multiindex notation.
-		
-		\vspace{6em}
-		
-		\begin{proof}
-			Suppose $f(x) \sim \sum\limits_{\left| \alpha \right| \leq k} a_\alpha x^{\alpha} + O(\left| x \right|^{k + 1})$ as $x \to 0$. Then we'll calculate $a_\alpha$. \\
-			For given $\alpha$, 对等式左右两侧同时作用$D^{\alpha}$ 算子, 对于右式中每一项$a_\beta x^{\beta}$
-			\begin{itemize}
-				\item If $\left| \beta \right| < \left| \alpha \right|$, then $\exists 1 \leq i \leq n$, $\st$
-				\[ \beta_i < \alpha_i \]
-				那么经过$D^{\alpha}$ 算子作用后, $x^{\beta} = x_{1}^{\beta_1} \cdots x_{n}^{\beta_n}$ 中的$x_i$ 因子将变为0, 从而$D^{\alpha} (a_{\beta}x^{\beta}) = 0$.
-				
-				\vspace{2em}
-				
-				\item If $\left| \beta \right| > \left| \alpha \right|$, then $\exists 1 \leq j \leq n$, $\st$
-				\[ \beta_j > \alpha_j \]
-				那么经过$D^{\alpha}$ 算子作用后, $x^{\beta} = x_{1}^{\beta_1} \cdots x_{n}^{\beta_n}$ 中的$x_j$ 因子将得到保留, 此时再取$D^{\alpha}f(x)$ 在原点处的取值, 得到$D^{\alpha}(a_\beta x^{\beta})(0) = 0$.
-				
-				\vspace{2em}
-				
-				\item If $\left| \beta \right| = \left| \alpha \right|$ and $\beta \neq \alpha$, then $\exists \beta_i \neq \alpha_i$, 同上可得$D^{\alpha}(a_\beta x^{\beta})(0) = 0$.
-			\end{itemize}
-			综上, 可得到对于给定的$\alpha$, 其系数$a_{\alpha} = \dfrac{D^{\alpha}f(0)}{\alpha !}$.
-		\end{proof}
-	\end{thm}
-
-\newpage
-
-\section{Notations}
-	下面给出一些常用的记号.
-	\begin{enumerate}
-		\item For $U , V \subset \R^n$, we write \underline{\textcolor{blue}{\textbf{$V \subset \subset U$}}} if $V \subset \overline{V} \subset U$. ($V$ is compactly contained in $U$)
-		
-		\vspace{2em}
-		
-		\item 
-		\begin{align}
-			\underline{\textcolor{blue}{\textbf{$\alpha(n)$}}} &\coloneqq \text{volumn of unit ball $B(0 , 1)$ in $\R^n$} \\
-			&= \frac{\pi^{\tfrac{n}{2}}}{\Gamma(\dfrac{n}{2} + 1)} \\
-			\underline{\textcolor{blue}{\textbf{$n \alpha(n) r^{n - 1}$}}} &\coloneqq \text{surface area of $\partial B(0 , r)$ in $\R^n$}
-		\end{align}
-	
-		\vspace{2em}
-		
-		\item $D^{\alpha}u \coloneqq \dfrac{\partial^{\left| \alpha \right|} u}{\partial x_{1}^{\alpha_1} \cdots \partial x_{n}^{\alpha_n}} \coloneqq \partial_{x_{1}}^{\alpha_1} \cdots \partial_{x_n}^{\alpha_n} u$
-		
-		\vspace{2em}
-		
-		\item For $k \geq 0$, 
-		\begin{align}
-			D^k u &\coloneqq \{ D^{\alpha}u \mid \left| \alpha \right| = k \} \\
-			\left| D^k u \right| &\coloneqq \sqrt{\sum_{\left| \alpha \right| = k} \left| D^{\alpha} u \right|^2}
-		\end{align}
-	
-		\vspace{2em}
-		
-		\item 
-		\begin{align}
-			Du &= (u_{x_1} , \cdots , u_{x_n}) = \nabla u = grad \, u \\
-			D^2 u &= 
-			\begin{pmatrix}
-				&u_{x_1 x_1} &\cdots &u_{x_1 x_n} \\
-				&\cdots &\cdots &\cdots \\
-				&u_{x_n x_1} &\cdots &u_{x_n x_n}
-			\end{pmatrix}
-			= H u = Hess \, u \\
-			\Delta u &= \sum_{i = 1}^{n} u_{x_i x_i} = div(grad \, u) = tr(Hess \, u)
-		\end{align}
-	
-		\newpage
-		
-		\item 
-		\begin{align}
-			C(U) &\coloneqq \{ u : U \longrightarrow \R \mid u \,\, \text{continuous} \} \\
-			C(\overline{U}) &\coloneqq \{ u \in C(U) \mid u \,\, \text{is uniformly continuous on all bounded subsets of $\overline{U}$} \} \\
-			C^{k}(U) &\coloneqq \{ u : U \longrightarrow \R \mid u \,\, \text{is $k$-times continuously differentiable} \} \\
-			C^{k}(\overline{U}) &\coloneqq \{ u \in C^{k}(U) \mid  D^{\alpha}u \,\, \text{is uniformly continuous on all bounded subsets of $\overline{U}$, $\forall \left| \alpha \right| \leq k$} \} \\
-			C^{\infty}(U) &= \bigcap_{k = 0}^{\infty}{C^{k}(U)} \hspace*{2em} , \hspace*{2em} C^{\infty}(\overline{U}) = \bigcap_{k = 0}^{\infty}{C^{k}(\overline{U})} \\
-			C_c (U) &\coloneqq \{ u \in C(U) \mid u \,\, \text{有紧支集} \} \\
-			C_{c}^{k}(U) &\coloneqq \{ u \in C^{k}(U) \mid u \,\, \text{有紧支集} \}
-		\end{align}
-		
-		\vspace{2em}
-		
-		\item Given a measurable funciton $f : X \longrightarrow \R$, 
-		\begin{align}
-			ess\sup f \coloneqq \inf{ \left\{ \alpha \in \overline{\R} \mid \mu\left( f^{-1}\left( (\alpha , \infty) \right) \right) = 0 \right\} }
-		\end{align}
-	
-		\vspace{2em}
-		
-		\item 
-		\begin{align}
-			L^{p}(U) \coloneqq \{ u : U \longrightarrow \R \mid u \,\, \text{is Lebesgue measurable and} \,\, \Vert u \Vert_{L^{p}(U)} < \infty \}
-		\end{align}
-		where
-		\begin{align}
-			\Vert u \Vert_{L^{p(U)}} \coloneqq 
-				\begin{cases}
-					\left( \int_{U} \left| u \right|^p d\mu \right)^{\frac{1}{p}} \,\, (1 \leq p < \infty)\\
-					ess\sup{\left| u \right|} \,\, (p = \infty)
-				\end{cases}
-		\end{align}
-		
-		\vspace{2em}
-		
-		\item $L_{loc}^{p}(U) \coloneqq \{ u : U \longrightarrow \R \mid u \in L^{p}(V) , \,\, \forall V \subset \subset U \}$
-	\end{enumerate}
-
-\newpage
-
-\section{PDE中的微积分 -- Gauss-Green公式, 极坐标换元}
-\subsection{Gauss-Green公式}
-	首先回顾一下\textbf{外法向向量}及\textbf{(外)法向方向导数}的记号.
-	\begin{itemize}
-		\item Suppose $U \subset \R^n$. If $\partial U \in C^1$, then along $\partial U$ is defined the outward pointing unit normal vector field.\footnote{关于区域边界光滑性$\partial \Omega \in C^k$ 即\textbf{单位外法向}的定义, 详见\textbf{附录 \ref{appendix A}-定义 \ref{def A.1.1}}}
-		\[ \vec{\gamma} = (\gamma^1 , \gamma^2 , \cdots , \gamma^n) 
-		\hspace*{2em} , \hspace*{2em} 
-		\vec{\gamma}(x^0) = \gamma = (\gamma_1 , \gamma_2 , \cdots , \gamma_n) \]
-		
-		\begin{rmk}
-			我们总是将向量值函数的分量写作上标, 在具体某点的取值 (一般向量)写作下标.
-		\end{rmk}
-		
-		\vspace{2em}
-		
-		\item Let $u \in C^{1}(\overline{U})$. We call $\,\, \dfrac{\partial u}{\partial \gamma} \coloneqq \vec{\gamma} \cdot Du \,\,$ the (outward) normal derivative of $u$.
-	\end{itemize}
-	
-	\vspace{6em}
-	
-	下面我们给出多元微积分中十分重要的\textbf{Gauss-Green公式}, 又称\textbf{散度定理}.
-	
-	\begin{thm}\label{thm 1.6.1}
-		\textbf{[Gauss-Green Theorem]}. \\
-		Suppose $U \subset \R^n$ is open and bounded, $\partial U \in C^1$.
-		\begin{enumerate}
-			\item[(\rmnum{1})] If $u \in C^{1}(\overline{U})$, then
-			\begin{align}
-				\int_{U} u_{x_i} = \int_{\partial U} u \gamma^i , \,\, \forall 1 \leq i \leq n
-			\end{align}
-			
-			\item[(\rmnum{2})] $\forall$ vector field $\vec{u} \in C^{1}(\overline{U} ; \R^n)$,
-			\begin{align}
-				\int_{U} div \, \vec{u} = \int_{\partial U} \vec{u} \cdot \vec{\gamma}
-			\end{align}
-		\end{enumerate}
-		
-		\vspace{2em}
-		
-		\begin{rmk}
-			\begin{itemize}
-				\item (\rmnum{2})即为\textbf{Gauss-Green公式 (Gauss公式)}, 说明了对于$\R^n$ 中任一有界区域$U$ 中的向量场$\vec{u}$, 其散度$div \, \vec{u}$ 在整个区域上的积分 = 其在整个边界$\partial U$ 上的通量.
-				
-				\vspace{1em}
-				
-				而散度作为描述向量场中某个点\textbf{向外发散程度}的标量, 原式可理解为：
-				\begin{center}
-					向量场$\vec{u}$ 在区域$U$ 中每个点发散程度的积累, 经过内部每个点散度相互抵消后, 最终等于其在边界$\partial U$ 处向外通量的总和.
-				\end{center}
-			
-				\newpage
-				
-				\item \textbf{Gauss公式}事实上为\textbf{Green公式}在$n$ 维空间上的推广, 即\textbf{Green公式}事实上给出了二维空间$\R^2$ 上的\textbf{散度定理}. 在(\rmnum{2})中, 取$\vec{u} = (P , Q)$, 外法向方向为$\vec{\gamma} = (-dy , dx)$, 有：
-				\[ \int_{U} \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} 
-				= \int_{\partial U} -P dy + Q dx \]
-				简单地交换$P , Q$ 顺序即可得到最常见的\textbf{Green公式}的格式.
-				
-				\vspace{6em}
-				
-				\item 定理中(\rmnum{1})可作为(\rmnum{2})的直接推论. 即可令$\vec{u}$ 中除第$i$ 个分量$u^i$ 外均为0, 即$\vec{u} = (0 , \cdots , u^i , \cdots , 0)$, then
-				\[ \int_{U} \frac{\partial u^i}{\partial x_i} = \int_{\partial U} u^i \gamma^i \]
-				令$u = u^i \in C^{1}(\overline{U})$, 即可得到
-				\[ \int_{U} u_{x_i} = \int_{\partial U} u \gamma^i , \,\, \forall 1 \leq i \leq n \]
-			\end{itemize}
-		\end{rmk}
-	\end{thm}
-
-	\vspace{11em}
-	
-	下面给出一系列根据\textbf{Gauss-Green公式}得到的推论, 在$PDE$ 中经常使用. 首先是所谓的\textbf{分部积分公式}.
-	
-	\begin{corollary}\label{cor 1.6.2}
-		\textbf{[Integration by parts formula]}. \\
-		Let $u , v \in C^{1}(\overline{U})$, then
-		\begin{align}
-			\int_{U} u_{x_i} v = -\int_{U} u v_{x_i} + \int_{\partial U} u v \gamma^i
-		\end{align}
-	
-		\vspace{6em}
-		
-		\begin{proof}
-			在\textbf{Gauss-Green公式 (Thm \ref{thm 1.6.1} (\rmnum{1}))}中, 将$u$ 换成$uv$, 即可得到
-			\[ \int_{U} (u_{x_i}v + u v_{x_i}) = \int_{\partial U} u v \gamma^i \]
-		\end{proof}
-	\end{corollary}
+	下面我们将说明, \textbf{若已知所求曲面$z = u(x , y)$ 上一点$P_0(x_0 , y_0 , z_0)$, 则该点处的特征线就落在所求曲面$z = u(x , y)$ 上}. 这一结论将直接提供利用\textbf{特征线法}解决\textbf{Quasi-Linear Equation} 的理论依据, 即只要我们知道了所求曲面$z = u(x , y)$ 上一条曲线的方程, 则沿着这条曲线上, 求出每个点所在的特征线, 再将所有特征线“拼”在一起, 即得到了所求曲面$z = u(x , y)$. 
 	
 	\newpage
 	
-	最后再给出三条常用的\textbf{Green恒等式}, 这也是\textbf{Gauss-Green公式}的直接推论.
-	
-	\begin{corollary}\label{cor 1.6.3}
-		\textbf{[Green's Formula]}. \\
-		Let $u , v \in C^{2}(\overline{U})$, then
-		\begin{enumerate}
-			\item[(\rmnum{1})]
-			\begin{align}
-				\int_{U} \Delta u = \int_{\partial U} \frac{\partial u}{\partial \gamma}
-			\end{align}
+	\begin{thm}\label{thm 1.2.1}
+		\textbf{[Characteristic Curve]}. \\
+		Suppose $P(x_0 , y_0 , z_0) \in S = \Big\{ (x ,  y , z) \mid z = u(x , y) \Big\}$. $\gamma \subset \R^3$ 为点$P$ 所在特征线, i.e.
+		\[ P (x_0 , y_0 , z_0) \in \gamma = \Big\{ \Big( x(t) , y(t) , z(t) \Big) \mid t \in [a , b] \Big\} \]
+		Then $\gamma \subset S$. 
 		
-			\item[(\rmnum{2})]
-			\begin{align}
-				\int_{U} Du \cdot Dv = -\int_{U} u \Delta v + \int_{\partial U} u \frac{\partial v}{\partial \gamma}
-			\end{align}
-		
-			\item[(\rmnum{3})]
-			\begin{align}
-				\int_{U} (u \Delta v - v \Delta u) = \int_{\partial U} \left( u \frac{\partial v}{\partial \gamma} - v \frac{\partial u}{\partial \gamma} \right)
-			\end{align}
-		\end{enumerate}
-		
-		\vspace{6em}
+		\vspace*{6em}
 		
 		\begin{proof}
-			\begin{enumerate}
-				\item[(\rmnum{1})] 将\textbf{Gauss-Green公式 (Thm \ref{thm 1.6.1} (\rmnum{2}))} 中的$u$ 换为$\nabla u$, 得
-				\[ \int_{U} \Delta u = \int_{\partial U} \nabla u \cdot \vec{\gamma} = \int_{\partial U} \frac{\partial u}{\partial \gamma} \]
-				
-				\vspace{2em}
-				
-				\item[(\rmnum{2})] 将\textbf{Gauss-Green公式 (Thm \ref{thm 1.6.1} (\rmnum{2}))} 中的$u$ 换为$u \nabla v$, 由于
-				\[ div(u \nabla v) = u \Delta v + \nabla u \cdot \nabla v = u \Delta v + Du \cdot Dv \]
-				因此有
-				\[ \int_{U} (u \Delta v + Du \cdot Dv) 
-				= \int_{\partial U} u \nabla v \cdot \vec{\gamma} 
-				= \int_{\partial U} u \frac{\partial v}{\partial \gamma} \]
-				
-				\vspace{2em}
-				
-				\item[(\rmnum{3})] 由于(\rmnum{2}) 中左式$u , v$ 对称, 因此交换$u , v$ 位置, 可得
-				\begin{align}
-					\int_{U} Du \cdot Dv &= -\int_{U} u \Delta v + \int_{\partial U} u \frac{\partial v}{\partial \gamma} \\
-					\int_{U} Du \cdot Dv &= -\int_{U} v \Delta u + \int_{\partial U} v \frac{\partial u}{\partial \gamma}
-				\end{align}
-				两式相减即可得证.
-			\end{enumerate}
+			Define $U(t) = z(t) - u\Big( x(t) , y(t) \Big) , \,\, t \in [a , b]$. WTS：$U \equiv 0$ on $[a , b]$. \\
+			Since $P \in \gamma$, then $\exists t_0 \in [a , b]$, $\st$
+			\[ \Big( x(t_0) , y(t_0) , z(t_0) \Big) = (x_0 , y_0 , z_0) \]
+			Since $P \in S$, then
+			\[ z_0 = u(x_0 , y_0) \,\, \Rightarrow \,\, U(t_0) = z_0 - u(x_0 , y_0) = 0 \]
+			Hence 根据特征线所满足方程(\ref{1.6}), 
+			\begin{align*}
+				\frac{dU(t)}{dt} 
+				&= \frac{dz}{dt} - u_x \frac{dx}{dt} - u_y \frac{dy}{dt} \\
+				&= c \Big( x(t) , y(t) , z(t) \Big) - u_x \cdot a \Big( x(t) , y(t) , z(t) \Big) - u_y \cdot b \Big( x(t) , y(t) , z(t) \Big) 
+			\end{align*}
+			由于$z(t) = U(t) + u\Big( x(t) , y(t) \Big)$, 因此 (下面将等式右侧$t$ 略去), 
+			\begin{align}
+				\begin{cases}
+					\dfrac{dU(t)}{dt} 
+					= c \Big( x , y , U + u(x , y) \Big) - u_x \cdot a \Big( x , y , U + u(x , y) \Big) - u_y \cdot c \Big( x , y , U + u(x , y) \Big) \\
+					U(t_0) = 0
+				\end{cases}\label{1.7}
+			\end{align}
+			Since $a , b , c \in C^1(\Omega)$, then $a , b , c$ are Lipschitz continuous. \\
+			By \textbf{ODE解的存在唯一性定理 (Thm \ref{thm B.2.1})}, the above-mentioned problem \ref{1.7} has a unique solution. \\
+			又因为$U(t_0) = 0$, $U = 0$ 是方程(\ref{1.7}) 的一个解, 所以解得
+			\[ U \equiv 0 \,\, \text{on} \,\, [a , b] \]
+			i.e. 对于方程\ref{1.6}所求得特征线$\gamma : \Big( x(t) , y(t) , z(t) \Big)$, $\st$
+			\[ z(t) = u\Big( x(t) , y(t) \Big) , \,\, \forall t \in [a , b] \]
+			Therefore, $\gamma \subset S$. 
 		\end{proof}
-	\end{corollary}
-
-\newpage
-
-\subsection{极坐标换元}
-	\textbf{极坐标换元}是最复杂同时也是最常用的还原方法之一, 下面给出一般的\textbf{极坐标换元公式}.
-	\begin{thm}\label{thm 1.6.4}
-		\textbf{[Polar Coordinate]}. \\
-		Let $f : \R^n \longrightarrow \R$ be continuous and summable\footnote{此处的\textbf{summable} 指的是函数\textbf{可和}, 在\textbf{$Real \,\, Analysis$ 笔记-定义 3.1.6}中对一般可测函数积分的定义中出现, 指$\int f^+$ 与$\int f^-$ 二者至少有一者有界, 即可定义积分, 是比\textbf{可积}更弱的概念.}. Then
-		\begin{align}
-			\int_{\R^n} f \, dx = \int_{0}^{\infty} dr \int_{\partial B(x_0 , r)} f \, dS , \,\, \forall x_0 \in \R^n
-		\end{align}
-		
-		\vspace{4em}
-		
-		\begin{rmk}
-			该公式常配合\textbf{$n$ 维球坐标换元公式 (附录\ref{appendix A} - Def \ref{def A.6.1})}使用.
-		\end{rmk}
 	\end{thm}
 
 \newpage
 
-\section{Transport Equation}
-\subsection{定性分析}
-	下面我们开始介绍4种最基本的\textbf{线性PDE}, 首先是最简单的\textbf{Transport Equation}. 
-	\begin{align}
-		u_t + b \cdot Du = 0 , \,\, (x , t) \in \R^n \times (0 , \infty)
-	\end{align}
-	where $b = (b_1 , \cdots , b_n) \in \R^n$ is fixed, and $u : \R^n \times [0 , \infty)$ is the unknown, $u = u(x , t)$. 
-	
-	\vspace*{2em}
-	
-	\begin{rmk}
-		此处\textbf{Transport Equation} 中的$Du = D_{x}u = (u_{x_1} , \cdots , u_{x_n})$, 即\textbf{$u$ 仅关于空间$x$ 的梯度}.
-	\end{rmk}
+\section{The Cauchy Problem for the Quasi-Linear Equation}
+	这一节我们将延续上一节对\textbf{1阶Quasi-Linear Equation}的特征线的讨论, 来给出有关Quasi-Linear方程的\textbf{Cauchy问题的解法}, 并给出其\textbf{解存在的充分条件} (当已知曲线非特征线时为\textbf{充要条件}). 
 	
 	\vspace*{4em}
 	
-	下面给出\textbf{Transport Equation}在几何上的理解. 为了方便起见, 此处讨论$n = 1$ 的情形. 此时$b \in \R$, $b \cdot Du$ 即为$u$ 在某一时刻沿$b$ 所在方向的方向导数. 不妨假设$b < 0$, 则有：
-	
-	\begin{figure}[thbp!]
-		\centering
-		\includegraphics[width=0.5\linewidth]{figure/1.7.1-1}
-		\caption{$u(x , t)$ 在某一时刻$t$ 的图像}
-		\label{pic : 1.7.1-1} % 添加图像引用标签
-	\end{figure}
-	
-	如图, 固定一个$x_0 \in \R$, $u$ 在该点处沿$b$ 所在方向 ($x$ 轴负方向)的方向导数为正, 因此根据方程
-	\[ u_t + b \cdot Du = 0 \]
-	$u$ 关于时间的偏导数$u_t$ 在$x_0$ 处的值应为负数, 即在$t + \Delta t$ 时刻, $x_0$ 处的值应减少, 对应如下图像：
-	
-	\begin{figure}[thbp!]
-		\centering
-		\includegraphics[width=0.5\linewidth]{figure/1.7.1-2}
-		\caption{$u(x , t)$ 在时刻$t + \Delta t$ 的图像}
-		\label{pic : 1.7.1-2} % 添加图像引用标签
-	\end{figure}
-	
-	其中最高点的函数值保持不变, 此时函数图像随着时间变化就像是被\textbf{“平移”}了, 此即为方程\textbf{“Transport”}名字的几何含义.
-	
-\newpage
-
-\subsection{特征线法}
-\paragraph{猜想}
-	在$\S 1.7.1$ 中我们讨论了\textbf{Transport Equation}在几何上随时间的\textbf{“平移性”}. 在这节我们换个更高的角度, 假设方程随时间平移的速度恒定, 则在整个时空$x-t$ 轴上, 每个点的轨迹都应该是一条直线. 即$u$ 在$x-t$ 轴中, 沿着某一固定方向的函数值应当不变, 下面我们就来猜测这样一个方向. \\
-	根据方程
-	\[ u_t + b \cdot Du = 0 \]
-	若想保持$u$ 恒定, 则$u$ 分别沿着$x$ 与$t$ 的行进速率之比应为$\left| b \right| : 1$, 即沿着$(b , 1) \in \R^n \times (0 , \infty)$ 方向移动应当保持恒定. 
-	
-	\vspace*{1em}
-	
-	此时在时空$\R^n \times \R = \R^{n + 1}$ 空间中, 就存在着一族平行线, 使得在每一条平行线上$u$ 的函数值均不变. 而此时若得到了某一个与这些线相交的超平面上$u$ 的值, 则可通过平移得到全空间$\R^n \times (0 , \infty)$ 上$u$ 的取值. 下面来证明这一猜想.
-	
-	\vspace*{6em}
-	
-	Let
-	\begin{align}
-		z : \R^n \times (0 , \infty) \times \R &\longrightarrow \R \\
-		(x , t , s) &\longmapsto u(x + sb , t + s) = u \Big|_{(x , t) + s(b , 1)}
-	\end{align}
-	when $(x , t) \in \R^n \times (0 , \infty)$ is fixed we also write $z(x , t , s) = z(s)$. Then
-	\begin{align}
-		\frac{\partial z}{\partial s} 
-		&= \frac{\partial u}{\partial x}(x + sb , t + s) \cdot b + \frac{\partial u}{\partial t}(x + sb , t + s) \\
-		&= \left( b \cdot Du + u_{t} \right) \Big|_{(x + sb , t + s)} \\
-		&= 0
-	\end{align}
-	从而$u$ 在每一条沿着$(b , 1) \in \R^n \times (0 , \infty)$ 方向的直线上为常值, 这就证明了我们的猜想. i.e.
-	\begin{center}
-		$u$ is constant on the line through each $(x , t)$ with direction $(b , 1) \in \R^{n + 1}$.
-	\end{center}
-	
-	\vspace*{4em}
-	
-	在发现这样一个规律之后, 我们便可以来解决一些初值问题了.
-	
-\newpage
-\paragraph{初值问题}
-	\begin{align}
+	\hspace*{-1.85em}对于\textbf{2维1阶Quasi-Linear Equation}, $a , b , c \in C^1$ near $P_0$, 
+	\[ a(x , y , u) u_x + b(x , y , u) u_y = c(x , y , u) \]
+	在上一节的讨论中我们已经将\textbf{\underline{“求解该方程”}}转化为了\textbf{\underline{“求曲面$z = u(x , y)$”}}. 现在对于所求曲面$z = u(x , y)$, 已知其上一条曲线$\Gamma$ 的参数方程及其上一点$P_0(x_0 , y_0 , z_0)$, i.e.
+	\begin{align*}
+		\Gamma : 
 		\begin{cases}
-			u_t + b \cdot Du = 0 \hspace*{2em} \text{in} \,\, \R^n \times (0 , \infty) \\
-			u(x , 0) = g(x) \hspace*{2em} \text{in} \,\, \R^n \times \{ 0 \}
-		\end{cases}
-	\end{align}
-	where $b \in \R^n$, $g : \R^n \longrightarrow \R$ are known. 
+			x = f(s) \\
+			y = g(s) \\
+			z = h(s)
+		\end{cases} , \,\, P_0 = (x_0 , y_0 , z_0) = \Big( f(s_0) , g(s_0) , h(s_0) \Big) \in \Gamma
+	\end{align*}
+	where $f , g , h \in C^{1}$ near $s_0$, $s_0 \in [a , b]$. 
 	
 	\vspace*{2em}
 	
-	\begin{rmk}
-		上述初值问题事实上给出了$u$ 在$t = 0$ 时的取值, 即给出了时空空间$\R^{n + 1}$ 中超平面$\{ t = 0 \}$ 上的取值. 根据前文中的猜想, $u$ 在全空间$\R^{n + 1}$ 中的取值均可通过沿着$(b , 1)$ 方向的直线平移至该超平面上得到.
-	\end{rmk}
-	
 	\begin{figure}[thbp!]
 		\centering
-		\includegraphics[width=0.7\linewidth]{figure/1.7.2-1}
-		\caption{$(x , t)$ 点沿方向$(b , 1)$ 平移至超平面$\{ t = 0 \}$}
-		\label{pic : 1.7.2-1} % 添加图像引用标签
+		\includegraphics[width=0.4\linewidth]{figure/1.3-1}
+		\caption{Cauchy Problelm for Quasi-Linear Equation}
+		\label{pic : 1.3-1} % 添加图像引用标签
 	\end{figure}
 	
-	$\forall (x , t) \in \R^n \times (0 , \infty)$, 设$(x , t) + s(b , 1) = (x + sb , t + s)$, 令$t + s = 0$, 得到：
-	\[ s = -t , \,\, x + sb = x - tb \]
-	于是$u(x , t) = u(x - tb , 0) = g(x - tb) , \,\, \forall (x , t) \in \R^n \times (0 , \infty)$.
+	\vspace*{2em}
 	
-\newpage
-\paragraph{非齐次初值问题 (Non-homogeneous)}
-	上面我们解决了\textbf{齐次初值问题}的求解, 下面我们仍用类似的方法, 求解一般的\textbf{非齐次初值问题}.
-	\begin{align}
-		\begin{cases}
-			u_t + b \cdot Du = f \hspace*{2em} \text{in} \,\, \R^n \times (0 , \infty) \\
-			u(x , 0) = g(x) \hspace*{2em} \text{in} \,\, \R^n \times \{ 0 \}
-		\end{cases}
-	\end{align}
-	where $b \in \R^n$, $g : \R^n \longrightarrow \R$ and $f : \R^n \times (0 , \infty) \longrightarrow \R$ are known. 
+	下面给出该Cauchy问题解存在的\textbf{充分条件}, 并将说明当已知曲线$\Gamma$ 并非点$P_0$ 处特征线时, 该条件为\textbf{充要条件}. 证明过程也即给出了运用\textbf{特征线法}求解\textbf{Quasi-Linear方程的Cauchy问题}的方法. 
 	
-	\vspace*{6em}
+	\newpage
 	
-	\begin{solution}
-		此时对于$z(x , t , s) = u(x + sb , t + s) = u \Big|_{(x , t) + s(b , 1)}$, 
-		\begin{align}
-			\frac{\partial z}{\partial s} 
-			&= \frac{\partial u}{\partial x}(x + sb , t + s) \cdot b + \frac{\partial u}{\partial t}(x + ts , t + s) \\
-			&= \left( b \cdot Du + u_t \right)\Big|_{(x + sb , t + s)} \\
-			&= f(x + sb , t + s)
-		\end{align}
-		Fix $(x , t) \in \R^n \times (0 , \infty)$. Denote $z(s) = z(x , t , s)$, then
-		\begin{align}
+	\begin{thm}\label{thm 1.3.1}
+		\textbf{[Cauchy Problem for Quasi-Linear Equation]}. \\
+		考虑如下Cauchy问题. Assume $a , b , c \in C^1$ near $P_0$. For the Quasi-Linear Equation
+		\begin{align*}
 			\begin{cases}
-				z(0) = u(x , t) \\
-				z(-t) = u(x - tb , 0) = g(x - tb)
+				a(x , y , u) u_x + b(x , y , u) u_y = c(x , y , u) \\
+				x = f(s) , \,\, y = g(s) , \,\, z = h(s) \\
+				h(s) = u \Big( f(s) , g(s) \Big) \\
+				(x_0 , y_0 , z_0) = \Big( f(s_0) , g(s_0) , h(s_0) \Big)
 			\end{cases}
-		\end{align}
-		Thus
-		\[
-			z(0) - z(-t) 
-			= \int_{-t}^{0} \frac{\partial z}{\partial s}(s) \, ds 
-			= \int_{-t}^{0} f(x + sb , t + s) \, ds
-		\]
-		i.e. for $\forall (x , t) \in \R^n \times (0 , \infty)$
-		\begin{align}
-			u(x , t) = g(x - tb) + \int_{-t}^{0} f(x + ts , t + s) \, ds 
-		\end{align}
-	\end{solution}
+		\end{align*}
+		即已知$\R^3$ 中曲面$z = u(x , y)$ 上的一条曲线$\Gamma$ 及其上一点$P_0(x_0 , y_0 , z_0)$, 其中$\Gamma$ 的参数方程可表示为
+		\begin{align*}
+			\Gamma : 
+			\begin{cases}
+				x = f(s) \\
+				y = g(s) \\
+				z = h(s)
+			\end{cases} , \,\, P_0 = (x_0 , y_0 , z_0) = \Big( f(s_0) , g(s_0) , h(s_0) \Big) \in \Gamma
+		\end{align*}
+		其中$f , g , h \in C^{1}$ near $s_0$, $s_0 \in [a , b]$. 则该Cauchy问题在$P_0$ 附近有解的\textbf{充分条件}为：
+		\begin{align*}
+			J = 
+			\begin{vmatrix}
+				f^{'}(s_0) &g^{'}(s_0) \\
+				a(x_0 , y_0 , z_0) &b(x_0 , y_0 , z_0)
+			\end{vmatrix}
+			\neq 0
+		\end{align*}
+		特别地, 当$\Gamma$ 不是点$P_0$ 处的特征线时, 该条件为\textbf{充要条件}. 
+		
+		\vspace*{8em}
+		
+		\begin{proof}
+			\begin{itemize}
+				\item \textbf{充分性(一般情形)}：Suppose $a , b , c \in C^1(\Omega)$ and $f , g , h \in C^1[a_0 , b_0]$. \\
+				Fix $s \in [a_0 , b_0]$. 对于每个$s \in [a_0 , b_0]$, 考虑如下ODE(\textbf{特征线})
+				\begin{align*}
+					\begin{cases}
+						\dfrac{dx(t)}{dt} = a \Big( x(t) , y(t) , z(t) \Big) \\
+						\dfrac{dy(t)}{dt} = b \Big( x(t) , y(t) , z(t) \Big) \\
+						\dfrac{dz(t)}{dt} = c \Big( x(t) , y(t) , z(t) \Big) \\
+						x(0) = f(s) , \,\, y(0) = g(s) , \,\, z(0) = h(s)
+					\end{cases}
+				\end{align*}
+				Since $a , b , c \in C^1(\Omega)$, $f , g , h \in C^1[a_0 , b_0]$, then by \textbf{ODE解的存在唯一性定理 (Thm \ref{thm B.2.1})}, \\
+				对于每个$s \in [a_0 , b_0]$, 上述ODE均有唯一解, 即对于每个$s \in [a_0 , b_0]$, 在点$P = \Big( f(s) , g(s) , h(s) \Big)$ 处均可解出唯一的一条特征线. 
+				
+				\newpage
+				
+				设所求曲面$z = u(x , y)$ 的参数方程为
+				\begin{align*}
+					\begin{cases}
+						x = X(s , t) \\
+						y = Y(s , t) \\
+						z = Z(s , t)
+					\end{cases}
+				\end{align*}
+				则将上述对于所有fixed $s \in [a_0 , b_0]$ 的ODE方程合在一起, 等价于下述ODE方程组：
+				\begin{align*}
+					\begin{cases}
+						X_{t}(s , t) = a \Big( X(s , t) , Y(s , t) , Z(s , t) \Big) \\
+						Y_{t}(s , t) = b \Big( X(s , t) , Y(s , t) , Z(s , t) \Big) \\
+						Z_{t}(s , t) = c \Big( X(s , t) , Y(s , t) , Z(s , t) \Big) \\
+						X(s , 0) = f(s) , \,\, Y(s , 0) = g(s) , \,\, Z(s , 0) = h(s)
+					\end{cases}
+				\end{align*}
+				根据\textbf{ODE解的存在唯一性定理 (Thm \ref{thm B.2.1})}, 上述ODE解存在且唯一, i.e. \\
+				$\exists X , Y , Z \in C^1$ near $(s_0 , 0)$, $\st$ 曲面$z = u(x , y)$ 在$P_0$ 附近参数方程为
+				\begin{align*}
+					\begin{cases}
+						x = X(s , t) \\
+						y = Y(s , t) \\
+						z = Z(s , t)
+					\end{cases}
+				\end{align*}
+				下面我们来解出曲面$z = u(x , y)$ 的表达式, 即原Quasi-Linear Equation的解：\\
+				我们已知在$(s_0 , 0)$ 点附近, 
+				\begin{align*}
+					\begin{cases}
+						x = X(s , t) \\
+						y = Y(s , t)
+					\end{cases}
+				\end{align*}
+				因为
+				\begin{align*}
+					\begin{vmatrix}
+						X_s &X_t \\
+						Y_s &Y_t
+					\end{vmatrix} (s_0 , 0) 
+					= 
+					\begin{vmatrix}
+						f^{'}(s_0) &a \Big( f(s_0) , g(s_0) , h(s_0) \Big) \\
+						g^{'}(s_0) &b \Big( f(s_0) , g(s_0) , h(s_0) \Big)
+					\end{vmatrix} 
+					= J \neq 0
+				\end{align*}
+				所以根据\textbf{反函数定理 (Thm \ref{thm B.3.1})}, $\exists F , G \in C^1$ near $P_0$ 为$x = X(s , t), \,\, y = Y(s , t)$ 的反函数, $\st$
+				\begin{align*}
+					\begin{cases}
+						s = F(x , y) \\
+						t = G(x , y)
+					\end{cases} 
+					\,\, \Rightarrow \,\,\,\,
+					z = Z(s , t) = Z\Big( F(x,  y) , G(x , y) \Big)
+				\end{align*}
+				Let
+				\begin{align*}
+					z = Z\Big( F(x , y) , G(x , y) \Big) = u(x , y)
+				\end{align*}
+				即得到了曲面$z = u(x , y)$ 的方程, 也即求得了原方程的解. 
+				
+				\newpage
+				
+				\item \textbf{必要性(若$\Gamma$ 并非点$P_0$处的特征线)}：反证法. Assume $J = 0$. Then 
+				\[ J = b(P_0)f^{'}(s_0) - a(P_0)g^{'}(s_0) = 0 \]
+				Since $h(s) = u \Big( f(s) , g(s) \Big)$ in $\Gamma$, then
+				\[ h^{'}(s_0) = f^{'}(s_0) u_x + g^{'}(s_0) u_y \]
+				根据原Quasi-Linear方程, 还可得到关系：
+				\[ c = au_x + bu_y \]
+				于是, at $s = s_0 , \,\, x = f(s_0) , \,\, y = g(s_0)$, we have three relations
+				\[ bf^{'} - ag^{'} = 0 \hspace*{4em} h^{'} = f^{'}u_x + g^{'}u_y \hspace*{4em} c = au_x + bu_y \]
+				These imply that\footnote{在等式$h^{'} = f^{'}u_x + g^{'}u_y$ 两侧乘$b$, 在$c = au_x + bu_y$ 两侧乘$g^{'}$, 分别得到$bh^{'} = bf^{'}u_x + bg^{'}u_y , \,\, cg^{'} = ag^{'}u_x + bg^{'}u_y$. 两个等式相减即得到$bh^{'} - cg^{'} = 0$. 同理可得到$ah^{'} - cf^{'} = 0$. }
+				\[ bh^{'} - cg^{'} = 0 \,\, \text{and} \,\, ah^{'} - cf^{'} = 0 \]
+				Therefore, 在$P_0$ 点, $(f^{'} , g^{'} , h^{'})$ 与$(a , b , c)$ 成比例, i.e. \\
+				曲线$\Gamma$ 在点$P_0$ 处的切线方向即为$(a , b , c) \,\, \Rightarrow \,\, \Gamma$ 满足在$P_0$ 点处的特征线ODE方程. 
+				
+				\vspace*{1em}
+				
+				由\textbf{充分性}证明过程, 根据\textbf{ODE解的存在唯一性定理 (Thm \ref{thm B.2.1})}, $\Gamma$ 即为点$P_0$ 处的特征线, 这与假设条件\textbf{“$\Gamma$ 并非点$P_0$ 处的特征线”}矛盾. 
+				
+				\vspace*{1em}
+				
+				Therefore, we have proved the necessity. 
+			\end{itemize}
+		\end{proof}
+		
+		\vspace*{4em}
+		
+		\begin{rmk}
+			可以容易地推广至\textbf{含n个自变量的1阶Quasi-Linear Equation}. 
+		\end{rmk}
+	\end{thm}
 
 
 
