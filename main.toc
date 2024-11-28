@@ -18,16 +18,18 @@
 \contentsline {subsection}{\numberline {2.3.3}一维波动方程的特征线法 (半无界问题)}{31}{subsection.2.3.3}%
 \contentsline {subsection}{\numberline {2.3.4}Sturm-Liouville Problem}{34}{subsection.2.3.4}%
 \contentsline {subsection}{\numberline {2.3.5}一维齐次波动方程的分离变量法 (混合问题)}{36}{subsection.2.3.5}%
-\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}Supplementary Content}{47}{appendix.A}%
-\contentsline {section}{\numberline {A.1}变分原理与最小曲面问题}{47}{section.A.1}%
-\contentsline {subsection}{\numberline {A.1.1}Cut-Off Function}{47}{subsection.A.1.1}%
-\contentsline {subsection}{\numberline {A.1.2}极小曲面问题}{49}{subsection.A.1.2}%
-\contentsline {section}{\numberline {A.2}线性PDE的叠加原理}{53}{section.A.2}%
-\contentsline {section}{\numberline {A.3}一维波动方程的Duhamel原理 (齐次化原理)}{54}{section.A.3}%
-\contentsline {section}{\numberline {A.4}一维波动方程的能量不等式}{56}{section.A.4}%
-\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}Fundamental Knowledge}{59}{appendix.B}%
-\contentsline {section}{\numberline {B.1}区域边界的光滑性}{59}{section.B.1}%
-\contentsline {section}{\numberline {B.2}ODE解的存在唯一性定理}{60}{section.B.2}%
-\contentsline {section}{\numberline {B.3}反函数定理}{61}{section.B.3}%
-\contentsline {section}{\numberline {B.4}Gauss-Green公式}{62}{section.B.4}%
-\contentsline {section}{\numberline {B.5}一阶常系数线性ODE的求解}{65}{section.B.5}%
+\contentsline {subsection}{\numberline {2.3.6}一般的一维波动方程的分离变量法 (混合问题)}{47}{subsection.2.3.6}%
+\contentsline {subsection}{\numberline {2.3.7}一维波动方程的广义解}{50}{subsection.2.3.7}%
+\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}Supplementary Content}{53}{appendix.A}%
+\contentsline {section}{\numberline {A.1}变分原理与最小曲面问题}{53}{section.A.1}%
+\contentsline {subsection}{\numberline {A.1.1}Cut-Off Function}{53}{subsection.A.1.1}%
+\contentsline {subsection}{\numberline {A.1.2}极小曲面问题}{55}{subsection.A.1.2}%
+\contentsline {section}{\numberline {A.2}线性PDE的叠加原理}{59}{section.A.2}%
+\contentsline {section}{\numberline {A.3}一维波动方程的Duhamel原理 (齐次化原理)}{60}{section.A.3}%
+\contentsline {section}{\numberline {A.4}一维波动方程的能量不等式}{62}{section.A.4}%
+\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}Fundamental Knowledge}{65}{appendix.B}%
+\contentsline {section}{\numberline {B.1}区域边界的光滑性}{65}{section.B.1}%
+\contentsline {section}{\numberline {B.2}ODE解的存在唯一性定理}{66}{section.B.2}%
+\contentsline {section}{\numberline {B.3}反函数定理}{67}{section.B.3}%
+\contentsline {section}{\numberline {B.4}Gauss-Green公式}{68}{section.B.4}%
+\contentsline {section}{\numberline {B.5}一阶常系数线性ODE的求解}{71}{section.B.5}%

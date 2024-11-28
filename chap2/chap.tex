@@ -954,7 +954,7 @@
 			
 			\vspace*{3em}
 			
-			\item[(\rmnum{3})] 对于所有的特征值$\{ \lambda_n \}_{n = 1}^{\infty}$ 对应的特征函数$\{ X_{n} \}_{n = 1}^{\infty}$, 其构成了Hilbert空间$L^{2}[0 , l]$ 上的一组\textbf{完备正交系}\footnote{在\textbf{《泛函分析讲义》 -- 张恭庆、林源渠} 一书中称为\textbf{封闭的正交规范集}. }, 即
+			\item[(\rmnum{3})] 对于所有的特征值$\{ \lambda_n \}_{n = 1}^{\infty}$ 对应的特征函数$\{ X_{n} \}_{n = 1}^{\infty}$, 其构成了Hilbert空间$L^{2}[0 , l]$ 上的一组\textbf{完备正交系}\footnote{在\textbf{《泛函分析讲义》 -- 张恭庆、林源渠} 一书中称为\underline{\textbf{封闭的正交集}}. }, 即
 			\[ \int_{0}^l X_{k}(x) X_{l}(x) \, dx = 0 , \,\, \forall k \neq l \]
 			且对于$\forall f \in L^2[0 , l]$, $\exists C_n \in \R$, $\st$
 			\[ f(x) = \sum_{n = 1}^{\infty} C_n X_n(x) \]
@@ -1018,17 +1018,17 @@
 		\end{align}
 		where 
 		\begin{align}
-			\begin{cases}
+			\begin{dcases}
 				A_n = \dfrac{2}{cn\pi} \int_{0}^l \psi(x) \sin \frac{n\pi}{l} x \, dx \\
 				B_n = \dfrac{2}{l} \int_{0}^l \varphi(x) \sin \frac{n\pi}{l} x \, dx 
-			\end{cases}, \,\, \forall n \in \N \label{2.19}
+			\end{dcases}, \,\, \forall n \in \N \label{2.19}
 		\end{align}
 		defines a function $u \in C^{2}\Big( [0 , l] \times [0 , \infty) \Big)$ and gives the unique solution of (\ref{2.17}) in $C^{2}\Big( [0 , l] \times [0 , \infty) \Big)$. 
 		
 		\vspace*{6em}
 		
 		\begin{rmk}
-			事实上, 对于问题 (\ref{2.17}), 我们可以采取与\textbf{Thm \ref{thm 2.3.2}} 类似的\textbf{对称开拓法}, 并结合\textbf{D'Alembert公式}求解. 根据\textbf{Thm \ref{thm 2.3.2}}, 此方法关于$\varphi , \psi$ 的光滑性可进一步减弱为
+			事实上, 对于问题 (\ref{2.17}), 我们可以采取与\textbf{Thm \ref{thm 2.3.3}} 类似的\textbf{对称开拓法}, 并结合\textbf{D'Alembert公式}求解. 根据\textbf{Thm \ref{thm 2.3.3}}, 此方法关于$\varphi , \psi$ 的光滑性可进一步减弱为
 			\[ \varphi \in C^2[0 , l] , \,\, \psi \in C^1[0 , l] \]
 			\textbf{对称开拓法}即定义周期为$2l$ 的周期奇函数$\Phi , \Psi$, 使其分别成为$\varphi , \psi$ 的延拓, 具体为
 			\begin{align*}
@@ -1330,6 +1330,258 @@
 		\end{proof}
 	\end{thm}
 
+\newpage
+
+\subsection{一般的一维波动方程的分离变量法 (混合问题)}
+	对于一般的一维波动方程
+	
+	\begin{align}
+		\begin{cases}
+			u_{tt} - c^2 u_{xx} = f(x , t) , \,\, x \in (0 , l) , t > 0 \\
+			u \Big|_{t = 0} = \varphi(x) , \,\, x \in [0 , l]\\
+			u_t \Big|_{t = 0} = \psi(x) , \,\, x \in [0 , l] \\
+			\Big( -\alpha_1 u_x + \beta_1 u \Big) \Big|_{x = 0} = g(t) , \,\, t > 0 \\
+			\Big( \alpha_2 u_x + \beta_2 u \Big) \Big|_{x = l} = h(t) , \,\, t > 0
+		\end{cases}\label{2.21}
+	\end{align}
+
+	\vspace*{2em}
+
+	\hspace*{-1.95em}若其满足相应的相容性条件, 则\textbf{解的存在唯一性}可类似\textbf{Thm \ref{thm 2.3.5}} 得到. 下面给出其具体运用\textbf{分离变量法}求解的步骤：
+	
+	\vspace*{4em}
+	
+	\begin{enumerate}
+		\item[\textbf{Step 0}]. \underline{\textbf{Find a function $W(x , t)$}}, $\st$
+		\begin{align*}
+			\begin{cases}
+				-\alpha_1 W_x(0 , t) + \beta_1 W(0 , t) = g(t) \\
+				\alpha_2 W_x(l , t) + \beta_2 W(l , t) = h(t)
+			\end{cases}
+		\end{align*}
+		Let $v = u - W$, 则可将$x = 0$, $x = l$ 处边界条件齐次化, i.e. 
+		
+		\begin{align*}
+			\begin{cases}
+				v_{tt} - c^2 v_{xx} = f(x , t) - (W_{tt} - c^2 W_{xx}) , \,\, x \in (0 , l) , t > 0 \\
+				v \Big|_{t = 0} = \varphi(x) - W(x , 0) , \,\, x \in [0 , l]\\
+				v_t \Big|_{t = 0} = \psi(x) - W_t(x , 0) , \,\, x \in [0 , l] \\
+				\Big( -\alpha_1 v_x + \beta_1 v \Big) \Big|_{x = 0} = 0 , \,\, t > 0 \\
+				\Big( \alpha_2 v_x + \beta_2 v \Big) \Big|_{x = l} = 0 , \,\, t > 0
+			\end{cases}
+		\end{align*}
+		
+		\vspace*{2em}
+		
+		\hspace*{-1.95em}故下列步骤中默认 (\ref{2.21})中$x = 0$, $x = l$ 处边界条件为$g = h = 0$. 
+		
+		\vspace*{1em}
+		
+		\item[\textbf{Step 1}]. \underline{\textbf{Sturm-Liouville Problem}}：
+		\begin{align*}
+			\begin{cases}
+				X^{''}(x) + \lambda X(x) = 0 , \,\, x \in (0 , l) \\
+				-\alpha_1 X^{'}(0) + \beta_1 X(0) = 0 \\
+				\alpha_2 X^{'}(l) + \beta_2 X(l) = 0
+			\end{cases}
+		\end{align*}
+		求解出所有的特征值$\{ \lambda_k \}_{k = 1}^{\infty}$ 及对应特征函数$\{ X_k \}_{k = 1}^{\infty}$. 
+		
+		\vspace*{2em}
+		
+		\item[\textbf{Step 2}]. \underline{\textbf{Expansion}}：\\
+		根据\textbf{Sturm-Liouville问题的性质 (Thm \ref{thm 2.3.4})}, $\{ X_k \}_{k = 1}^{\infty} \subset L^2[0 , l]$ 为一组完备正交系. \\
+		将$f , \varphi , \psi$ 按$\{ X_k \}_{k = 1}^{\infty}$ 展开, 
+		\begin{align*}
+			f(x , t) &= \sum_{k = 1}^{\infty} f_{k}(t) \cdot X_k(x) \\
+			\varphi(x) &= \sum_{k = 1}^{\infty} \varphi_k \cdot X_k(x) \\
+			\psi(x) &= \sum_{k = 1}^{\infty} \psi_k \cdot X_k(x)
+		\end{align*}
+		其中$\varphi_k , \psi_k$ 与\textbf{Thm \ref{thm 2.3.5}} 中一致, 
+		\begin{align*}
+			f_k(t) = \frac{\int_{0}^l f(x , t) \cdot X_k(x) \, dx}{\int_{0}^l X_{k}^2(x) \, dx}
+		\end{align*}
+		
+		\vspace*{2em}
+		
+		\item[\textbf{Step 3}]. \underline{\textbf{Substitution}}：\\
+		将$u(x , t) = \overset{\infty}{\underset{k = 1}{\sum}} T_K(t) \cdot X_k(x)$ 及上述展开式代入原方程 (\ref{2.21}), 结合$X_{k}^{''} = -\lambda_k X_k$, 得到
+		\begin{align*}
+			\begin{dcases}
+				\sum_{k = 1}^{\infty} \Big( T_{k}^{''}(t) + c^2 \lambda_k T_{k}(t) \Big) \cdot X_k(x) 
+				= \sum_{k = 1}^{\infty} f_k(t) \cdot X_k(x) \\
+				\sum_{k = 1}^{\infty} T_k(0) \cdot X_k(x) =  \sum_{k = 1}^{\infty} \varphi_k \cdot X_k(x) \\
+				\sum_{k = 1}^{\infty} T_{k}^{'}(0) \cdot X_k(x) = \sum_{k = 1}^{\infty} \psi_k \cdot X_k(x) 
+			\end{dcases}
+		\end{align*}
+		于是得到有关$T_k(t)$ 的\textbf{ODE初值问题}：
+		\begin{align*}
+			\begin{cases}
+				T_{k}^{''}(t) + c^2 \lambda_k T_k(t) = f_k(t) \\
+				T_k(0) = \varphi_k \\
+				T_{k}^{'}(0) = \psi_k
+			\end{cases} , \,\, \forall k \in \N
+		\end{align*}
+		
+		\vspace*{2em}
+		
+		\item[\textbf{Step 4}]. \underline{\textbf{Solve ODE}}. 对每个$k \in \N$, 求解上述$T_k(t)$, 从而得到
+		\begin{align*}
+			u(x , t) = \sum_{k = 1}^{\infty} T_k(t) \cdot X_k(x)
+		\end{align*}
+	\end{enumerate}
+
+\newpage
+
+\subsection{一维波动方程的广义解}
+	对于任意区域上的一维波动方程
+	\[ u_{tt} - c^2 u_{xx} = 0 \]
+	通过求解特征线, 作变换$\xi = x + ct , \eta = x - ct$, 原方程转化为$u_{\xi\eta} = 0$, 从而解$u$ 必然满足形式
+	\[ u(x , t) = F(x + ct) + G(x - ct) \]
+	通过该式, 下面给出一维波动方程的解的性质. 
+	
+	\vspace*{2.5em}
+	
+	\begin{proposition}\label{prop 2.3.1}
+		\textbf{[一维波动方程解的性质]}. \\
+		Suppose $u(x , t)$ be a solution of the one-dimensional wave equation on any fixed region
+		\[ u_{tt} - c^2 u_{xx} = 0 \]
+		Then for $\forall$ 定义域内各边与特征线平行的平行四边形$ABCD$, $A(x_1 , t_1) , B(x_2 , t_2) , C(x_3 , t_3) , D(x_4 , t_4)$, $u$ satiefies 
+		\[ u(x_1 , t_1) + u(x_3 , t_3) = u(x_2 , t_2) + u(x_4 , t_4) \]
+		
+		\begin{figure}[thbp!]
+			\centering
+			\includegraphics[width=0.3\linewidth]{figure/2.3-8}
+			\caption{各边与特征线平行的平行四边形$ABCD$}
+			\label{pic : 2.3-8} % 添加图像引用标签
+		\end{figure}
+		
+		\begin{proof}
+			不妨设$BD \,$ // $t$ 轴, 即$x_2 = x_4$. 设$-\dfrac{x_1 - x_2}{t_1 - t_2} = \dfrac{x_3 - x_2}{t_3 - t_2} = \dfrac{x_4 - x_1}{t_4 - t_1} = -\dfrac{x_4 - x_3}{t_4 - t_3} = c$, 有
+			\[ x_1 - x_2 = -c(t_1 - t_2) , \,\, x_3 - x_2 = c(t_3 - t_2) , \,\, x_4 - x_1 = c(t_4 - t_1) \,\ x_4 - x_3 = -c(t_4 - t_3) \]
+			i.e.
+			\[ x_1 + ct_1 = x_2 + ct_2 , \,\, x_2 - ct_2 = x_3 - ct_3 , \,\, x_1 - ct_1 = x_4 - ct_4 , \,\, x_3 + ct_3 = x_4 + ct_4 \]
+			于是
+			\begin{align*}
+				u(x_1 , t_1) + u(x_3 , t_3) 
+				&= F(x_1 + ct_1) + G(x_1 - ct_1) + F(x_3 + ct_3) + G(x_3 - ct_3) \\
+				&= F(x_2 + ct_2) + G(x_4 - ct_4) + F(x_4 + ct_4) + G(x_2 - ct_2) 
+				= u(x_2 , t_2) + u(x_4 , t_4)
+			\end{align*}
+		\end{proof}
+	\end{proposition}
+	
+	\newpage
+	
+	基于上述性质, 我们来给出一维波动方程\textbf{广义解}的定义. 
+	
+	\vspace*{1em}
+	
+	\begin{defn}\label{def 2.3.3}
+		Suppose $u \in C \Big( \R \times [0 , \infty) \Big)$, $\st$ 
+		\[ u(A) + u(C) = u(B) + u(D) \]
+		for any parallel with characteristic curve as its sides. Then we call $u$ is a \underline{\textcolor{blue}{\textbf{generalized solution}}} of the one-dimentional wave equation 
+		\[ u_{tt} - c^2 u_{xx} = 0 \]
+		
+		\vspace*{2em}
+		
+		\begin{rmk}
+			一维波动方程的\textbf{广义解}的定义并不依赖于任何的初始条件及定义域, 只要求在上半平面连续, 且对任一各边与特征线平行的平行四边形满足\textbf{Prop \ref{prop 2.3.1}}即可. 下面我们会说明, 这样定义的\textbf{广义解}是对前面我们所讨论的\underline{\textcolor{blue}{\textbf{传统解 (classical solution)}}} 的推广. 
+		\end{rmk}
+	\end{defn}
+	
+	\begin{figure}[thbp!]
+		\centering
+		\includegraphics[width=0.3\linewidth]{figure/2.3-8}
+		\caption{各边与特征线平行的平行四边形$ABCD$}
+		\label{pic : 2.3-8-1} % 添加图像引用标签
+	\end{figure}
+	
+	下面我们来说明, 这样定义的\textbf{广义解}是对\textbf{传统解}的良好推广. 
+		
+	\begin{figure}[thbp!]
+		\centering
+		\includegraphics[width=0.35\linewidth]{figure/2.3-9}
+		\caption{以$H$ 为中心的菱形$ABCD$ (各边与特征线平行, \textbf{Thm \ref{thm 2.3.6}})}
+		\label{pic : 2.3-9} % 添加图像引用标签
+	\end{figure}
+	
+	\newpage
+	
+	\begin{thm}\label{thm 2.3.6}
+		\textbf{[一维波动方程的广义解, Well-Defined]}. \\
+		对于一维波动方程$u_{tt} - c^2 u_{xx} = 0$ 的广义解, 有如下结论：
+		\begin{enumerate}
+			\item[(1)] Classical solutions are generalized solutions. 
+			
+			\item[(2)] Suppose $u$ is a generalized solution and $u \in C^2$, then $u$ is a classical solution. 
+			
+			\item[(3)] With boundary and initial conditions, generalized solution is unique.
+		\end{enumerate}
+		
+		\vspace*{4em}
+		
+		\begin{proof}
+			\textbf{Proof of (2)}：It suffices to show $u_{tt}(H) - c^2 u_{xx}(H) = 0 , \,\, \forall H \in \R \times (0 , \infty)$. \\
+			Fix $\forall H \in \R \times (0 , \infty)$. Take 以$H$ 为中心的菱形$ABCD$, $\st$ $AC \,$ // x轴, $BD \,$ // t轴.  \\
+			$A(x_1 , t_1) , B(x_2 , t_2) , C(x_3 , t_3) , D(x_4 , t_4)$. \\
+			Since $ABCD$ 各边平行于特征线, then suppose 
+			\[ \left| HA \right| = \left| HC \right| = d > 0 , \,\, \left| HB \right| = \left| HD \right| = cd \]
+			By \textbf{Taylor's Formula}, 
+			\begin{align*}
+				u(x_1 , t_1) 
+				= u(H) + \nabla u(H) \cdot \overrightarrow{HA} + \frac{1}{2} \overrightarrow{HA}^T 
+				\left. 
+				\begin{pmatrix*}
+					u_{xx} &u_{xt} \\
+					u_{xt} &u_{tt}
+				\end{pmatrix*} 
+				\right|_{H} \overrightarrow{HA} + \circ(d^2) 
+			\end{align*}
+			同理可得到$u(x_i , t_i) , \,\, \forall i = 1 \sim 4$ 在$H$ 点的展开式. Then \\
+			By $u(A) + u(C) = u(B) + u(D)$, with $\overrightarrow{HA} + \overrightarrow{HC} = \overrightarrow{HB} + \overrightarrow{HD} = \vec{0}$, we have
+			\begin{align*}
+				\overrightarrow{HA}^T 
+				\left. 
+				\begin{pmatrix*}
+					u_{xx} &u_{xt} \\
+					u_{xt} &u_{tt}
+				\end{pmatrix*} 
+				\right|_{H} \overrightarrow{HA} + 
+				\overrightarrow{HC}^T 
+				\left. 
+				\begin{pmatrix*}
+					u_{xx} &u_{xt} \\
+					u_{xt} &u_{tt}
+				\end{pmatrix*} 
+				\right|_{H} \overrightarrow{HC} 
+				= 
+				\overrightarrow{HB}^T 
+				\left. 
+				\begin{pmatrix*}
+					u_{xx} &u_{xt} \\
+					u_{xt} &u_{tt}
+				\end{pmatrix*} 
+				\right|_{H} \overrightarrow{HB} + 
+				\overrightarrow{HD}^T 
+				\left. 
+				\begin{pmatrix*}
+					u_{xx} &u_{xt} \\
+					u_{xt} &u_{tt}
+				\end{pmatrix*} 
+				\right|_{H} \overrightarrow{HD} + \circ(d^2)
+			\end{align*}
+			Since $AC \,$ // x轴, $BD \,$ // t轴, then
+			\[ \overrightarrow{HA} = (-d , 0) , \,\, \overrightarrow{HC} = (d , 0) , \,\, \overrightarrow{HB} = (0 , -cd) , \,\, \overrightarrow{HD} = (0 , cd) \]
+			代入上式, 得到
+			\[ 2d^2 u_{tt}(H) = 2c^2 d^2 u_{xx}(H) + \circ(d^2) \]
+			i.e. 
+			\[ u_{tt}(H) - c^2 u_{xx}(H) = \frac{\circ(d^2)}{d^2} \]
+			Letting $d \to 0^+$, we have proved $u_{tt} - c^2 u_{xx} = 0$. 
+		\end{proof}
+	\end{thm}
+	
+	
 
 
 	%  ############################
