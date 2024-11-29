@@ -449,7 +449,7 @@
 \section{Gauss-Green公式}
 	首先回顾一下\textbf{外法向向量}及\textbf{(外)法向方向导数}的记号.
 	\begin{itemize}
-		\item Suppose $U \subset \R^n$. If $\partial U \in C^1$, then along $\partial U$ is defined the outward pointing unit normal vector field.\footnote{关于区域边界光滑性$\partial \Omega \in C^k$ 即\textbf{单位外法向}的定义, 详见\textbf{附录 \ref{appendix B}-定义 \ref{def B.1.1}}}
+		\item Suppose $\Omega \subset \R^n$. If $\partial \Omega \in C^1$, then along $\partial \Omega$ is defined the outward pointing unit normal vector field.\footnote{关于区域边界光滑性$\partial \Omega \in C^k$ 即\textbf{单位外法向}的定义, 详见\textbf{附录 \ref{appendix B}-定义 \ref{def B.1.1}}}
 		\[ \vec{\gamma} = (\gamma^1 , \gamma^2 , \cdots , \gamma^n) 
 		\hspace*{2em} , \hspace*{2em} 
 		\vec{\gamma}(x^0) = \gamma = (\gamma_1 , \gamma_2 , \cdots , \gamma_n) \]
@@ -460,7 +460,7 @@
 	
 		\vspace{2em}
 	
-		\item Let $u \in C^{1}(\overline{U})$. We call $\,\, \dfrac{\partial u}{\partial \gamma} \coloneqq \vec{\gamma} \cdot Du \,\,$ the (outward) normal derivative of $u$.
+		\item Let $u \in C^{1}(\overline{\Omega})$. We call $\,\, \dfrac{\partial u}{\partial \gamma} \coloneqq \vec{\gamma} \cdot Du \,\,$ the (outward) normal derivative of $u$.
 	\end{itemize}
 
 	\vspace{6em}
@@ -469,14 +469,14 @@
 
 	\begin{thm}\label{thm B.4.1}
 		\textbf{[Gauss-Green Theorem]}. \\
-		Suppose $U \subset \R^n$ is open and bounded, $\partial U \in C^1$.
+		Suppose $\Omega \subset \R^n$ is open and bounded, $\partial \Omega \in C^1$.
 		\begin{enumerate}
-			\item[(\rmnum{1})] If $u \in C^{1}(\overline{U})$, then
+			\item[(\rmnum{1})] If $u \in C^{1}(\overline{\Omega})$, then
 			\begin{align}
 				\int_{U} u_{x_i} = \int_{\partial U} u \gamma^i , \,\, \forall 1 \leq i \leq n
 			\end{align}
 		
-			\item[(\rmnum{2})] $\forall$ vector field $\vec{u} \in C^{1}(\overline{U} ; \R^n)$,
+			\item[(\rmnum{2})] $\forall$ vector field $\vec{u} \in C^{1}(\overline{\Omega} ; \R^n)$,
 			\begin{align}
 				\int_{U} div \, \vec{u} = \int_{\partial U} \vec{u} \cdot \vec{\gamma}
 			\end{align}
@@ -486,13 +486,13 @@
 	
 		\begin{rmk}
 			\begin{itemize}
-				\item (\rmnum{2})即为\textbf{Gauss-Green公式 (Gauss公式)}, 说明了对于$\R^n$ 中任一有界区域$U$ 	中的向量场$\vec{u}$, 其散度$div \, \vec{u}$ 在整个区域上的积分 = 其在整个边界$\partial U$ 上的通量.
+				\item (\rmnum{2})即为\textbf{Gauss-Green公式 (Gauss公式)}, 说明了对于$\R^n$ 中任一有界区域$\Omega$ 中的向量场$\vec{u}$, 其散度$div \, \vec{u}$ 在整个区域上的积分 = 其在整个边界$\partial \Omega$ 上的通量.
 			
 				\vspace{1em}
 			
 				而散度作为描述向量场中某个点\textbf{向外发散程度}的标量, 原式可理解为：
 				\begin{center}
-					向量场$\vec{u}$ 在区域$U$ 中每个点发散程度的积累, 经过内部每个点散度相互抵消后, 最终等于其在边界$\partial 	U$ 处向外通量的总和.
+					向量场$\vec{u}$ 在区域$\Omega$ 中每个点发散程度的积累, 经过内部每个点散度相互抵消后, 最终等于其在边界$\partial \Omega$ 处向外通量的总和.
 				\end{center}
 			
 				\newpage
@@ -506,7 +506,7 @@
 			
 				\item 定理中(\rmnum{1})可作为(\rmnum{2})的直接推论. 即可令$\vec{u}$ 中除第$i$ 个分量$u^i$ 外均为0, 即$\vec{u} = (0 , \cdots , u^i , \cdots , 0)$, then
 				\[ \int_{U} \frac{\partial u^i}{\partial x_i} = \int_{\partial U} u^i \gamma^i \]
-				令$u = u^i \in C^{1}(\overline{U})$, 即可得到
+				令$u = u^i \in C^{1}(\overline{\Omega})$, 即可得到
 				\[ \int_{U} u_{x_i} = \int_{\partial U} u \gamma^i , \,\, \forall 1 \leq i \leq n \]
 			\end{itemize}
 		\end{rmk}
@@ -518,7 +518,7 @@
 
 	\begin{corollary}\label{cor B.4.2}
 		\textbf{[Integration by parts formula]}. \\
-			Let $u , v \in C^{1}(\overline{U})$, then
+			Let $u , v \in C^{1}(\overline{\Omega})$, then
 		\begin{align}
 			\int_{U} u_{x_i} v = -\int_{U} u v_{x_i} + \int_{\partial U} u v \gamma^i
 		\end{align}
@@ -537,7 +537,7 @@
 
 	\begin{corollary}\label{cor B.4.3}
 		\textbf{[Green's Formula]}. \\
-		Let $u , v \in C^{2}(\overline{U})$, then
+		Let $u , v \in C^2(\Omega) \cap C^{1}(\overline{\Omega})$, then
 		\begin{enumerate}
 			\item[(\rmnum{1})]
 			\begin{align}
