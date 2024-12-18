@@ -7,10 +7,824 @@
 	%  ############################ 正文部分
 \chapter{The Laplace Equation}
 
+	这一章我们将来讨论\textbf{Laplace Equation}, 求出其基本解, 给出(下)调和函数的性质、球上的Possion公式, 并最终得出Dirichlet 问题的解的存在唯一性. 
+	
+	\vspace*{1em}
+	
+	对于\textbf{Laplace Equation}的初值问题, 常见的有两种, \textbf{Dirichlet} $\&$ \textbf{Newmann Problem}, i.e.
+	
+	\begin{align*}
+		\text{Dirichlet: } 
+		\begin{dcases*}
+			\Delta u = f \,\, \text{on} \,\, \Omega \\
+			u = g \,\, \text{on} \,\, \partial \Omega
+		\end{dcases*}
+		\hspace*{4em}
+		\text{Newmann: }
+		\begin{dcases*}
+			\Delta u = f \,\, \text{on} \,\, \Omega \\
+			\frac{\partial u}{\partial \gamma} = g \,\, \text{on} \,\, \partial \Omega
+		\end{dcases*}
+	\end{align*}
+	
+\vspace*{2em}
 
+\section{Dirichlet $\&$ Newmann Problem解的唯一性}
+	
+	这一节我们将利用\textbf{Green恒等式}来证明Dirichlet $\&$ Newmann Problem解的唯一性, 并且我们将会在后续利用\textbf{极值原理}给出更一般的证明. 
+	
+	\vspace*{1em}
+	
+	首先来回顾\textbf{Green's Identities (Thm \ref{cor B.4.3})}. 
+	
+	\vspace*{1em}
+	
+	\begin{proposition}\label{prop 3.1.1}
+		\textbf{[Green's Identities]}. \\
+		For $u , v \in C^2 (\Omega) \cap C^1 \left( \overline{\Omega} \right)$, $\partial \Omega \in C^1$, 
+		\begin{align*}
+			&\text{(1)} \,\, 
+			\int_{\Omega} v \Delta u = -\int_{\Omega} \nabla v \cdot \nabla u + \int_{\partial \Omega} v \frac{\partial u}{\partial \gamma} \\
+			&\text{(2)} \,\, 
+			\int_{\gamma} v \Delta u - \int_{\Omega} u \Delta v = \int_{\partial \Omega} v \frac{\partial u}{\partial \gamma} - \int_{\partial \Omega} u \frac{\partial v}{\partial \gamma}
+		\end{align*}
+	\end{proposition}
+	
+	\vspace*{4em}
+	
+	下面我们来证明Dirichlet $\&$ Newmann Problem解的唯一性. 
+	
+	\newpage
+	
+	\begin{proposition}\label{prop 3.1.2}
+		\textbf{[Dirichlet $\&$ Newmann Problem解的唯一性]}. \\
+		对于Dirichlet $\&$ Newmann Problem, 
+		\begin{align*}
+			\text{Dirichlet: } 
+			\begin{dcases*}
+				\Delta u = f \,\, \text{on} \,\, \Omega \\
+				u = g \,\, \text{on} \,\, \partial \Omega
+			\end{dcases*}
+			\hspace*{4em}
+			\text{Newmann: }
+			\begin{dcases*}
+				\Delta u = f \,\, \text{on} \,\, \Omega \\
+				\frac{\partial u}{\partial \gamma} = g \,\, \text{on} \,\, \partial \Omega
+			\end{dcases*}
+		\end{align*}
+		若存在解$u \in C^2(\Omega) \cap C^1 \left( \overline{\Omega} \right)$, 则该解唯一. 
+		
+		\vspace*{4em}
+		
+		\begin{rmk}
+			事实上, 后续我们将用\textbf{极值原理}证明更一般的解的唯一性, 即Dirichlet Problem在空间$C^2(\Omega) \cap C^0(\overline{\Omega})$ 的解若存在则唯一. 
+		\end{rmk}
+		
+		\vspace*{4em}
+		
+		\begin{proof}
+			根据\textbf{Green's Identities (Prop \ref{prop 3.1.1} (1))}, 当$\Delta u = 0$, $v = u$时, 
+			\begin{align*}
+				-\int_{\Omega} \sum_{i = 1}^n \Big( \partial_{x_i} u \Big)^2 + \int_{\partial \Omega} u \frac{\partial u}{\partial \gamma} = 0
+			\end{align*}
+			下面证明Dirichlet Problem 在空间$C^2(\Omega) \cap C^1 \left( \overline{\Omega} \right)$ 中的解若存在则唯一：\\
+			Assume $u_1 , u_2 \in C^2(\Omega) \cap C^1 \left( \overline{\Omega} \right)$ be solutions of Dirichlet Problem, then
+			\begin{align*}
+				\begin{dcases*}
+					\Delta (u_1 - u_2) = 0 \,\, \text{on} \,\, \Omega \\
+					u_1 - u_2 = 0 \,\, \text{on} \,\, \partial \Omega
+				\end{dcases*}
+			\end{align*}
+			将$u_1 - u_2$ 代入上述Green's Identity变式中, 得到
+			\begin{align*}
+				\int_{\Omega} \sum_{i = 1}^n \Big( \partial_{x_i} (u_1 - u_2) \Big)^2 = 0
+			\end{align*}
+			Hence $\nabla(u_1 - u_2) = 0 \,\, \Rightarrow \,\, u_1 - u_2 \equiv C$ on $\Omega$. \\
+			又因为$u_1 - u_2 = 0$ on $\partial \Omega$, $u_1 , u_2 \in C^1(\overline{\Omega})$, 所以
+			\begin{align*}
+				u_1 = u_2
+			\end{align*}
+			Similarly 可证明Newmann Problem \textbf{\uwave{在相差常数意义下}}解唯一. 
+		\end{proof}
+	\end{proposition}
+
+	\newpage
+	
+	事实上, 后续我们将说明, 
+	
+	\vspace*{1em}
+	
+	\begin{itemize}
+		\item Dirichlet Problem 中的$f , g$ 独立, 即
+		\begin{center}
+			对于$\forall f \in C^2(\Omega)$, $g \in C(\partial \Omega)$, Dirichlet Problem 均有解 (且在$C^2(\Omega) \cap C^0(\overline{\Omega})$ 中唯一). 
+		\end{center}
+		
+		\vspace*{4em}
+		
+		\item 而对于Newmann Problem, $f , g$ 需要满足条件 (必要性可由\textbf{Green's Identities (Prop \ref{prop 3.1.1} (1) )} 得到)：
+		\begin{align*}
+			\int_{\Omega} f = \int_{\partial \Omega} g
+		\end{align*}
+		实际上, 若$\forall f \in C^2(\Omega)$, $g \in C(\partial \Omega)$ 满足上式, Newmann Problem 有解, 即为充要条件. 
+	\end{itemize}
+
+\newpage
+
+\section{基本解, Green恒等式变式, 调和函数均解析}
+
+\subsection{基本解 (With Spherical Symmetry), Green恒等式变式}
+	我们首先来求出\textbf{Laplace Equation}
+	\[ \Delta u = 0 \]
+	的满足\textbf{径向对称 (radial / spherical symmetry)}的\textbf{基本解\footnote{有关\textbf{广义函数}、\textbf{基本解}等详细内容可以参考：\\
+	\hspace*{4em} \textbf{《数学物理方程讲义 (第二版)》--  姜礼尚、陈亚浙、刘西垣、易法槐} P131-146 $\S 3.1.3$ - $3.1.4$.}}, 设$v(x)$ 为上述基本解, 即
+	\begin{align*}
+		\Delta v = \delta(x) \hspace*{2em} \text{and} \hspace*{2em} v(x) = f(|x|) = f(r)
+	\end{align*}
+	首先对于\textbf{径向对称性}, 根据$\Delta v = 0$ on $\R^n \backslash \{ 0 \}$ 且$v(x) = f(r)$, 可解出\footnote{具体过程可参考：\textbf{《Partial Differential Equations》 -- Lawrence C. Evans} P21-22 $\S 2.2.1$. }
+	\begin{align*}
+		v(x) = 
+		\begin{dcases*}
+			C_1 \ln r , \,\, n = 2 \\
+			C_2 r^{2 - n} , \,\, n \geq 3
+		\end{dcases*} , \,\, \text{where} \,\, r = |x|
+	\end{align*}
+	下面来确定系数$C_1 , C_2$：
+	
+	\vspace*{6em}
+	
+	\hspace*{-1.95em}由于$\Delta v = \delta(x)$, 因此for $\forall u \in C^2 \left( \overline{\Omega} \right)$, $\forall \xi \in \Omega$, $\st$
+	\begin{align*}
+		u(\xi) = \int_{\Omega} u(x) \, \Delta v (x - \xi) \, dx
+	\end{align*}
+	根据上述讨论, 求出的$v$, $v(x - \xi)$ 在$\xi$ 处无定义, 因此在区域$\Omega \backslash B_{\varepsilon}(\xi)$ 上, 运用\textbf{Green's Identity (Prop \ref{prop 3.1.1} (2))}, 
+	\begin{align*}
+		\int_{\Omega \backslash B_{\varepsilon}(\xi)} \Delta u(x) \cdot v(x - \xi) 
+		- \int_{\Omega \backslash B_{\varepsilon}(\xi)} u(x) \Delta v(x - \xi) 
+		= \int_{\partial \Big( \Omega \backslash B_{\varepsilon}(\xi) \Big)} \frac{\partial u(x)}{\partial \gamma} v(x - \xi) 
+		- \int_{\partial \Big( \Omega \backslash B_{\varepsilon}(\xi) \Big)} u(x) \frac{\partial v(x - \xi)}{\partial \gamma}
+	\end{align*}
+	Since $\Delta v(x - \xi) = 0$ in $\R^n \backslash \{ \xi \}$, then $\int_{\Omega \backslash B_{\varepsilon}(\xi)} u(x) \Delta v(x - \xi) = 0$, i.e.
+	\begin{align*}
+		\int_{\Omega \backslash B_{\varepsilon}(\xi)} \Delta u(x) \cdot v(x - \xi) 
+		= \int_{\partial \Big( \Omega \backslash B_{\varepsilon}(\xi) \Big)} \frac{\partial u(x)}{\partial \gamma} v(x - \xi) 
+		- \int_{\partial \Big( \Omega \backslash B_{\varepsilon}(\xi) \Big)} u(x) \frac{\partial v(x - \xi)}{\partial \gamma}
+	\end{align*}
+	
+	\vspace*{2em}
+	
+	\hspace*{-1.95em}下面逐项讨论, 当$\varepsilon \to 0^+$ 后的取值：
+	
+	\newpage
+	
+	\begin{enumerate}
+		\item \underline{$\int_{\Omega \backslash B_{\varepsilon}(\xi)} \Delta u \cdot v$}：
+		
+		\vspace*{1em}
+		
+		\hspace*{-1.95em}由于$u \in C^2(\overline{\Omega})$, 因此$\Delta u \in C\left( \overline{\Omega} \right)$. Thus $\exists M > 0$, $\st$
+		\[ \left| \Delta u \right| \leq M \,\, \text{on} \,\, \overline{\Omega} \]
+		\begin{itemize}
+			\item For $n = 2$, 
+			\begin{align*}
+				\left| \int_{B_{\varepsilon}(\xi)} \Delta u \cdot v \right| 
+				\leq M \cdot \int_{B_{\varepsilon}(\xi)} \left| v \right| \, dxdy 
+				&= M \cdot \int_{0}^{2 \pi} \int_{0}^{\varepsilon} | C_1 \ln r | \cdot r \, dr d\vartheta \\
+				&= 2 \pi M | C_1 | \cdot \int_{0}^{\varepsilon} | \ln r | \cdot r \, dr \to 0 
+				\,\, \text{as} \,\, \varepsilon \to 0^+
+			\end{align*}
+			
+			\vspace*{1em}
+			
+			\item For $n \geq 3$, 
+			\begin{align*}
+				\left| \int_{B_{\varepsilon}(\xi)} \Delta u(x) \cdot v(x - \xi) \right| 
+				&\leq M \cdot \int_{B_{\varepsilon}(\xi)} \left| v(x - \xi) \right| \, dx \\
+				&\leq M \cdot \int_{0}^{2\pi} \int_{0}^{\pi} \cdots \int_{0}^{\varepsilon} | C_2 r^{2 - n} | \cdot r^{n - 1} \sin^{n - 2} \vartheta_1 \cdots \sin \vartheta_{n - 2} \, dr d\vartheta_1 \cdots d\vartheta_{n - 1} \\
+				&\leq (2\pi)^{n - 1} M |C_2 | \cdot \int_{0}^{\varepsilon} r \, dr \to 0 
+				\,\, \text{as} \,\, \varepsilon \to 0^+
+			\end{align*}
+		\end{itemize}
+		Therefore, 
+		\begin{align*}
+			\int_{\Omega \backslash B_{\varepsilon}(\xi)} \Delta u \cdot v \to \int_{\Omega} \Delta u \cdot v 
+			\,\, \text{as} \,\, \varepsilon \to 0^+
+		\end{align*}
+		
+		\vspace*{4em}
+		
+		\item \underline{$\int_{\partial \Big( \Omega \backslash B_{\varepsilon}(\xi) \Big)} \dfrac{\partial u(x)}{\partial \gamma} v(x - \xi)$}：
+		\begin{align*}
+			\int_{\partial \Big( \Omega \backslash B_{\varepsilon}(\xi) \Big)} \frac{\partial u(x)}{\partial \gamma} v(x - \xi) 
+			= \int_{\partial \Omega} \frac{\partial u}{\partial \gamma} v - \int_{\partial B_{\varepsilon}(\xi)} \frac{\partial u}{\partial \gamma} v
+		\end{align*}
+			Since $u \in C^2\left( \overline{\Omega} \right)$, then $\dfrac{\partial u}{\partial \gamma} \in C^1 \left( \overline{\Omega} \right)$ and $\exists M > 0$, $\st$
+			\begin{align*}
+				\left| \frac{\partial u}{\partial \gamma} \right| \leq M \,\, \text{on} \,\, \overline{\Omega}
+			\end{align*}
+			Thus
+			\begin{align*}
+				\left| \int_{\partial B_{\varepsilon}(\xi)} \frac{\partial u}{\partial \gamma} v \right| 
+				\leq M \cdot \int_{\partial B_{\varepsilon}(\xi)} \left| v(x - \xi) \right| 
+				= \begin{dcases*}
+					M | C_1 | \cdot 2 \pi \varepsilon | \ln \varepsilon | , \,\, n = 2 \\
+					M | C_2 | \cdot w_n \varepsilon^{n - 1} \cdot \varepsilon^{2 - n} 
+					= M | C_2 | \cdot w_n \varepsilon , \,\, n \geq 3
+				\end{dcases*} \to 0 \,\, \text{as} \,\, \varepsilon \to 0^+
+			\end{align*}
+			Hence
+			\begin{align*}
+				\int_{\partial \Big( \Omega \backslash B_{\varepsilon}(\xi) \Big)} \frac{\partial u(x)}{\partial \gamma} v(x - \xi)  
+				\to \int_{\partial \Omega} \frac{\partial u}{\partial \gamma} v 
+				\,\, \text{as} \,\, \varepsilon \to 0^+
+			\end{align*}
+			
+			\newpage
+			
+			\item \underline{$\int_{\partial \Big( \Omega \backslash B_{\varepsilon}(\xi) \Big)} u(x) \dfrac{\partial v(x - \xi)}{\partial \gamma}$}：
+			
+			\begin{align*}
+				\int_{\partial \Big( \Omega \backslash B_{\varepsilon}(\xi) \Big)} u(x) \frac{\partial v(x - \xi)}{\partial \gamma} 
+				= \int_{\partial \Omega} u \frac{\partial v}{\partial \gamma} 
+				- \int_{\partial B_{\varepsilon}(\xi)} u \frac{\partial v}{\partial \gamma}
+			\end{align*}
+			\begin{itemize}
+				\item For $n = 2$. 由于$\gamma$ 为球面$\partial B_{\varepsilon}(\xi)$ 的单位外法向, 而$v$ 径向对称, 因此
+				\begin{align*}
+					\int_{\partial B_{\varepsilon}(\xi)} u \frac{\partial v}{\partial \gamma} 
+					= \int_{\partial B_{\varepsilon}(\xi)} u \frac{d v}{dr} 
+					&= \int_{\partial B_{\varepsilon}(\xi)} u \cdot \frac{C_1}{\varepsilon} \\
+					&= 2\pi C_1 \cdot \fint_{\partial B_{\varepsilon}(\xi)} u(x) \, dx \to 2 \pi C_1 \cdot u(\xi) 
+					\,\, \text{as} \,\, \varepsilon \to 0^+
+				\end{align*}
+				
+				\item For $n \geq 3$. Similarly, 
+				\begin{align*}
+					\int_{\partial B_{\varepsilon}(\xi)} u \frac{\partial v}{\partial \gamma} 
+					= \int_{\partial B_{\varepsilon}(\xi)} u \frac{d v}{dr} 
+					&= \int_{\partial B_{\varepsilon}(\xi)} u \cdot C_2 (2 - n) \varepsilon^{1 - n} \\
+					&= (2 - n) w_n C_2 \cdot \fint_{\partial B_{\varepsilon}(\xi)} u(x) \, dx 
+					\to (2 - n) w_n C_2 \cdot u(\xi) \,\, \text{as} \,\, \varepsilon \to 0^+
+				\end{align*}
+			\end{itemize}
+	\end{enumerate}
+	
+	\vspace*{4em}
+	
+	\hspace*{-1.95em}Therefore, for the formula 
+	\begin{align*}
+		\int_{\Omega \backslash B_{\varepsilon}(\xi)} \Delta u(x) \cdot v(x - \xi) 
+		= \int_{\partial \Big( \Omega \backslash B_{\varepsilon}(\xi) \Big)} \frac{\partial u(x)}{\partial \gamma} v(x - \xi) 
+		- \int_{\partial \Big( \Omega \backslash B_{\varepsilon}(\xi) \Big)} u(x) \frac{\partial v(x - \xi)}{\partial \gamma}
+	\end{align*}
+	Letting $\varepsilon \to 0^+$, we have 
+	\begin{align}
+		\int_{\Omega} \Delta u(x) \cdot v(x - \xi) 
+		= \int_{\partial \Omega} \frac{\partial u}{\partial \gamma} v
+		- \int_{\partial \Omega} u \frac{\partial v}{\partial \gamma} + C \cdot u(\xi) \label{3.1}
+	\end{align}
+	where $C = 
+	\begin{dcases*}
+		2 \pi C_1 , \,\, n = 2 \\
+		(2 - n) w_n C_2 , \,\, n \geq 3
+	\end{dcases*}$. 根据\textbf{Green's Identity (Prop \ref{prop 3.1.1} (2))}, 可得
+	\begin{align*}
+		C \cdot u(\xi) 
+		&= \int_{\Omega} \Delta u(x) \cdot v(x - \xi) - \left( \int_{\partial \Omega} \frac{\partial u}{\partial \gamma} v
+		- \int_{\partial \Omega} u \frac{\partial v}{\partial \gamma} \right) \\
+		&= \int_{\Omega} u(x) \cdot \Delta v(x - \xi) \\
+		&= u(\xi) , \,\, \text{since $v = \delta(x)$ is a fundamental solution}
+	\end{align*}
+	Therefore, $C = 1$, i.e.
+	\begin{align*}
+		\begin{dcases*}
+			C_1 = \frac{1}{2\pi} \\
+			C_2 = \frac{1}{w_n (2 - n)}
+		\end{dcases*}
+	\end{align*}
+
+	\newpage
+	
+	至此, 我们求出了\textbf{Laplace Equation}满足\textbf{径向对称}的\textbf{基本解}, 下面将其写为定义. 
+	
+	\begin{defn}\label{def 3.2.1}
+		The function
+		\begin{align*}
+			\psi(r) = 
+			\begin{dcases*}
+				\frac{1}{2\pi} \ln r , \,\, n = 2 \\
+				\frac{r^{2 - n}}{(2 - n) w_n} , \,\, n \geq 3
+			\end{dcases*}
+		\end{align*}
+		被称为Laplace方程的\underline{\textcolor{blue}{\textbf{基本解}}}, 其中$w_n$ 表示$\R^n$ 中单位球面的面积, 在$\R^n$ 中$| B_1 | = \dfrac{w_n}{n}$. \\
+		在后面我们记
+		\begin{align*}
+			K(x , \xi) \coloneqq \psi(| x - \xi |)
+		\end{align*}
+		则根据前文讨论 (\ref{3.1})式, 我们可以得到\textbf{Green's Identity (Prop \ref{prop 3.1.1} (2))}的一条变式, i.e.\\
+		$\forall u \in C^2\left( \overline{\Omega} \right)$ and $\xi \in \Omega$, 
+		\begin{align}
+			u(\xi) 
+			= \int_{\Omega} K(x , \xi) \, \Delta u(x) \, dx 
+			+ \int_{\partial \Omega} \left( \frac{\partial K(x , \xi)}{\partial n_x} u(x) - \frac{\partial u(x)}{\partial n_x} K(x , \xi) \right) \, dS_x \label{3.2}
+		\end{align}
+	\end{defn}
+	
+\newpage
+
+\subsection{调和函数均解析}
+	利用\textbf{Def \ref{def 3.2.1} (\ref{3.2})}式, 我们可以证明\textbf{$C^2$ 的调和函数均解析}. 下面给出命题. 
+	
+	\vspace*{1em}
+	
+	\begin{proposition}\label{prop 3.2.1}
+		\textbf{[$C^2$ 调和函数均解析]}. 
+		\begin{center}
+			\textbf{Suppose $u \in C^2(\Omega)$ and $\Delta u = 0$ on $\Omega$ (harmonic), then $u$ is analytic}. 
+		\end{center}
+		
+		\vspace*{4em}
+		
+		\begin{proof}
+			详情可参考：
+			\begin{center}
+				\textbf{《Partial Differential Equations》 -- Lawrence C. Evans} P31 $\S 2.2.3$ Theorem 10.
+			\end{center}
+		\end{proof}
+	\end{proposition}
+
+\newpage
+
+\section{调和函数的平均值等式, 任一$C^2$ 函数可由基本解表示}
+
+\subsection{调和函数的平均值等式(球面$\&$ 球体)}
+
+	下面给出\textbf{调和函数的平均值等式}. 
+	
+	\vspace*{1em}
+	
+	\begin{proposition}\label{prop 3.3.1}
+		\textbf{[调和函数平均值等式(球面)]}. \\
+		Suppose $u \in C^2(\Omega)$ and $\Delta u = 0$ on $\Omega$. Then
+		\begin{align*}
+			u(y) 
+			= \fint_{\partial B_{\rho}(y)} u(x) \, dS_x 
+			= \frac{1}{| \partial B_\rho |} \int_{\partial B_{\rho}(y)} u(x) \, dS_x , \,\, \forall B_{\rho}(y) \subset \Omega
+		\end{align*}
+		
+		\vspace*{4em}
+		
+		\begin{proof}
+			先证明一个Lemma. 
+			
+			\vspace*{2em}
+			
+			\begin{lemma}\label{lemma 3.3.1}
+				\textbf{[Green恒等式变式的调整]}. \\
+				The $K(x , \xi)$ in \textbf{Def \ref{def 3.2.1} 式(\ref{3.2})} can be replaced by $K - c$, $\forall c \in \R$, i.e. $\forall u \in C^2\left( \overline{\Omega} \right)$ and $\xi \in \Omega$, 
+				\begin{align*}
+					u(\xi) 
+					= \int_{\Omega} \Big( K(x , \xi) - c \Big) \, \Delta u(x) \, dx 
+					+ \int_{\partial \Omega} \left( \frac{\partial \Big( K(x , \xi) - c \Big)}{\partial n_x} u(x) - \frac{\partial u(x)}{\partial n_x} \Big( K(x , \xi) - c \Big) \right) \, dS_x
+				\end{align*}
+				
+				\vspace*{1em}
+				
+				\begin{proof}
+					将右式各项展开后运用\textbf{Gauss-Green公式 (Cor \ref{cor B.4.3} (\rmnum{1}))} 即可得证. 
+				\end{proof}
+				
+				\vspace*{3em}
+				
+				下面证明原命题：\\
+				根据上述\textbf{Lemma \ref{lemma 3.3.1}}, for $u \in C^2\left( \Omega \right)$ and $\Delta u = 0$ on $\Omega$, 
+				\begin{align*}
+					u(y) 
+					= \int_{\partial B_{\rho}(y)} \left[ \frac{\partial K}{\partial n_x} u - \frac{\partial u}{\partial n_x} (K - c) \right] \, dS_x , \,\, \forall c \in \R , \,\, \forall B_{\rho}(y) \subset \Omega
+				\end{align*}
+				Fix $\rho > 0$. Take $c = \psi(\rho) = K(x , y)$ constant in $\partial B_{\rho}(y)$, then
+				\begin{align*}
+					u(y) 
+					= \int_{\partial B_{\rho}(y)} \frac{\partial K(x , y)}{\partial n_x} u(x) \, dS_x
+				\end{align*}
+				由于$K(x , y) = \psi(| x - y |)$ is radial, and $n_x$ 为单位外法向, 因此
+				\[ \left. \frac{\partial K(x , y)}{\partial n_x} \right|_{x \in \partial B_{\rho}(y)} 
+				= \left. \frac{d \psi(r)}{d r} \right|_{r = \rho} 
+				= \frac{1}{| \partial B_\rho |} \]
+				Therefore, 
+				\begin{align*}
+					u(y) 
+					= \frac{1}{| B_{\rho} |} \cdot \int_{\partial B_{\rho}(y)} u(x) \, dS_x 
+					= \fint_{\partial B_{\rho}(y)} u(x) \, dS_x , \,\, \forall B_{\rho}(y) \subset \Omega
+				\end{align*}
+			\end{lemma}
+		\end{proof}
+	\end{proposition}
+	
+	\newpage
+	
+	由\textbf{球面上的平均值等式}, 可以容易得到\textbf{球体上的平均值等式}. 
+	
+	\vspace*{1em}
+	
+	\begin{corollary}\label{cor 3.3.2}
+		\textbf{[调和函数平均值等式(球体)]}. \\
+		Suppose $u \in C^2(\Omega)$ and $\Delta u = 0$ on $\Omega$. Then
+		\begin{align*}
+			u(y) 
+			= \fint_{B_{\rho}(y)} u(x) \, dS_x 
+			= \frac{1}{| B_\rho |} \int_{B_{\rho}(y)} u(x) \, dS_x , \,\, \forall B_{\rho}(y) \subset \Omega
+		\end{align*}
+		
+		\vspace*{4em}
+		
+		\begin{proof}
+			由\textbf{Prop \ref{prop 3.3.1}}结论经积分后可证. 
+		\end{proof}
+	\end{corollary}
+
+\newpage
+
+\subsection{任一$C^2$ 函数可由基本解表示 (Laplace算子作用后的形式)}
+	这一小节我们将说明, 对于任意的$C^2$ function, 都可以通过\textbf{基本解}表示为Laplace算子作用在一个函数上的形式. 并且将说明, 通过这一命题, 可将所有一般形式的\textbf{Dirichlet Problem} 转化为\textbf{调和函数的初值问题}. 
+	
+	\vspace*{1em}
+	
+	\hspace{-1.95em}首先给出一个函数空间的记号. 
+	\begin{align*}
+		C_{0}^k (\Omega) \coloneqq \left\{ u \in C^k(\Omega) \,\, \Big| \,\, u\Big|_{\partial \Omega} = u^1 \Big|_{\partial \Omega} = \cdots = u^{(k - 1)} \Big|_{\partial \Omega} = 0 \right\} , \,\, \forall k = 0 , 1 , 2 , \cdots
+	\end{align*}
+	
+	\hspace{-1.95em}下面说明任一$C^2$ 函数可由基本解表示. 
+	
+	\vspace{1em}
+	
+	\begin{proposition}\label{prop 3.3.2}
+		\textbf{[任一$C^2$ 函数可由基本解表示 (Laplace算子作用后的形式)]}. \\
+		Suppose $w \in C^2 \left( \overline{\Omega} \right)$. Then
+		\begin{align*}
+			w(\xi) 
+			= \Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot w(x) \, dx , \,\, \forall \xi \in \Omega
+		\end{align*}
+	
+		\vspace{2em}
+		
+		\begin{rmk}
+			事实上, 此命题可以将一般的Dirichlet Problem 转化为齐次形式, 即调和函数的初值问题. 具体来说, 对于Dirichlet Problem, $\varphi \in C^2\Big( \overline{\Omega} \Big)$, 
+			\begin{align*}
+				\begin{dcases*}
+					\Delta u = \varphi \,\, \text{on} \,\, \Omega \\
+					u = f \,\, \text{on} \,\, \partial \Omega
+				\end{dcases*}
+			\end{align*}
+			记$\psi(\xi) = \int_{\Omega} K(x , \xi) \cdot \varphi(x) \, dx$, 则根据该命题, $\varphi = \Delta \psi$, i.e.
+			\begin{align*}
+				\begin{dcases*}
+					\Delta(u - \psi) = \varphi - \Delta \psi = 0 \,\, \text{on} \,\, \Omega \\
+					u - \psi = f - \psi \,\, \text{on} \,\, \partial \Omega
+				\end{dcases*}
+			\end{align*}
+			这样我们就将一般的Dirichlet Problem 转化为了齐次形式. 
+		\end{rmk}
+		
+		\vspace*{4em}
+		
+		\begin{proof}
+			下面分两步进行证明：
+			\begin{enumerate}
+				\item 先对更强的条件进行证明：Suppose $w \in C_{0}^2 \left( \overline{\Omega} \right)$. \\
+				Let $\widetilde{w}$ 为$w$ 的零延拓, then 
+				
+				\newpage
+				
+				\begin{align*}
+					\Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot w(x) \, dx 
+					&= \Delta_{\xi} \int_{\R^n} K(x , \xi) \cdot \widetilde{w}(x) \, dx \\
+					&= \Delta_{\xi} \int_{\R^n} \psi(| x - xi |) \cdot \widetilde{w}(x) \, dx \\
+					&= \Delta_{\xi} \int_{\R^n} \psi(| y |) \cdot \widetilde{w}(y + \xi) \, dy \\
+					&= \int_{\R^n} \psi(| y |) \cdot \Delta_{\xi} \widetilde{w}(y + \xi) \, dy \\
+					&= \int_{\R^n} \psi(| y |) \cdot \Delta_y \widetilde{w}(y + \xi) \, dy \\
+					&= \int_{\R^n} \psi(| x - y |) \cdot \Delta_y \widetilde{w}(y) \, dy 
+					= \int_{\Omega} K(x , \xi) \cdot \Delta_x w(x) \, dx
+					= w(\xi)
+				\end{align*}
+				(运算的合理性可由逆向得到)
+				
+				\vspace{2.5em}
+				
+				\item 现证一般情况：Suppose $w \in C^2\left( \overline{\Omega} \right)$. For $\forall \delta > 0$, 记Cut off function: 
+				\begin{align*}
+					\zeta(x) = 
+					\begin{dcases*}
+						1 , \,\, | x | \leq \frac{\delta}{2} \\
+						k e^{\tfrac{1}{\left( \frac{\delta}{2} \right)^2 - |x - \frac{\delta}{2}|^2}} , \,\, \frac{\delta}{2} < | x | < \delta \\
+						0 , \,\, | x | \geq \delta
+					\end{dcases*}
+				\end{align*}
+				Take $k \in \R$, $\st$
+				\[ \int_{\R^n} \zeta(x) \, dx = 1 \]
+				Then $\zeta(x) \in C_{c}^{\infty} \Big( B_{\delta}(\xi) \Big)$ and $\zeta(x) = 1 , \,\, \forall x \in B_{\tfrac{\delta}{2}}(\xi)$. Hence
+				\[ w(x) = \zeta(x) \cdot w(x) + \Big( 1 - \zeta(x) \Big) \cdot w(x) \]
+				i.e. 
+				\begin{align*}
+					\Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot \Big[ \zeta w + (1 - \zeta) w \Big] 
+					= \Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot (\zeta w) + \Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot \Big[ (1 - \zeta) w \Big]
+				\end{align*}
+				Since $(1 - \zeta(x)) w(x) = 0$ in $B_{\tfrac{\delta}{2}}(\xi)$ 且$K$ 为基本解, then 
+				\begin{align*}
+					&\Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot \Big[ \zeta w + (1 - \zeta) w \Big] \\
+					&= \Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot (\zeta w) + \Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot \Big[ (1 - \zeta) w \Big] \\
+					&= \int_{\Omega} \Delta_{\xi}K(x , \xi) \cdot \Big( \zeta(x) w(x) \Big) \, dx + \int_{\Omega} \Delta_{\xi} K(x , \xi) \cdot \Big[ (1 - \zeta(x)) \cdot w(x) \Big] \, dx \\
+					&= \zeta(\xi) \cdot w(\xi) + \Big( 1 - \zeta(\xi) \Big) \cdot w(\xi) 
+					= w(\xi)
+				\end{align*}
+			\end{enumerate}
+		\end{proof}
+	\end{proposition}
+
+\newpage
+
+\section{下调和函数的性质}
+	在这一节我们将来讨论下调和函数的性质, 包括\textbf{均值不等式(球面、球体)}, \textbf{极值原理}和\textbf{强极值原理}, 并且会利用\textbf{极值原理}给出\textbf{Dirichlet问题解的唯一性}的更一般的证明. 
+	
+	\vspace{1em}
+	
+	\hspace{-1.95em}在这一节, 我们先粗略地将\underline{\textbf{下调和函数}}定义为满足$\Delta u \geq 0$ 的函数, 后续我们会重新给个更广泛的定义. 
+	
+\subsection{均值不等式 (球面)}
+	根据\textbf{调和函数平均值等式 (Prop \ref{prop 3.3.1})}, 调和函数等于其球面积分平均. 而对于下调和函数, 其有对应的不等式. 
+	
+	\vspace{1em}
+	
+	\begin{proposition}\label{prop 3.4.1}
+		\textbf{[下调和函数均值不等式 (球面)]}. \\
+		Suppose $u \in C^2(\Omega) \cap C^1 \left( \overline{\Omega} \right)$, then
+		\begin{align*}
+			\Delta u \geq 0 \,\, \Rightarrow \,\, u(\xi) \leq \fint_{\partial B_{r}(\xi)} u(x) \, dS_x , \,\, \forall B_{r}(\xi) \subset \Omega
+		\end{align*}
+		
+		\vspace{2em}
+		
+		\begin{rmk}
+			其\textbf{对偶命题 (上调和函数)}也成立, 即
+			\begin{align*}
+				\Delta u \leq 0 \,\, \Rightarrow \,\, u(\xi) \geq \fint_{\partial B_{r}(\xi)} u(x) \, dS_x , \,\, \forall B_{r}(\xi) \subset \Omega
+			\end{align*}
+		\end{rmk}
+		
+		\vspace{4em}
+		
+		\begin{proof}
+			根据\textbf{Lemma \ref{lemma 3.3.1}}, fix $B_r(\xi) \subset \Omega$. Then for $\forall c \in \R$
+			\begin{align*}
+				u(\xi) 
+				= \int_{B_{r}(\xi)} \Big( K(x , \xi) - c \Big) \, \Delta u(x) \, dx 
+				+ \int_{\partial B_{r}(\xi)} \left( \frac{\partial \Big( K(x , \xi) - c \Big)}{\partial n_x} u(x) - \frac{\partial u(x)}{\partial n_x} \Big( K(x , \xi) - c \Big) \right) \, dS_x
+			\end{align*}
+			Take $c = \psi(r) \in \R$. 由于$\psi(r)$ 关于$r$ 递增, 因此$K(x , \xi) - \psi(r) \leq 0 , \,\, \forall x \in B_{r}(\xi)$. 于是
+			\begin{align*}
+				u(\xi) 
+				\leq \int_{\partial B_{r}(\xi)} \left( \frac{\partial K(x , \xi)}{\partial n_x} u(x) - \frac{\partial u(x)}{\partial n_x} \Big( K(x , \xi) - \psi(r) \Big) \right) \, dS_x
+			\end{align*}
+			由于在$\partial B_{r}(\xi)$ 上, $K(x , \xi) = \psi(|x - \xi|) = \psi(r)$, 且
+			\begin{align*}
+				\left. \frac{\partial K(x , \xi)}{\partial n_x} \right|_{\partial B_{r}(\xi)} 
+				= \left. \frac{d\psi(\rho)}{d\rho} \right|_{\rho = r} 
+				= \frac{1}{| \partial B_{r} |}
+			\end{align*}
+			因此
+			\begin{align*}
+				u(\xi) 
+				\leq \int_{\partial B_{r}(\xi)} \frac{\partial K(x , \xi)}{\partial n_x} u(x) \, dS_x 
+				= \fint_{\partial B_{r}(\xi)} u(x) \, dS_x , \,\, \forall B_{r}(\xi) \subset \Omega
+			\end{align*}
+		\end{proof}
+	\end{proposition}
+	
+\newpage
+	
+\subsection{均值不等式 (球体)}
+	类似地, \textbf{调和函数等于球体积分平均 (Cor \ref{cor 3.3.2})}, 而下调和函数也有对应不等式. 
+	
+	\vspace{1em}
+	
+	\begin{corollary}\label{cor 3.4.1}
+		\textbf{[下调和函数均值不等式 (球体)]}. \\
+		Suppose $u \in C^2(\Omega) \cap C^1 \left( \overline{\Omega} \right)$, then
+		\begin{align*}
+			\Delta u \geq 0 \,\, \Rightarrow \,\, u(\xi) \leq \fint_{B_{r}(\xi)} u(x) \, dx , \,\, \forall B_{r}(\xi) \subset \Omega
+		\end{align*}
+		
+		\vspace{4em}
+		
+		\begin{rmk}
+			其\textbf{对偶命题 (上调和函数)}也成立, 即
+			\begin{align*}
+				\Delta u \leq 0 \,\, \Rightarrow \,\, u(\xi) \geq \fint_{B_{r}(\xi)} u(x) \, dx , \,\, \forall B_{r}(\xi) \subset \Omega
+			\end{align*}
+		\end{rmk}
+		
+		\vspace{6em}
+		
+		\begin{proof}
+			根据\textbf{下调和函数球面上的均值不等式 (Prop \ref{prop 3.4.1})}, for $\forall B_{r}(\xi) \subset \Omega$, 
+			\begin{align*}
+				u(\xi) \cdot \left| \partial B_{\rho}(\xi) \right| 
+				\leq \int_{\partial B_{\rho}(\xi)} u(x) \, dS_x , \,\, \forall \rho \leq r
+			\end{align*}
+			不等式两侧对$\rho$ 从0到$r$ 积分, 
+			\begin{align*}
+				\int_{0}^r u(\xi) \cdot \left| \partial B_{\rho}(\xi) \right| \, d\rho 
+				\leq \int_{0}^r \left( \int_{\partial B_{\rho}(\xi)} u(x) \, dS_x \right) \, d\rho 
+				= \int_{B_{r}(\xi)} u(x) \, dx
+			\end{align*}
+			i.e.
+			\begin{align*}
+				u(\xi) \cdot \int_{0}^r w_n \cdot \rho^{n - 1} \, d\rho 
+				\leq \int_{B_{r}(\xi)} u(x) \, dx
+			\end{align*}
+			Since 
+			\begin{align*}
+				\int_{0}^r w_n \cdot \rho^{n - 1} \, d\rho 
+				= \frac{w_n}{n} r^{n - 1} 
+				= | B_r | , \,\, \text{where} \,\, B_{r} \subset \R^n
+			\end{align*}
+			Then
+			\begin{align}
+				u(\xi) \leq \fint_{B_{r}(\xi)} u(x) \, dx
+			\end{align}
+		\end{proof}
+	\end{corollary}
+
+\newpage
+
+\subsection{极值原理 (The Maximum Principle)}
+	下面我们来给出\textbf{极值原理}, 它告诉了我们下调和函数的最大值在边界处取到. 
+	
+	\vspace{1em}
+	
+	\begin{thm}\label{thm 3.4.2}
+		\textbf{[极值原理 (The Maximum Principle)]}. \\
+		Suppose $\Omega \subset \R^n$ bounded, $u \in C^2(\Omega) \cap C^0 \left( \overline{\Omega} \right)$ and $\Delta u \geq 0$ on $\Omega$. Then
+		\begin{align*}
+			\max_{\overline{\Omega}} u = \max_{\partial \Omega} u
+		\end{align*}
+		
+		\vspace{2em}
+		
+		\begin{proof}
+			下面分两步来证明：
+			\begin{enumerate}
+				\item Suppose $\Delta u > 0$ on $\Omega$. 下面证明比原结论更强的结论, 即$u$ 最大值只能在$\partial \Omega$ 上取到：\\
+				反证法. Assume 
+				\[ M = \max_{\overline{\Omega}}u = u(x_0) , \,\, \text{where} \,\, x_0 \in \Omega \]
+				Then $u$ 在$x_0$ 点的Hessian矩阵非正定, i.e.
+				\begin{align*}
+					\left. [ \frac{\partial^2 u}{\partial x_i \partial x_j} ] \right|_{x_0} \leq 0
+				\end{align*}
+				由于$u$ 的Hessian矩阵为对称阵, 因此其可正交对角化. 而矩阵非负定$\,\, \Rightarrow \,\,$ 特征值满足
+				\[ \lambda_i \leq 0 , \,\, \forall i = 1 \sim n \]
+				Thus
+				\begin{align*}
+					\Delta u(x_0) 
+					= tr \left( \left. [ \frac{\partial^2 u}{\partial x_i \partial x_j} ] \right|_{x_0} \right) 
+					= \sum_{i = 1}^n \lambda_i \leq 0
+				\end{align*}
+				这与$\Delta u > 0$ on $\Omega$ 矛盾. 故$u$ 的最大值只能在边界$\partial \Omega$ 上取到. 
+				
+				\vspace{2em}
+				
+				\item 下面证明原命题. Suppose $\Delta u \geq 0$ on $\Omega$. Let 
+				\[ u_{\varepsilon} \coloneqq u + \varepsilon \Vert x \Vert^2 , \,\, \forall \varepsilon > 0 \]
+				由于$\Delta \Big( \Vert x \Vert^2 \Big) = 2n$, where $n$ is the dimension of the space $\R^n \ni x$, 因此
+				\begin{align*}
+					\Delta u_\varepsilon = \Delta \Big( u + \varepsilon \Vert x \Vert^2 \Big) 
+					= \Delta u + 2 \varepsilon n > 0 \,\, \text{on} \,\, \Omega
+				\end{align*}
+				根据第一步中的讨论, 
+				\[ \max_{\overline{\Omega}} u_\varepsilon = \max_{\partial \Omega} u_\varepsilon , \,\, \forall \varepsilon > 0 \]
+				根据$\max$ 函数的连续性, Letting $\varepsilon \to 0^+$, we have
+				\[ \max_{\overline{\Omega}} u = \max_{\partial \Omega} u \]
+			\end{enumerate}
+		\end{proof}
+	
+		\newpage		
+	\end{thm}
 	
 	
+	类似地不难得到其对偶结论, 即\textbf{上调和函数最小值在边界处取到}. 
+	
+	\vspace{1em}
+	
+	\begin{corollary}\label{cor 3.4.3}
+		\textbf{[上调和函数极值原理]}. \\
+		Suppose $\Omega \subset \R^n$ bounded, $u \in C^2(\Omega) \cap C^0 \left( \overline{\Omega} \right)$ and $\Delta u \leq 0$ on $\Omega$. Then
+		\begin{align*}
+			\min_{\overline{\Omega}} u = \min_{\partial \Omega} u
+		\end{align*}
+		
+		\vspace{2em}
+		
+		\begin{rmk}
+			事实上, 结合\textbf{Thm \ref{thm 3.4.2}}及\textbf{Cor \ref{cor 3.4.3}}, 我们可以得到\textbf{调和函数}的极值原理, 即
+			\begin{center}
+				\underline{\textbf{调和函数的极大值$\&$ 极小值均在边界上取到}}. 
+			\end{center}
+		\end{rmk}
+	\end{corollary}
 
+\newpage
+
+\subsection{极值原理的应用——再论Dirichlet Problem 解的唯一性}
+	在$\S 3.1$ 节我们利用\textbf{Green's Identities (Prop \ref{prop 3.1.1})} 证明了\textbf{Dirichlet Problem 在空间$C^2(\Omega) \cap C^1\left( \overline{\Omega} \right)$ 上解的唯一性 (Prop \ref{prop 3.1.2})}. 在这一小节我们将运用\textbf{极值原理 (\ref{thm 3.4.2})}, 给出其在更一般的空间$C^2(\Omega) \cap C^0\left( \overline{\Omega} \right)$ 上解的唯一性. 
+	
+	\vspace{2em}
+	
+	\begin{proposition}\label{prop 3.4.2}
+		\textbf{[Dirichlet Problem 在空间$C^2(\Omega) \cap C^0\left( \overline{\Omega} \right)$ 上解的唯一性]}. \\
+		对于Dirichlet Problem, 
+		\begin{align*}
+			\begin{dcases*}
+				\Delta u = f \,\, \text{on} \,\, \Omega \\
+				u = g \,\, \text{on} \,\, \partial \Omega
+			\end{dcases*}
+		\end{align*}
+		若存在解$u \in C^2(\Omega) \cap C^0 \left( \overline{\Omega} \right)$, 则该解唯一. 
+		
+		\vspace{6em}
+		
+		\begin{proof}
+			Suppose $u_1 , u_2$ 为solution, then
+			\begin{align*}
+				\begin{dcases*}
+					\Delta(u_1 - u_2) = 0 \,\, \text{on} \,\, \Omega \\
+					u_1 - u_2 = 0 \,\, \text{on} \,\, \partial \Omega
+				\end{dcases*}
+			\end{align*}
+			对于$\Omega$ 上调和函数$u_1 - u_2$, 结合\textbf{Thm \ref{thm 3.4.2}} 及\textbf{Cor \ref{cor 3.4.3}}, 得到其极大值$\&$ 极小值均在$\partial \Omega$ 取到, i.e. 
+			\begin{align*}
+				\begin{dcases*}
+					\max (u_1 - u_2) = 0 \\
+					\min (u_1 - u_2) = 0
+				\end{dcases*} \,\, \Rightarrow \,\, u_1 \equiv u_2
+			\end{align*}
+		\end{proof}
+	\end{proposition}
+
+\newpage
+
+\subsection{强极值原理 (Strong Maximum Principle)}
+
+	下面我们将给出\textbf{强极值原理}, 即当有界区域$\Omega$ 连通时, 下调和函数$u$ 的极大值只能在边界处取到. 
+	
+	\vspace{1em}
+	
+	\begin{thm}\label{thm 3.4.4}
+		\textbf{[强极值原理 (Strong Maximum Principle)]}. \\
+		Suppose $\Omega \subset \R^n$ bounded and conneceted, $u \in C^2(\Omega) \cap C^0 \left( \overline{\Omega} \right)$ and $\Delta u \geq 0$ on $\Omega$. Then
+		\begin{align*}
+			\text{Either} \hspace{1em} u \equiv C \hspace{1em} \text{or} \hspace{1em} u(\xi) < \max_{\overline{\Omega}} u , \,\, \forall \xi \in \Omega
+		\end{align*}
+		
+		\vspace{4em}
+		
+		\begin{proof}
+			If $u \equiv C$, then we are done. 不妨设$u \not\equiv C$, $M = \underset{\overline{\Omega}}{\max} u$. Let
+			\begin{align*}
+				E = \Big\{ x \in \overline{\Omega} \mid u(x) = M \Big\}
+			\end{align*}
+			Then since $u \in C\left( \overline{\Omega} \right)$, then $E \neq \varnothing$. And $E = u^{-1}\Big( \{ M \} \Big) \subset \overline{\Omega}$ closed. (连续函数闭集的原像为闭集) \\
+			下面对$E$ 分类讨论：
+			
+			\vspace{1em}
+			
+			\begin{itemize}
+				\item If $E \cap \Omega = \varnothing$, then we are done. (极大值存在且仅存在于边界$\partial \Omega$ 上)
+				
+				\vspace{2em}
+				
+				\item Otherwise, if $E \cap \Omega \neq \varnothing$, 下面证明$E \cap \Omega \subset \Omega$ open, 从而与$E \subset \overline{\Omega}$ closed 矛盾：\\
+				$\forall \bar{x} \in E \cap \Omega$, $B_{r}(\bar{x}) \subset \Omega$. Since $\Delta u \geq 0$ on $\Omega$, then
+				\begin{align*}
+					\Delta \Big( u(x) - u(\bar{x}) \Big) \geq 0 \,\, \text{on} \,\, \Omega
+				\end{align*}
+				根据\textbf{下调和函数球面上的均值不等式 (Prop \ref{prop 3.4.1})}, 
+				\begin{align*}
+					0 
+					= u(\bar{x}) - u(\bar{x}) 
+					\leq \fint_{\partial B_{\rho}(\bar{x})} \Big( u(x) - u(\bar{x}) \Big) \, dS_x , \,\, \forall \rho \leq r
+				\end{align*}
+				由于$u(\bar{x}) = \underset{\overline{\Omega}}{\max} u$, 因此$u(x) \leq u(\bar{x}) , \,\, \forall x \in \overline{\Omega}$, i.e.
+				\begin{align*}
+					0 \leq \fint_{\partial B_{\rho}(\bar{x})} \Big( u(x) - u(\bar{x}) \Big) \leq 0 , \,\, \forall \rho \leq r
+				\end{align*}
+				Hence
+				\[ u(x) = u(\bar{x}) = M , \,\, \forall x \in B_{\rho}(\bar{x}) , \,\, \forall \rho \leq r \]
+				Therefore, 
+				\[ B_{r}(\bar{x}) \subset E \cap \Omega \,\, \Rightarrow \,\, E \cap \Omega \subset \Omega \,\, \text{open} \]
+			\end{itemize}
+		\end{proof}
+	\end{thm}
 
 
 

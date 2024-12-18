@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.9)  29 NOV 2024 09:49
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.9)  18 DEC 2024 11:53
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1635,31 +1635,103 @@ Overfull \hbox (9.03882pt too wide) detected at line 1573
 
  (./chap3/chap.tex
 第三章
-) [53
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 32.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 32.
+
+[53
 
 
 
 
-]
+] [54] [55]
+Overfull \hbox (20.88116pt too wide) detected at line 166
+[]
+ []
+
+[56]
+Overfull \hbox (38.83617pt too wide) detected at line 206
+[]
+ []
+
+
+Overfull \hbox (23.69313pt too wide) detected at line 234
+[]
+ []
+
+[57]
+Overfull \hbox (14.61525pt too wide) detected at line 268
+[]
+ []
+
+[58] [59] [60]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 358.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 358.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 358.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 360.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 360.
+
+[61] [62]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 448.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 448.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 448.
+
+[63] [64] [65] [66] [67] [68]
+Overfull \hbox (0.90167pt too wide) in paragraph at lines 739--740
+[]\TU/SimSun(0)/m/n/12 在 $\OMS/txsy/m/n/12 x\T1/mak/m/n/12 3\OML/mak/m/it/12 :\
+T1/mak/m/n/12 1$ \TU/SimSun(0)/m/n/12 节 我 们 利 用 \TU/TeXGyreTermesX(0)/b/n/12 Gr
+een’s Identities (Prop [][]3.1.1[][]) \TU/SimSun(0)/m/n/12 证 明 了 \TU/TeXGyreTer
+mesX(0)/b/n/12 Dirichlet Problem \TU/SimSun(0)/b/n/12 在 空 间 $\OML/mak/m/it/12 C
+[]\OT1/txr/m/n/12 (
+) \OMS/txsy/m/n/12 \
+ []
+
+[69]) [70]
 \openout2 = `appendix/chap.aux'.
 
  (./appendix/chap.tex
 附录 A
-[54
+[71
 
 
 
 
-] [55] [56] [57] [58] [59] [60] [61] [62]
+] [72] [73] [74] [75] [76] [77] [78] [79]
 File: figure/2.3-4.jpg Graphic file (type bmp)
 <figure/2.3-4.jpg>
 File: figure/2.3-5.jpg Graphic file (type bmp)
 <figure/2.3-5.jpg>
- [63] [64] [65]
+ [80] [81] [82]
 附录 B
 File: figure/A.1-1.png Graphic file (type bmp)
 <figure/A.1-1.png>
-[66
+[83
 
 ]
 File: figure/B.2-1.jpg Graphic file (type bmp)
@@ -1669,7 +1741,7 @@ Overfull \hbox (48.37263pt too wide) in paragraph at lines 432--433
  [][] 
  []
 
-[67]
+[84]
 Requested font "[TeXGyreTermesX-Bold.otf]/OT:script=latn;language=dflt;-ss05;+t
 num;+lnum;mapping=tex-text;" at 8.0pt
  -> e:/Latex/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX
@@ -1682,7 +1754,7 @@ num;+lnum;mapping=tex-text;" at 6.0pt
 -Bold.otf
 Requested font "SimHei/OT:script=hani;language=dflt;" at 6.0pt
  -> C:/Windows/fonts/simhei_0.ttf
- [68] [69]
+ [85] [86]
 Overfull \hbox (35.28354pt too wide) in paragraph at lines 507--508
 []\TU/SimSun(0)/m/n/12 定 理 中 \TU/TeXGyreTermesX(0)/m/n/12 (i) \TU/SimSun(0)/m/n
 /12 可 作 为 \TU/TeXGyreTermesX(0)/m/n/12 (ii) \TU/SimSun(0)/m/n/12 的 直 接 推 论\TU/T
@@ -1693,18 +1765,18 @@ eXGyreTermesX(0)/m/n/12 . \TU/SimSun(0)/m/n/12 即 可 令 $[]$ 中 除 第 $\OM
 /m/n/12 )$\TU/TeXGyreTermesX(0)/m/n/12 ,
  []
 
-[70] [71]) [72] (./main.aux (./config/cover.aux) (./chap1/chap.aux)
+[87] [88]) [89] (./main.aux (./config/cover.aux) (./chap1/chap.aux)
 (./chap2/chap.aux) (./chap3/chap.aux) (./appendix/chap.aux))
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 238B0A7236764B00ABFA38F1CAECDC58;6837.
+(rerunfilecheck)             Checksum: A87A2628DB6EF6493F3D430F1AA597F2;9653.
  ) 
 Here is how much of TeX's memory you used:
- 20744 strings out of 476179
- 436753 string characters out of 5810426
- 757833 words of memory out of 5000000
- 41025 multiletter control sequences out of 15000+600000
+ 20837 strings out of 476179
+ 441480 string characters out of 5810426
+ 761351 words of memory out of 5000000
+ 41118 multiletter control sequences out of 15000+600000
  508555 words of font info for 208 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  94i,20n,103p,490b,854s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (76 pages).
+Output written on main.pdf (93 pages).
