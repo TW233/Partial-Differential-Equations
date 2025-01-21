@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.9)  18 DEC 2024 11:53
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.9)  21 JAN 2025 23:40
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1702,8 +1702,8 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 448.
 
-[63] [64] [65] [66] [67] [68]
-Overfull \hbox (0.90167pt too wide) in paragraph at lines 739--740
+[63] [64] [65] [66] [67] [68] [69]
+Overfull \hbox (0.90167pt too wide) in paragraph at lines 771--772
 []\TU/SimSun(0)/m/n/12 在 $\OMS/txsy/m/n/12 x\T1/mak/m/n/12 3\OML/mak/m/it/12 :\
 T1/mak/m/n/12 1$ \TU/SimSun(0)/m/n/12 节 我 们 利 用 \TU/TeXGyreTermesX(0)/b/n/12 Gr
 een’s Identities (Prop [][]3.1.1[][]) \TU/SimSun(0)/m/n/12 证 明 了 \TU/TeXGyreTer
@@ -1712,26 +1712,39 @@ mesX(0)/b/n/12 Dirichlet Problem \TU/SimSun(0)/b/n/12 在 空 间 $\OML/mak/m/it
 ) \OMS/txsy/m/n/12 \
  []
 
-[69]) [70]
+[70] [71] [72] [73] [74]
+File: figure/3.5-1.jpg Graphic file (type bmp)
+<figure/3.5-1.jpg>
+ [75]
+Overfull \hbox (29.63957pt too wide) detected at line 1058
+[]
+ []
+
+File: figure/3.5-2.jpg Graphic file (type bmp)
+<figure/3.5-2.jpg>
+[76] [77]
+File: figure/3.5-3.jpg Graphic file (type bmp)
+<figure/3.5-3.jpg>
+ [78]) [79]
 \openout2 = `appendix/chap.aux'.
 
  (./appendix/chap.tex
 附录 A
-[71
+[80
 
 
 
 
-] [72] [73] [74] [75] [76] [77] [78] [79]
+] [81] [82] [83] [84] [85] [86] [87] [88]
 File: figure/2.3-4.jpg Graphic file (type bmp)
 <figure/2.3-4.jpg>
 File: figure/2.3-5.jpg Graphic file (type bmp)
 <figure/2.3-5.jpg>
- [80] [81] [82]
+ [89] [90] [91]
 附录 B
 File: figure/A.1-1.png Graphic file (type bmp)
 <figure/A.1-1.png>
-[83
+[92
 
 ]
 File: figure/B.2-1.jpg Graphic file (type bmp)
@@ -1741,7 +1754,7 @@ Overfull \hbox (48.37263pt too wide) in paragraph at lines 432--433
  [][] 
  []
 
-[84]
+[93]
 Requested font "[TeXGyreTermesX-Bold.otf]/OT:script=latn;language=dflt;-ss05;+t
 num;+lnum;mapping=tex-text;" at 8.0pt
  -> e:/Latex/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX
@@ -1754,7 +1767,7 @@ num;+lnum;mapping=tex-text;" at 6.0pt
 -Bold.otf
 Requested font "SimHei/OT:script=hani;language=dflt;" at 6.0pt
  -> C:/Windows/fonts/simhei_0.ttf
- [85] [86]
+ [94] [95]
 Overfull \hbox (35.28354pt too wide) in paragraph at lines 507--508
 []\TU/SimSun(0)/m/n/12 定 理 中 \TU/TeXGyreTermesX(0)/m/n/12 (i) \TU/SimSun(0)/m/n
 /12 可 作 为 \TU/TeXGyreTermesX(0)/m/n/12 (ii) \TU/SimSun(0)/m/n/12 的 直 接 推 论\TU/T
@@ -1765,18 +1778,18 @@ eXGyreTermesX(0)/m/n/12 . \TU/SimSun(0)/m/n/12 即 可 令 $[]$ 中 除 第 $\OM
 /m/n/12 )$\TU/TeXGyreTermesX(0)/m/n/12 ,
  []
 
-[87] [88]) [89] (./main.aux (./config/cover.aux) (./chap1/chap.aux)
+[96] [97]) [98] (./main.aux (./config/cover.aux) (./chap1/chap.aux)
 (./chap2/chap.aux) (./chap3/chap.aux) (./appendix/chap.aux))
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: A87A2628DB6EF6493F3D430F1AA597F2;9653.
+(rerunfilecheck)             Checksum: DFE701DB194B673879DD842F2B25B271;10161.
  ) 
 Here is how much of TeX's memory you used:
- 20837 strings out of 476179
- 441480 string characters out of 5810426
- 761351 words of memory out of 5000000
- 41118 multiletter control sequences out of 15000+600000
+ 20915 strings out of 476179
+ 442933 string characters out of 5810426
+ 763206 words of memory out of 5000000
+ 41189 multiletter control sequences out of 15000+600000
  508555 words of font info for 208 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 94i,20n,103p,490b,854s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,22n,103p,490b,854s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (93 pages).
+Output written on main.pdf (102 pages).

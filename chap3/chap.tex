@@ -510,15 +510,15 @@
 				\end{align*}
 				(运算的合理性可由逆向得到)
 				
-				\vspace{2.5em}
+				\vspace{4em}
 				
-				\item 现证一般情况：Suppose $w \in C^2\left( \overline{\Omega} \right)$. For $\forall \delta > 0$, 记Cut off function: 
+				\item 现证一般情况：Suppose $w \in C^2\left( \overline{\Omega} \right)$. For $\forall \xi \in \Omega, \,\, \forall \delta > 0$, 记Cut off function: 
 				\begin{align*}
 					\zeta(x) = 
 					\begin{dcases*}
-						1 , \,\, | x | \leq \frac{\delta}{2} \\
-						k e^{\tfrac{1}{\left( \frac{\delta}{2} \right)^2 - |x - \frac{\delta}{2}|^2}} , \,\, \frac{\delta}{2} < | x | < \delta \\
-						0 , \,\, | x | \geq \delta
+						1 , \,\, \Vert x - \xi \Vert \leq \dfrac{\delta}{2} \\
+						k e^{\tfrac{4}{3} - \tfrac{\delta^2}{\delta^2 - \Vert x - \xi \Vert^2}} , \,\, \frac{\delta}{2} < \Vert x - \xi \Vert < \delta \\
+						0 , \,\, \Vert x - \xi \Vert \geq \delta
 					\end{dcases*}
 				\end{align*}
 				Take $k \in \R$, $\st$
@@ -533,9 +533,41 @@
 				Since $(1 - \zeta(x)) w(x) = 0$ in $B_{\tfrac{\delta}{2}}(\xi)$ 且$K$ 为基本解, then 
 				\begin{align*}
 					&\Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot \Big[ \zeta w + (1 - \zeta) w \Big] \\
-					&= \Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot (\zeta w) + \Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot \Big[ (1 - \zeta) w \Big] \\
-					&= \int_{\Omega} \Delta_{\xi}K(x , \xi) \cdot \Big( \zeta(x) w(x) \Big) \, dx + \int_{\Omega} \Delta_{\xi} K(x , \xi) \cdot \Big[ (1 - \zeta(x)) \cdot w(x) \Big] \, dx \\
-					&= \zeta(\xi) \cdot w(\xi) + \Big( 1 - \zeta(\xi) \Big) \cdot w(\xi) 
+					&= \Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot (\zeta w) + \Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot \Big[ (1 - \zeta) w \Big] 
+				\end{align*}
+				下面分为两项来讨论. 
+				
+				\newpage
+				
+				\begin{itemize}
+					\item 对于第一项, 由于$\zeta w \in C_{0}^2 \left( \overline{\Omega} \right)$, 因此根据第一步的讨论, 
+					\begin{align*}
+						\Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot (\zeta w) 
+						= \zeta(\xi) \cdot w(\xi) 
+						= w(\xi)
+					\end{align*}
+					
+					\vspace*{2em}
+					
+					\item 对于第二项, 由于$(1 - \zeta)w \equiv 0$ on $B_{\tfrac{\delta}{2}}(\xi)$, 因此
+					\begin{align*}
+						\Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot \Big[ (1 - \zeta) w \Big] 
+						&= \Delta_{\xi} \int_{\Omega \backslash B_{\tfrac{\delta}{2}}(\xi)} K(x , \xi) \cdot \Big[ (1 - \zeta) w \Big] \\
+						&= \int_{\Omega \backslash B_{\tfrac{\delta}{2}}(\xi)} \Delta_{\xi} K(x , \xi) \cdot \Big[ (1 - \zeta) w \Big] 
+					\end{align*}
+				\end{itemize}
+				
+				\vspace*{2em}
+				
+				综上, 
+				\begin{align*}
+					\Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot w(x) \, dx 
+					= w(\xi) + \int_{\Omega \backslash B_{\tfrac{\delta}{2}}(\xi)} \Delta_{\xi} K(x , \xi) \cdot \Big[ (1 - \zeta) w \Big]
+				\end{align*}
+				由于$K(x , \xi)$ 为Laplace方程基本解, 因此Letting $\delta \to 0^+$, 可得
+				\begin{align*}
+					\Delta_{\xi} \int_{\Omega} K(x , \xi) \cdot w(x) \, dx 
+					= w(\xi) + \Big( 1 - \zeta(\xi) \Big) \cdot w(\xi) 
 					= w(\xi)
 				\end{align*}
 			\end{enumerate}
@@ -650,9 +682,9 @@
 				= | B_r | , \,\, \text{where} \,\, B_{r} \subset \R^n
 			\end{align*}
 			Then
-			\begin{align}
+			\begin{align*}
 				u(\xi) \leq \fint_{B_{r}(\xi)} u(x) \, dx
-			\end{align}
+			\end{align*}
 		\end{proof}
 	\end{corollary}
 
@@ -789,40 +821,405 @@
 		\vspace{4em}
 		
 		\begin{proof}
-			If $u \equiv C$, then we are done. 不妨设$u \not\equiv C$, $M = \underset{\overline{\Omega}}{\max} u$. Let
+			记$M = \underset{x \in \overline{\Omega}}{\max} \, u(x)$. Let 
 			\begin{align*}
-				E = \Big\{ x \in \overline{\Omega} \mid u(x) = M \Big\}
+				\Omega_1 = \Big\{ x \in \Omega \mid u(x) = M \Big\} 
+				\hspace{1em} \& \hspace{1em} 
+				\Omega_2 = \Big\{ x \in \Omega \mid u(x) < M \Big\}
 			\end{align*}
-			Then since $u \in C\left( \overline{\Omega} \right)$, then $E \neq \varnothing$. And $E = u^{-1}\Big( \{ M \} \Big) \subset \overline{\Omega}$ closed. (连续函数闭集的原像为闭集) \\
-			下面对$E$ 分类讨论：
-			
-			\vspace{1em}
-			
+			下面证明$\Omega_1 \subset \Omega$ 为开集：\\
+			$\forall \xi \in \Omega_1$, $u(\xi) = M$. 由于$\Delta u \geq 0$, 因此根据\textbf{球体上的均值不等式(Cor \ref{cor 3.4.1})}, $\exists \rho_0 > 0$, $\st$
+			\begin{align*}
+				M = u(\xi) \leq \fint_{B_{r}(\xi)} u(x) \, dx , \,\, \forall r \leq \rho_0
+			\end{align*}
+			根据$u$ 在$\xi$ 处的连续性, 可得$\exists 0 < r_0 < \rho_0$, $\st$ 
+			\begin{align*}
+				u(x) \geq u(\xi) = M , \,\, \forall x \in B_{r_0}(\xi)
+			\end{align*}
+			因为$M = \underset{x \in \overline{\Omega}}{\max} \, u(x)$, 所以$u(x) \equiv M , \,\, \forall x \in B_{r_0}(\xi)$. \\
+			故$B_{r_0}(\xi) \subset \Omega_1$, $\Omega_1$ 为开集. \\
+			由于$\Omega_1 \cap \Omega_2 = \varnothing , \,\, \Omega = \Omega_1 \sqcup \Omega_2 , \,\, \Omega_1 , \Omega_2$ open, 因此根据$\Omega$ 的连通性, $\Omega_1 = \varnothing$ 或$\Omega_2 = \varnothing$. \\
+			分别对应 
+			\begin{align*}
+				 u(\xi) < \max_{\overline{\Omega}} u , \,\, \forall \xi \in \Omega \hspace{1em} \text{and} \hspace{1em} u \equiv C
+			\end{align*}
+		\end{proof}
+	\end{thm}
+
+\newpage
+
+\section{Green's Function, 球上的Possion公式}
+\subsection{Green's Function}
+	在前文, \textbf{Def \ref{def 3.2.1} (\ref{3.2})式}已经说明了, 对于任意的$u \in C^2(\overline{\Omega})$, 只要知道$\Delta u$ 在$\Omega$ 中取值, 及$u$ 和$\dfrac{\partial u}{\partial n_x}$ 在边界$\partial \Omega$ 处取值, 即可确定$u$ 在$\Omega$ 内的值：
+	\begin{align*}
+		u(\xi) 
+		= \int_{\Omega} K(x , \xi) \, \Delta u(x) \, dx 
+		+ \int_{\partial \Omega} \left( \frac{\partial K(x , \xi)}{\partial n_x} u(x) - \frac{\partial u(x)}{\partial n_x} K(x , \xi) \right) \, dS_x , \,\, \forall \xi \in \Omega
+	\end{align*}
+	因此我们就希望通过这种方法来解决\textbf{Dirichlet Problem}. 但对于Dirichlet问题
+	\begin{align*}
+		\begin{dcases*}
+			\Delta u = f \,\, \text{on} \,\, \Omega \\
+			u = g \,\, \text{on} \,\, \partial \Omega
+		\end{dcases*}
+	\end{align*}
+	$\dfrac{\partial u}{\partial n_x}$ 在边界$\partial \Omega$ 处的取值无从得知. 这就意味着我们需要对\textbf{Def \ref{def 3.2.1} (\ref{3.2})式}进行调整, 消去$\dfrac{\partial u}{\partial n_x}$. 在此操作中, 我们便会来定义区域$\Omega$ 上的\textbf{Green's Function}. 
+	
+	\vspace*{8em}
+	
+	\hspace{-1.95em}For $\forall$ fixed $\xi \in \Omega$, suppose $v(x , \xi)$ satisfies
+	\begin{align*}
+		\begin{dcases*}
+			\Delta_x v(x , \xi) = 0 \,\, \text{on} \,\, \Omega \\
+			v(x , \xi) = - K(x , \xi) \,\, x \in \partial \Omega
+		\end{dcases*}
+	\end{align*}
+	By \textbf{Green's Identities (Prop \ref{prop 3.2.1} (2))}, $\forall u \in C^2(\Omega) \cap C^1\left( \overline{\Omega} \right)$, 
+	\begin{align*}
+		\int_{\Omega} (u \Delta v - v \Delta u) 
+		= \int_{\partial \Omega} \left( u \frac{\partial v}{\partial n_x} - v \frac{\partial u}{\partial n_x} \right)
+	\end{align*}
+	Since $\Delta v = 0$, then
+	\begin{align*}
+		0 
+		= \int_{\Omega} v \Delta u - \int_{\partial \Omega} \left( u \frac{\partial v}{\partial n_x} - v \frac{\partial u}{\partial n_x} \right)
+	\end{align*}
+	将上式与\textbf{Def \ref{def 3.2.1} (\ref{3.2}) 式}相加, 得到
+	\begin{align*}
+		u(\xi) 
+		= \int_{\Omega} \Big( K(x , \xi) + v(x , \xi) \Big) \, \Delta u(x) \, dx 
+		+ \int_{\partial \Omega} \frac{\partial (K + v)}{\partial n_x} u(x) \, dS_x , \,\, \forall \xi \in \Omega
+	\end{align*}
+	这样我们就消去了$\dfrac{\partial u}{\partial n_x}$. 至此, 我们给出\textbf{Green's Function} 的定义. 
+	
+	\newpage
+	
+	\begin{defn}\label{def 3.5.1}
+		For $\forall$ fixed $\xi \in \Omega$, suppose $v(x , \xi)$ satisfies
+		\begin{align*}
+			\begin{dcases*}
+				\Delta_x v(x , \xi) = 0 \,\, \text{on} \,\, \Omega \\
+				v(x , \xi) = - K(x , \xi) \,\, x \in \partial \Omega
+			\end{dcases*}
+		\end{align*}
+		Let 
+		\begin{align*}
+			G(x , \xi) = K(x , \xi) + v(x , \xi) , \,\, \forall x , \xi \in \Omega
+		\end{align*}
+		称$G(x , \xi)$ 为区域$\Omega$ 上的\underline{\textcolor{blue}{\textbf{Green's Function}}}. 则对于$\forall u \in C^2(\Omega) \cap C^1 \left( \overline{\Omega} \right)$ and $\forall \xi \in \Omega$, 
+		\begin{align}
+			u(\xi) 
+			= \int_{\Omega} G(x , \xi) \, \Delta u(x) \, dx 
+			+ \int_{\partial \Omega} \frac{\partial G(x , \xi)}{\partial n_x} u(x) \, dS_x \label{3.3}
+		\end{align}
+		
+		\vspace*{4em}
+		
+		\begin{rmk}
 			\begin{itemize}
-				\item If $E \cap \Omega = \varnothing$, then we are done. (极大值存在且仅存在于边界$\partial \Omega$ 上)
+				\item 事实上, \textbf{Green's Function} 给出了\textbf{Dirichlet Problem} 的解的形式, 即 \\
+				若Dirichlet Problem
+				\begin{align*}
+					\begin{dcases*}
+						\Delta u = f \,\, \text{on} \,\, \Omega \\
+						u = g \,\, \text{on} \,\, \partial \Omega
+					\end{dcases*}
+				\end{align*}
+				有解, 则解必然满足\textbf{式(\ref{3.3})}的形式. 
 				
-				\vspace{2em}
+				\vspace*{4em}
 				
-				\item Otherwise, if $E \cap \Omega \neq \varnothing$, 下面证明$E \cap \Omega \subset \Omega$ open, 从而与$E \subset \overline{\Omega}$ closed 矛盾：\\
-				$\forall \bar{x} \in E \cap \Omega$, $B_{r}(\bar{x}) \subset \Omega$. Since $\Delta u \geq 0$ on $\Omega$, then
-				\begin{align*}
-					\Delta \Big( u(x) - u(\bar{x}) \Big) \geq 0 \,\, \text{on} \,\, \Omega
-				\end{align*}
-				根据\textbf{下调和函数球面上的均值不等式 (Prop \ref{prop 3.4.1})}, 
-				\begin{align*}
-					0 
-					= u(\bar{x}) - u(\bar{x}) 
-					\leq \fint_{\partial B_{\rho}(\bar{x})} \Big( u(x) - u(\bar{x}) \Big) \, dS_x , \,\, \forall \rho \leq r
-				\end{align*}
-				由于$u(\bar{x}) = \underset{\overline{\Omega}}{\max} u$, 因此$u(x) \leq u(\bar{x}) , \,\, \forall x \in \overline{\Omega}$, i.e.
-				\begin{align*}
-					0 \leq \fint_{\partial B_{\rho}(\bar{x})} \Big( u(x) - u(\bar{x}) \Big) \leq 0 , \,\, \forall \rho \leq r
-				\end{align*}
-				Hence
-				\[ u(x) = u(\bar{x}) = M , \,\, \forall x \in B_{\rho}(\bar{x}) , \,\, \forall \rho \leq r \]
-				Therefore, 
-				\[ B_{r}(\bar{x}) \subset E \cap \Omega \,\, \Rightarrow \,\, E \cap \Omega \subset \Omega \,\, \text{open} \]
+				\item 对于任意的区域$\Omega$, 我们\textbf{\uwave{并未说明}}该区域上一定存在Green's Function. 在下一小节我们将证明, 对于开球$\Omega = B_a$, 其上的Green's Function 存在, 从而说明球$B_a$ 上的Dirichlet Problem有解, 并给出其具体的解. 
 			\end{itemize}
+		\end{rmk}
+	\end{defn}
+
+\newpage
+
+\subsection{球上的Poisson公式}
+	这一小节我们将证明球上的\textbf{Green's Function (Def \ref{def 3.5.1})}存在, 并给出球上的具体的\textbf{Poisson公式}. 
+	
+	\vspace*{1em}
+	
+	\begin{thm}\label{thm 3.5.1}
+		\textbf{[球上的Possion公式]}. \\
+		If $f \in C^{0}(\partial B_a)$, then $u$ defined by
+		\begin{align}
+			u(\xi) 
+			= \int_{\partial B_a} \frac{a^2 - |\xi|^2}{a w_n | x - \xi |^n} f(x) \, dS_x , \,\, \forall \xi \in B_a \label{3.4}
+		\end{align}
+		satisfies：
+		\begin{center}
+			(\rmnum{1}). \hspace{0.5em} $u \in C^2(\Omega) \cap C^0\left( \overline{\Omega} \right)$ 
+				
+			\vspace*{1em}
+			
+			(\rmnum{2}). \hspace{0.5em} 	 
+			$\begin{dcases*}
+				\Delta u = 0 \,\, \text{on} \,\, B_a \\
+				u = f(x) \,\, \text{on} \,\, \partial B_a
+			\end{dcases*}$
+		\end{center}
+		
+		\vspace*{6em}
+		
+		\begin{rmk}
+			事实上, 此定理说明并给出了球$\Omega = B_a$ 上一般的\textbf{Dirichlet Problem}的解的存在, 即 \\
+			For $\forall \varphi \in C^2(\Omega)$ and $f \in C^0(\partial \Omega)$, 
+			\begin{align*}
+				\begin{dcases*}
+					\Delta u = \varphi \,\, \text{on} \,\, \Omega \\
+					u = f \,\, \text{on} \,\, \partial \Omega
+				\end{dcases*}
+			\end{align*}
+			根据\textbf{任一$C^2$ 函数可由基本解表示 (Prop \ref{prop 3.3.2})}, 
+			\[ \varphi(\xi) = \Delta_\xi \int_{\Omega} K(x , \xi) \cdot \varphi(x) \, dx , \,\, \forall \xi \in \Omega \]
+			Let $\psi(\xi) = \int_{\Omega} K(x , \xi) \cdot \varphi(x) \, dx$, 则$\Delta \psi = \varphi$, then
+			\begin{align*}
+				\begin{dcases*}
+					\Delta (u - \psi) = \varphi - \Delta \psi = 0 \,\, \text{on} \,\, B_a \\
+					u - \psi = f - \psi = \widetilde{f} \,\, \text{on} \,\, \partial B_a
+				\end{dcases*} , \,\, i.e.
+				\begin{dcases*}
+					\Delta (u - \psi) = 0 \,\, \text{on} \,\, B_a \\
+					u - \psi = \widetilde{f} \,\, \text{on} \,\, \partial B_a
+				\end{dcases*}
+			\end{align*}
+			从而根据\textbf{球上的Poisson公式 (式(\ref{3.4}))} 可解. 
+		\end{rmk}
+		
+		\newpage
+		
+		\begin{proof}
+			\begin{center}
+				\textbf{[思路：Step1：先证明Green's Function存在并通过式(\ref{3.3})给出Poisson公式. \\
+					Step 2：证明给出的Poisson公式满足题目所需条件. ]}
+			\end{center}
+			
+			\vspace*{1em}
+			
+			\begin{enumerate}
+				\item[\underline{\textbf{Step 1}}]：\underline{\textbf{证明Green's Function存在并给出Poisson's Formula}}：($\Omega = B_a(0) \subset \R^n , \,\, n \geq 3$) 
+				
+				\vspace*{1em}
+				
+				$\forall$ fixed $\xi \in B_a$. Take $\xi^*$ 与$\xi$ 关于球面对称, 即$O, \xi , \xi^*$ 共线且$\xi^* = \left( \dfrac{a}{| \xi |} \right)^2 \xi$. 
+				
+				\begin{figure}[thbp!]
+					\centering
+					\includegraphics[width=0.3\linewidth]{figure/3.5-1}
+					\caption{球$\Omega = B_a$ 及$O, \xi , \xi^*$ 点}
+					\label{pic : 3.5-1} % 添加图像引用标签
+				\end{figure}
+				
+				则根据三角形的相似关系 ($\triangle D \xi P \sim \triangle DP\xi^*$), 可得到
+				\begin{align*}
+					\begin{dcases*}
+						| \xi | \cdot | \xi^* | = a^2 \\
+						\frac{| P\xi |}{| P \xi^* |} = \frac{| \xi |}{a} , \,\, \forall P \in \partial B_a
+					\end{dcases*} 
+					\,\,\,\, \Rightarrow \,\,\,\, 
+					\begin{dcases*}
+						K(x , \xi) = C \cdot | x - \xi |^{2 - n} \\
+						K(x , \xi^*) = C \cdot | x - \xi^* |^{2 - n} \\
+						\frac{K(x , \xi)}{K(x , \xi^*)} 
+						= \frac{| x - \xi|^{2 - n}}{| x - \xi^* |^{2 - n}} 
+						= \left( \frac{| \xi |}{a} \right)^{2 - n} , \,\, \forall x \in \partial B_a
+					\end{dcases*}
+				\end{align*}
+				where $C = \dfrac{1}{(2 - n) w_n}$ constant. Let
+				\[ v(x , \xi) = -\left( \dfrac{| \xi |}{a} \right)^{2 - n} K(x , \xi^*) \]
+				Then $v$ satisfies
+				\begin{align*}
+					\begin{dcases*}
+						\Delta v = 0 \,\, \text{on} \,\, \Omega \\
+						v = -K(x , \xi) \,\, \text{on} \,\, \partial \Omega
+					\end{dcases*}
+				\end{align*}
+				于是$v(x , \xi)$ 存在, 从而Green's Function存在, i.e. 
+				\begin{align*}
+					G(x , \xi) 
+					= K(x , \xi) + v(x , \xi) 
+					= C \cdot \left( | x - \xi |^{2 - n} - \left( \dfrac{| \xi |}{a} \right)^{2 - n} \cdot \left| x - \left( \frac{a}{| \xi |} \right)^2 \xi \right|^{2 - n} \right)
+				\end{align*}
+				下面来给出Poisson公式, 即计算$\dfrac{\partial G(x , \xi)}{\partial n_x}$ on $\partial B_a$：
+				
+				\newpage
+				
+				\begin{align*}
+					\left. \frac{\partial G}{\partial n} \right|_{| x | = a} 
+					&= \sum_{i = 1}^n \frac{\partial G}{\partial x_i} \cdot \left. \frac{\partial x_i}{\partial n} \right|_{| x | = a} \\
+					&= \sum_{i = 1}^n \frac{Cx_i}{a} 
+					\left( (2 - n) \cdot |x - \xi|^{1 - n} \cdot \frac{x_i - \xi_i}{| x - \xi |} - (2 - n) \cdot \left( \dfrac{| \xi |}{a} \right)^{2 - n} \cdot  \left| x - \left( \frac{a}{| \xi |} \right)^2 \xi \right|^{1 - n} \cdot \frac{x_i - \left( \dfrac{a}{| \xi |} \right)^2 \xi_i}{\left| x - \left( \dfrac{a}{| \xi |} \right)^2 \xi \right|} \right) \\
+					&= \sum_{i = 1}^n \frac{x_i}{a w_n} 
+					\left( | x - \xi |^{-n} (x_i - \xi_i) - \left( \frac{| \xi |}{a} \right)^{2 - n} \cdot \left| x - \left( \frac{a}{| \xi |} \right)^2 \xi \right|^{-n} \cdot \left( x_i - \left( \frac{a}{| \xi |} \right)^2 \xi_i \right) \right) \\
+					&= \frac{1}{a w_n} 
+					\left( | x - \xi |^{-n} \cdot \Big( | a |^2 - \overrightarrow{x} \cdot \overrightarrow{\xi} \Big) - \left( \frac{| \xi |}{a} \right)^{2 - n} \cdot \left| x - \left( \frac{a}{| \xi |} \right)^2 \xi \right|^{-n} \cdot \left( a^2 - \left( \frac{a}{| \xi |} \right)^2 \overrightarrow{x} \cdot \overrightarrow{\xi} \right) \right)
+				\end{align*}
+				此时关注\uwave{$\overrightarrow{x} \cdot \overrightarrow{\xi}$}项, 其系数为：
+				\begin{align*}
+					\left( \frac{| \xi |}{a} \right)^{-n} \cdot \left| x - \left( \frac{a}{| \xi |} \right)^2 \xi \right|^{-n} - | x - \xi |^{-n}
+				\end{align*}
+				由几何关系可知, $\forall x \in \partial B_a$, $\forall \xi \in B_a$, $\st$
+				\begin{align*}
+					 \left| \left( \frac{| \xi |}{a} \right) x - \left( \frac{a}{| \xi |} \right) \xi \right|  
+					= | x - \xi |
+				\end{align*}
+				
+				\begin{figure}[thbp!]
+					\centering
+					\includegraphics[width=0.27\linewidth]{figure/3.5-2}
+					\caption{$\left| \left( \dfrac{| \xi |}{a} \right) x - \left( \dfrac{a}{| \xi |} \right) \xi \right| = | x - \xi |$}
+					\label{pic : 3.5-2} % 添加图像引用标签
+				\end{figure}
+				
+				故\uwave{$\overrightarrow{x} \cdot \overrightarrow{\xi}$}项系数：
+				\begin{align*}
+					\left( \frac{| \xi |}{a} \right)^{-n} \cdot \left| x - \left( \frac{a}{| \xi |} \right)^2 \xi \right|^{-n} - | x - \xi |^{-n} 
+					= 0
+				\end{align*}
+				从而
+				\begin{align*}
+					\left. \frac{\partial G}{\partial n} \right|_{| x | = a} 
+					&= \frac{a^2}{a w_n} \left[ | x - \xi |^{-n} - \left( \frac{| \xi |}{a} \right)^2 | x - \xi |^{-n} \right] \\
+					&= \frac{a}{w_n} \left( 1 - \frac{| \xi |^2}{a^2} \right) \cdot | x - \xi |^{-n} 
+					= \frac{a^2 - | \xi |^2}{a w_n | x - \xi |^n}
+				\end{align*}
+				根据\textbf{Def \ref{def 3.5.1} 式(\ref{3.3})}, $\forall u \in C^2(\Omega) \cap C^1 \left(	\overline{\Omega} \right)$, 若$u$ 为齐次Dirichlet Problem的解, 则必有
+				\begin{align*}
+					u(\xi) 
+					= \int_{\partial B_a} \frac{a^2 - | \xi |^2}{a w_n | x - \xi |^n} \, f(x) \, dS_x , \,\, \forall \xi \in B_a
+				\end{align*}
+			
+				\newpage
+				
+				\item[\underline{\textbf{Step 2}}]：\underline{\textbf{证明$u$ in (\ref{3.4}) $\in C^2(\Omega)$}}：
+				
+				\vspace*{1em}
+				
+				由于$\dfrac{a^2 - | \xi |^2}{a w_n | x - \xi |^n}, \,\, x \in \partial B_a$ 为关于$\xi$ 的初等函数, 因此$u \in C^2(\Omega)$. 
+				
+				\vspace*{4em}
+				
+				\item[\underline{\textbf{Step 3}}]：\underline{\textbf{证明$\Delta u = 0$ on $B_a$}}：
+				\begin{align*}
+					\Delta u 
+					= \Delta_\xi \int_{\partial B_a} \frac{a^2 - | \xi |^2}{a w_n | x - \xi |^n} f(x) \, dS_x 
+					= \int_{\partial B_a} \Delta \left( \frac{a^2 - | \xi |^2}{a w_n | x - \xi |^n} \right) f(x) \, dS_x
+				\end{align*}
+				Since 
+				\begin{align*}
+					\partial_{\xi_i} \left( \frac{a^2 - | \xi |^2}{| x - \xi |^n} \right)
+					= \frac{-2\xi_i}{| x - \xi |^n} + \frac{n \Big( a^2 - | \xi |^2 \Big)}{| x - \xi |^{n + 2}} (x_i - \xi_i) , \,\, \forall i = 1 \sim n
+				\end{align*}
+				Then (计算过程过于繁琐, 此处省略)
+				\begin{align*}
+					\Delta \left( \frac{a^2 - | \xi |^2}{| x - \xi |^n} \right) 
+					= 0
+				\end{align*}
+				Thus $\Delta u = 0$. 
+				
+				\vspace*{4em}
+				
+				\item[\underline{\textbf{Step 4}}]：\underline{\textbf{证明$u \in C^0(\partial \Omega)$ 且$u = f$ on $\partial \Omega$}}, 即证极限
+				\begin{align*}
+					\lim_{\substack{\xi \to \bar{x} \\ \xi \in B_a}} u(\xi) = f(\bar{x}) , \,\, \forall \bar{x} \in \partial B_a
+				\end{align*}
+				WTS：$\forall \varepsilon > 0$, $\exists \delta > 0$, $\st$
+				\begin{align*}
+					\left| \int_{\partial B_a} \frac{a^2 - | \xi |^2}{a w_n | x - \xi |^n} \, f(x) \, dS_x - f(\bar{x}) \right| < \varepsilon , \,\, \forall | \bar{x} - \xi | < \delta , \,\, \xi \in B_a
+				\end{align*}
+				注意到\footnote{当$f \equiv 1$ 时, 对于方程
+					$\begin{dcases*}
+						\Delta u = 0 \,\, B_a \\
+						u = 1 \,\, \partial B_a
+					\end{dcases*}$
+					, 根据\textbf{Step 1} 讨论, 若有解则其解一定具有形式
+					\[ u(\xi) = \int_{\partial B_a} \frac{a^2 - | \xi |^2}{a w_n | x - \xi |^n} \, dS_x \]
+					而对此Dirichlet Problem, 不难发现$u \equiv 1$ 为一个解. 因此根据\textbf{Dirichlet问题解的唯一性 (Prop \ref{prop 3.4.2})}, 该积分$\equiv 1$. }
+				\begin{align*}
+					\int_{\partial B_a} \frac{a^2 - | \xi |^2}{a w_n | x - \xi |^n} \, dS_x \equiv 1 , \,\, \forall \xi \in B_a
+				\end{align*}
+				即证
+				\begin{align*}
+					\left| \int_{\partial B_a} \frac{a^2 - | \xi |^2}{a w_n | x - \xi |^n} \, \Big( f(x) - f(\bar{x}) \Big) \, dS_x \right| < \varepsilon , \,\, \forall | \bar{x} - \xi | < \delta , \,\, \xi \in B_a
+				\end{align*}
+				
+				\newpage
+				\begin{align*}
+					\int_{\partial B_a} \sim 
+					= \int_{\partial B_a \backslash B_{\delta_1}(\bar{x})} \sim + \int_{\partial B_a \cap B_{\delta_1}(\bar{x})} \sim
+				\end{align*}
+				下面分为两个部分逐次讨论：
+				
+				\vspace*{1em}
+				
+				\begin{enumerate}
+					\item[\underline{\textbf{$1^{\circ}$}}]：Since $f \in C(\partial B_a)$, then $\exists \delta_1 > 0$, $\st$
+					\begin{align*}
+						| f(x) - f(\bar{x}) | < \frac{\varepsilon}{2} , \,\, \forall | x - \bar{x} | < \delta_1
+					\end{align*}
+					于是
+					\begin{align*}
+						\left| \int_{\partial B_a \cap B_{\delta_1}(\bar{x})} \sim \right| 
+						\leq \frac{\varepsilon}{2} \cdot \left| \int_{\partial B_a \cap B_{\delta_1}(\bar{x})} \frac{a^2 - | \xi |^2}{a w_n | x - \xi |^n} \, dS_x \right| 
+						\leq \frac{\varepsilon}{2} \cdot \left| \int_{\partial B_a} \frac{a^2 - | \xi |^2}{a w_n | x - \xi |^n} \, dS_x \right| = \frac{\varepsilon}{2}
+					\end{align*}
+					
+					\vspace*{4em}
+					
+					\item[\underline{\textbf{$2^{\circ}$}}]：Set $\delta \leq \dfrac{\delta_1}{2}$, then 对于积分区域中的$x$, 
+					\begin{align*}
+						x \in \partial B_a \backslash B_{\delta_1}(\bar{x}) \,\, \& \,\, | \bar{x} - \xi | < \delta \leq \frac{\delta_1}{2} \hspace{2em} \Rightarrow \hspace{2em} | x - \xi | \geq \frac{\delta_1}{2}
+					\end{align*}
+					
+					\begin{figure}[thbp!]
+						\centering
+						\includegraphics[width=0.3\linewidth]{figure/3.5-3}
+						\caption{$x$ 的积分区域及$x , \xi , \bar{x}$ 的位置关系}
+						\label{pic : 3.5-3} % 添加图像引用标签
+					\end{figure}
+					
+					Since $f \in C(\partial B_a)$, then $\exists M > 0$, $\st | f | \leq M$ on $\partial B_a$. \\
+					Hence
+					\begin{align*}
+						\left| \int_{\partial B_a \backslash B_{\delta_1}(\bar{x})} \sim \right| 
+						&\leq \int_{\partial B_a \backslash B_{\delta_1}(\bar{x})} \frac{\Big( a^2 - | \xi |^2 \Big) \cdot \Big( \left| f(x) \right| + \left| f(\bar{x}) \right| \Big)}{a w_n \cdot \left( \dfrac{\delta_1}{2} \right)^n} \, dS_x \\
+						&\leq \int_{\partial B_a \backslash B_{\delta_1}(\bar{x})} \frac{2M \cdot \Big( a^2 - | \xi |^2 \Big) }{a w_n \cdot \left( \dfrac{\delta_1}{2} \right)^n} \, dS_x 
+					\end{align*}
+					
+					\newpage
+					
+					由于$\xi \to \bar{x}$ 过程中, $| \xi | \to a$, 因此we can take $\delta_2 > 0$, $\st$ 
+					\begin{align*}
+						a^2 - | \xi |^2 
+						\leq \frac{a w_n \cdot \left( \dfrac{\delta_1}{2} \right)^2}{2M} \cdot \frac{1}{| \partial B_a |} \cdot \frac{\varepsilon}{2} , \,\, \forall | \bar{x} - \xi | < \delta_2
+					\end{align*}
+					Let $\delta = \min \{ \dfrac{\delta_1}{2} , \delta_2 \} > 0$, then
+					\begin{align*}
+						\left| \int_{\partial B_a \backslash B_{\delta_1}(\bar{x})} \sim \right| 
+						&\leq \int_{\partial B_a \backslash B_{\delta_1}(\bar{x})} \frac{2M \cdot \Big( a^2 - | \xi |^2 \Big) }{a w_n \cdot \left( \dfrac{\delta_1}{2} \right)^n} \, dS_x \\
+						&\leq \frac{\varepsilon}{2} \cdot \frac{1}{| \partial B_a |} \cdot \int_{\partial B_a \backslash B_{\delta_1}(\bar{x})} 1 \, dS_x \\
+						&\leq \frac{\varepsilon}{2} , \,\, \forall | \bar{x} - \xi | < \delta
+					\end{align*}
+				\end{enumerate}
+				
+				\vspace*{2em}
+				
+				\hspace{-1.95em}综上所述, for any fixed $x \in \partial B_a$, $\forall \varepsilon > 0$, $\exists \delta_1 , \delta > 0$, $\st$
+				\begin{align*}
+					\left| u(\xi) - f(\bar{x}) \right| 
+					&= \left| \int_{\partial B_a} \frac{a^2 - | \xi |^2}{a w_n | x - \xi |^n} \, \Big( f(x) - f(\bar{x}) \Big) \, dS_x \right| \\
+					&\leq \int_{\partial B_a \backslash B_{\delta_1}(\bar{x})} \sim + \int_{\partial B_a \cap B_{\delta_1}(\bar{x})} \sim \\
+					&\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} 
+					= \varepsilon , \,\, \forall | \bar{x} - \xi | < \delta
+				\end{align*}
+				Therefore, 
+				\begin{align*}
+					\lim_{\substack{\xi \to \bar{x} \\ \xi \in B_a}} u(\xi) = f(\bar{x}) , \,\, \forall \bar{x} \in \partial B_a
+				\end{align*}
+				i.e. $u = f$ on $\partial B_a$ and $u \in C^0\left( \partial B_a \right)$. 
+			\end{enumerate}
 		\end{proof}
 	\end{thm}
 
