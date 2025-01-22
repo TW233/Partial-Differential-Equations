@@ -381,6 +381,44 @@
 		where $M = e^{t_0} > 0$. 
 	\end{proof}
 
+\newpage
+
+\section{满足平均值等式的$C^2$ 函数均调和}
+	此即为\textbf{调和函数平均值等式 (Prop \ref{prop 3.3.1})}的逆命题. 
+	
+	\begin{thm}\label{thm A.5.1}
+		\textbf{[满足平均值等式的$C^2$ 函数均调和]}. \\
+		If $u \in C^2(\Omega)$ satisfies
+		\begin{align*}
+			u(\xi) = \fint_{\partial B_{\rho}(\xi)} u(x) \, dS_x , \,\, \forall B_{\rho}(\xi) \subset \Omega
+		\end{align*}
+		Then $u$ is harmonic. 
+		
+		\vspace*{6em}
+		
+		\begin{proof}
+			反证法. 假设$\Delta u \not\equiv 0$, 即$\exists \xi \in \Omega$, $\st \Delta u(\xi) \neq 0$. 不妨设$\Delta u(\xi) > 0$. 令
+			\begin{align*}
+				\varphi(r) = \fint_{\partial B_{r}(\xi)} u(x) \, dS_x , \,\, \forall B_{r}(\xi) \subset \Omega
+			\end{align*}
+			则根据平均值等式, $\varphi \equiv u(\xi)$ 为常数. 计算$\varphi$ 的导数, 根据\textbf{Gauss-Green公式 (Thm \ref{thm B.4.1} (\rmnum{2}))}, 
+			\begin{align*}
+				\varphi^{'}(r) 
+				= \frac{d}{dr} \fint_{\partial B_{1}} u(x + ry) \, dS_y 
+				&= \frac{1}{| \partial B_1 |} \int_{\partial B_1} \sum_{i = 1}^n u_{i}(x + ry) \cdot y_i \, dS_y \\
+				&= \frac{1}{| \partial B_1 |} \int_{B_1} r \cdot \Delta u(x + ry) \, dy \\
+				&= \frac{1}{| \partial B_r |} \int_{B_r} \Delta u(x) \, dx \\
+				&= \frac{| B_r |}{| \partial B_r |} \fint_{B_r} \Delta u(x) \, dx 
+				= \frac{r}{n} \fint_{B_r} \Delta u(x) \, dx
+			\end{align*}
+			由于$\Delta u$ 连续, $\Delta u (\xi) > 0$, 因此$\exists$ sufficiently small $r_0 > 0$, $\st \Delta u(x) > 0 , \,\, \forall x \in B_{r_0}(\xi)$. 从而 
+			\begin{align*}
+				\varphi^{'}(r_0) 
+				= \frac{r_0}{n} \fint_{B_{r_0}} \Delta u(x) \, dx > 0
+			\end{align*}
+			这与$\varphi \equiv u(\xi)$ constant矛盾. 
+		\end{proof}
+	\end{thm}
 
 
 

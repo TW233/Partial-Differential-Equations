@@ -37,16 +37,25 @@
 \contentsline {section}{\numberline {3.5}Green's Function, 球上的Possion公式}{72}{section.3.5}%
 \contentsline {subsection}{\numberline {3.5.1}Green's Function}{72}{subsection.3.5.1}%
 \contentsline {subsection}{\numberline {3.5.2}球上的Poisson公式}{74}{subsection.3.5.2}%
-\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}Supplementary Content}{80}{appendix.A}%
-\contentsline {section}{\numberline {A.1}变分原理与最小曲面问题}{80}{section.A.1}%
-\contentsline {subsection}{\numberline {A.1.1}Cut-Off Function}{80}{subsection.A.1.1}%
-\contentsline {subsection}{\numberline {A.1.2}极小曲面问题}{82}{subsection.A.1.2}%
-\contentsline {section}{\numberline {A.2}线性PDE的叠加原理}{86}{section.A.2}%
-\contentsline {section}{\numberline {A.3}一维波动方程的Duhamel原理 (齐次化原理)}{87}{section.A.3}%
-\contentsline {section}{\numberline {A.4}一维波动方程的能量不等式}{89}{section.A.4}%
-\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}Fundamental Knowledge}{92}{appendix.B}%
-\contentsline {section}{\numberline {B.1}区域边界的光滑性}{92}{section.B.1}%
-\contentsline {section}{\numberline {B.2}ODE解的存在唯一性定理}{93}{section.B.2}%
-\contentsline {section}{\numberline {B.3}反函数定理}{94}{section.B.3}%
-\contentsline {section}{\numberline {B.4}Gauss-Green公式}{95}{section.B.4}%
-\contentsline {section}{\numberline {B.5}一阶常系数线性ODE的求解}{98}{section.B.5}%
+\contentsline {section}{\numberline {3.6}Perron's Method (一般有界区域上求解Dirichlet问题)}{80}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}下调和函数的定义}{80}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}极值原理 (Maximum Principle)}{81}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}比较原理 (Comparision Principle)}{81}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}最大值max函数保持下调和}{81}{subsection.3.6.4}%
+\contentsline {subsection}{\numberline {3.6.5}一致有界调和函数列有一致收敛子列}{82}{subsection.3.6.5}%
+\contentsline {subsection}{\numberline {3.6.6}调和提升 (Harmonic Lifting)}{83}{subsection.3.6.6}%
+\contentsline {subsection}{\numberline {3.6.7}Perron's Method (一般有界区域上求解Dirichlet问题)}{84}{subsection.3.6.7}%
+\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}Supplementary Content}{90}{appendix.A}%
+\contentsline {section}{\numberline {A.1}变分原理与最小曲面问题}{90}{section.A.1}%
+\contentsline {subsection}{\numberline {A.1.1}Cut-Off Function}{90}{subsection.A.1.1}%
+\contentsline {subsection}{\numberline {A.1.2}极小曲面问题}{92}{subsection.A.1.2}%
+\contentsline {section}{\numberline {A.2}线性PDE的叠加原理}{96}{section.A.2}%
+\contentsline {section}{\numberline {A.3}一维波动方程的Duhamel原理 (齐次化原理)}{97}{section.A.3}%
+\contentsline {section}{\numberline {A.4}一维波动方程的能量不等式}{99}{section.A.4}%
+\contentsline {section}{\numberline {A.5}满足平均值等式的$C^2$ 函数均调和}{102}{section.A.5}%
+\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}Fundamental Knowledge}{103}{appendix.B}%
+\contentsline {section}{\numberline {B.1}区域边界的光滑性}{103}{section.B.1}%
+\contentsline {section}{\numberline {B.2}ODE解的存在唯一性定理}{104}{section.B.2}%
+\contentsline {section}{\numberline {B.3}反函数定理}{105}{section.B.3}%
+\contentsline {section}{\numberline {B.4}Gauss-Green公式}{106}{section.B.4}%
+\contentsline {section}{\numberline {B.5}一阶常系数线性ODE的求解}{109}{section.B.5}%

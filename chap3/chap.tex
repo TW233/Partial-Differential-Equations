@@ -1223,6 +1223,513 @@
 		\end{proof}
 	\end{thm}
 
+\newpage
+
+\section{Perron's Method (一般有界区域上求解Dirichlet问题)}
+	这一节我们将给出\textbf{一般区域上Dirichlet Problem的构造性求解}. 在此之前, 我们先来做一些准备工作, 重新定义\textbf{下调和函数}, 并给出其相关性质. 
+	
+\vspace*{2em}
+
+\subsection{下调和函数的定义}
+	首先我们在此前$\S 3.4$ 节粗略定义\underline{\textbf{“$\Delta u \geq 0$”}}的基础上, 给出下调和函数更广泛的定义. 
+	
+	\vspace*{1em}
+	
+	\begin{defn}\label{def 3.6.1}
+		设$u \in C \left( \overline{\Omega} \right)$. 若
+		\begin{align*}
+			u(\xi) \leq \fint_{\partial B_{\rho}(\xi)} u(x) \, dS_x , \,\, \forall \overline{B_{\rho}(\xi)} \subset \Omega \,\, \text{for $\rho$ small}
+		\end{align*}
+		则称$u$ \underline{\textcolor{blue}{\textbf{下调和 (subharmonic)}}}, 记为$u \in \sigma(\Omega)$. 
+		
+		\vspace*{4em}
+		
+		\begin{rmk}
+			\begin{itemize}
+				\item 下调和的条件的含义是指对于$\forall$ fixed $\xi \in \Omega$, 都存在与$\xi$ 有关的半径$r > 0$, $\st$
+				\begin{align*}
+					u(\xi) \leq \fint_{\partial B_{\rho}(\xi)} u(x) \, dS_x , \,\, \forall \rho \leq r , \,\, \text{where} \,\, \overline{B_{r}(\xi)} \subset \Omega
+				\end{align*}
+				
+				\vspace*{4em}
+				
+				\item 该定义事实上为\underline{“$\Delta u \geq 0$”}的推广, 即若$u \in \sigma(\Omega) \cap C^2(\Omega)$, 则$\Delta u \geq 0$. 
+				
+				\vspace*{2em}
+				
+				\begin{proof}
+					$\forall \xi \in \Omega$, $\exists r > 0$, $\st$
+					\begin{align*}
+						u(\xi) \leq \fint_{\partial B_{\rho}(\xi)} u(x) \, dS_x , \,\, \forall \rho \leq r
+					\end{align*}
+					对半径积分可得球体上的均值不等式
+					\begin{align*}
+						u(\xi) \leq \fint_{B_{\rho}(\xi)} u(x) \, dS_x , \,\, \forall \rho \leq r
+					\end{align*}
+					由于$u$ 在$\xi$ 点连续, 因此$\exists \rho_0 < r$, $\st$
+					\begin{align*}
+						u(x) \geq u(\xi) , \,\, \forall x \in B_{\rho_0}(\xi)
+					\end{align*}
+					即$\xi$ 为局部极小点, $\Delta u \geq 0$. 
+				\end{proof}
+			\end{itemize}
+		\end{rmk}
+	\end{defn}
+
+\newpage
+
+\subsection{极值原理 (Maximum Principle)}
+	与$\S 3.4$ 节中讨论类似, 对于推广形式的下调和函数, 其也有\textbf{极值原理} (对应\textbf{Thm \ref{thm 3.4.4} 强极值原理}). 
+	
+	\vspace*{1em}
+	
+	\begin{thm}\label{thm 3.6.1}
+		\textbf{[下调和函数的极值原理 (Maximum Principle)]}. \\
+		Suppose $\Omega$ bounded and connected, $u \in \sigma(\Omega)$. Then 
+		\begin{align*}
+			\max_{\overline{\Omega}} u = \max_{\partial \Omega} u
+		\end{align*}
+		
+		\vspace*{1em}
+		
+		\begin{proof}
+			类比\textbf{Thm \ref{thm 3.4.4}}证明. 
+		\end{proof}
+	\end{thm}
+
+\vspace*{3.5em}
+
+\subsection{比较原理 (Comparision Principle)}
+	下面我们将说明, 对于下调和函数$u$, 若其在边界$\partial \Omega$ 上能被调和函数$v$控制, 则其在整个区域$\overline{\Omega}$ 上均能被$v$ 控制. 这就是所谓的\textbf{比较原理 (Comparision Principle)}. 
+	
+	\vspace*{1em}
+	
+	\begin{thm}\label{thm 3.6.2}
+		\textbf{[下调和函数的比较原理 (Comparision Principle)]}. \\
+		Suppose $u \in \sigma(\Omega)$, $v \in C^2(\Omega) \cap C \left( \overline{\Omega} \right)$, 且$\Delta v = 0$ on $\Omega$. If
+		\begin{align*}
+			u \Big|_{\partial \Omega} \leq v \Big|_{\partial \Omega}
+		\end{align*}
+		Then $u \leq v$ on $\overline{\Omega}$. 
+		
+		\vspace*{1em}
+		
+		\begin{proof}
+			不难得到$u - v \in \sigma(\Omega)$ 下调和, 利用\textbf{下调和函数极值原理 (Thm \ref{thm 3.6.1})} 即可得证. 
+		\end{proof}
+	\end{thm}
+
+\vspace*{3em}
+
+\subsection{最大值max函数保持下调和}
+	
+	\begin{proposition}\label{prop 3.6.1}
+		\textbf{[最大值max函数保持下调和]}. \\
+		Suppose $u_1 , u_2 \in \sigma(\Omega)$, then 
+		\begin{align*}
+			\overline{u}(x) = \max \{ u_1(x) , u_2(x) \} \in \sigma(\Omega)
+		\end{align*}
+		
+		\begin{rmk}
+			利用定义即证. 事实上可拓展至任意有限个函数的最大值, 即
+			\[ u_1 , \cdots , u_n \in \sigma(\Omega) \,\, \Rightarrow \,\, \max\{ u_1 , \cdots , u_n \} \in \sigma(\Omega) \] 
+		\end{rmk}
+	\end{proposition}
+
+\newpage
+
+\subsection{一致有界调和函数列有一致收敛子列}
+	下面我们将说明, 对于一致有界的调和函数列, 其在调和区域$\Omega$ 的任一\textbf{紧包含\footnote{若区域$\overline{\Omega^{'}} \subset \Omega$, 则称$\Omega^{'}$ \underline{\textcolor{blue}{\textbf{紧包含于}}} $\Omega$, 记为$\Omega^{'} \subset\subset \Omega$. }}区域$\Omega^{'}$ 上都存在一致收敛的子列. 事实上可视作泛函分析中\textbf{Arzel\`{a}-Ascoli定理}的应用. 
+	
+	\vspace*{1em}
+	
+	\begin{thm}\label{thm 3.6.3}
+		\textbf{[一致有界调和函数列有一致收敛子列]}. \\
+		Suppose $\{ u_n \}_{n = 1}^{\infty} \subset C^2(\Omega) \cap C \left( \overline{\Omega} \right)$, $\Delta u_n = 0$, $\forall n \in \N$. If $\{ u_n \}_{n = 1}^{\infty}$ uniformly bounded, then \\
+		对于$\forall \Omega^{'} \subset \subset \Omega$, $\exists \{ u_{n_k} \}_{k = 1}^{\infty} \subset \{ u_n \}_{n = 1}^{\infty}$, $\st$ 
+		\begin{align*}
+			u_{n_k} \rightrightarrows \overline{u} \,\, \text{uniformly in} \,\, \Omega^{'} \subset\subset \Omega, \,\, \text{且} \,\, \Delta \overline{u} = 0 \,\, \text{on} \,\, \Omega^{'} 
+		\end{align*} 
+		
+		\vspace*{4em}
+		
+		\begin{proof}
+			设$| u_n | \leq M , \,\, \forall n \in \N$ on $\overline{\Omega}$. 对于$\{ u_n \}_{n = 1}^\infty$ 中任意一项$u$. 由于$u \in C^2(\Omega)$ 且$\Delta u = 0$, \\
+			因此根据\textbf{Prop \ref{prop 3.2.1}}, $u \in C^{\infty}(\Omega)$, 各阶导数存在 $\,\, \Rightarrow \,\, \Delta u_{x_i} = 0 , \,\, \forall i = 1 \sim n$. \\
+			根据\textbf{调和函数平均值等式 (Cor \ref{cor 3.4.1})}及\textbf{Gauss-Green公式 (Thm \ref{thm B.4.1} (\rmnum{1}))}, 
+			\begin{align*}
+				u_{x_i}(\xi) 
+				= \frac{1}{| B_\rho |} \int_{B_{\rho}(\xi)} u_{x_i}(x) \, dx 
+				= \frac{1}{| B_\rho |} \int_{\partial B_{\rho}(\xi)} u \cdot n_i \, dS_x , \,\, \forall \overline{B_{\rho}(\xi)} \subset \Omega
+			\end{align*}
+			由于$| u | \leq M$ on $\overline{\Omega}$, 因此
+			\begin{align*}
+				| u_{x_i} (\xi) | 
+				\leq \frac{1}{| B_\rho |} \int_{\partial B_\rho(\xi)} M \, dS_x 
+				= \frac{n M}{\rho} , \,\, \forall \overline{B_{\rho}(\xi)} \subset \Omega
+			\end{align*}
+			由于$\Omega^{'} \subset\subset \Omega$, 因此可取$\rho = d(\partial \Omega , \partial \Omega^{'}) > 0$, 从而$\{ u_n \}_{n = 1}^{\infty}$ 的各阶导数一致有界. \\
+			$\Rightarrow \,\, \{ u_n \}_{n = 1}^{\infty}$ 等度连续 $\,\, \Rightarrow \,\,$ 根据\textbf{Arzel\`{a}-Ascoli定理\footnote{详见\textbf{《泛函分析--自学笔记》 Thm 1.8.1}. }}, $\{ u_n \}_{n = 1}^{\infty}$ 在$\Omega^{'}$ 上一致收敛. 记
+			\begin{align*}
+				u_{n_k} \rightrightarrows \overline{u} \,\, \text{uniformly on} \,\, \Omega^{'} \subset \subset \Omega
+			\end{align*}
+			由于$u_{n_k}$ 满足\textbf{调和函数平均值等式 (Cor \ref{cor 3.4.1})}, $\forall \xi \in \Omega^{'}$
+			\begin{align*}
+				u_{n_k}(\xi) = \frac{1}{| B_\rho |} \int_{B_{\rho}(\xi)} u_{n_k}(x) \, dx , \,\, \forall B_{\rho}(\xi) \subset \Omega
+			\end{align*}
+			因此Letting $k \to \infty$, 可得到$\overline{u}$ 也满足平均值等式：
+			\begin{align*}
+				\overline{u}(\xi) = \frac{1}{| B_\rho |} \int_{B_{\rho}(\xi)} \overline{u}(x) \, dx , \,\, \forall B_{\rho}(\xi) \subset \Omega
+			\end{align*}
+			根据\textbf{调和函数平均值等式逆命题 (Thm \ref{thm A.5.1})}, $\Delta \overline{u} = 0$ on $\Omega^{'}$. 
+		\end{proof}
+	\end{thm}
+
+\newpage
+
+\subsection{调和提升 (Harmonic Lifting)}
+	\textbf{调和提升 (Harmonic Lifting)} 即将下调和函数的局部改进为调和函数, 使其整体保持下调和性质不变, 同时受调整的局部的值被放大. 这在后续验证\textbf{Perron's Method}正确性的过程中至关重要. 
+	
+	\vspace*{1em}
+	
+	\begin{thm}\label{thm 3.6.4}
+		\textbf{[调和提升 (Harmonic Lifting)]}. \\
+		Suppose $u \in \sigma(\Omega)$. 令
+		\begin{align*}
+			\overline{u}(x) = 
+			\begin{dcases*}
+				u(x) , \,\, \Omega \backslash B_{\rho}(\xi) \\
+				v(x) , \,\, B_{\rho}(\xi)
+			\end{dcases*}
+			, \,\, \text{其中} \,\, B_{\rho}(\xi) \subset \Omega \,\, \text{and} \,\, 
+			\begin{dcases*}
+				\Delta v = 0 \,\, B_{\rho}(\xi) \\
+				v = u \,\, \partial B_{\rho}(\xi)
+			\end{dcases*}
+		\end{align*}
+		则$\overline{u} \in \sigma(\Omega)$. 
+		
+		\vspace*{4.5em}
+		
+		\begin{proof}
+			$\forall \eta \in \Omega$, 下面对$\eta$ 的位置进行讨论. 
+			\begin{itemize}
+				\item If $\eta \in \Omega \backslash \overline{B_{\rho}(\xi)}$, then $\exists r_0 > 0$, $\st B_{r_0}(\eta) \subset \Omega \backslash \overline{B_{\rho}(\xi)}$. 此时$\overline{u} = u$ on $B_{r_0}(\eta)$, 故
+				\begin{align*}
+					\overline{u}(\eta) 
+					= u(\eta) 
+					\leq \fint_{\partial B_{r}(\eta)} u(x) \, dS_x 
+					= \fint_{\partial B_{r}(\eta)} \overline{u}(x) \, dS_x , \,\, \forall r \leq r_0
+				\end{align*}
+				从而$\overline{u}$ 在$\eta$ 点下调和. 
+				
+				\vspace*{3em}
+				
+				\item If $\eta \in B_{\rho}(\xi)$, then similarly, \\
+				根据\textbf{调和函数平均值等式 (Prop \ref{prop 3.4.1})}, 可得$\overline{u}$ 在$\eta$ 点调和, 故下调和. 
+				
+				\vspace*{3em}
+				
+				\item If $\eta \in \partial B_{\rho}(\xi)$, 则$\eta \in \Omega \backslash B_{\rho}(\xi)$, $\overline{u}(\eta) = u(\eta)$. 由于$u \in \sigma(\Omega)$, 因此
+				\begin{align*}
+					\overline{u}(\eta) 
+					= u(\eta) 
+					\leq \fint_{\partial B_{r}(\eta)} u(x) \, dS_x 
+				\end{align*}
+				根据\textbf{比较原理 (Thm \ref{thm 3.6.2})}, $v \geq u$ on $\overline{B_{\rho}(\xi)}$. Thus
+				\begin{align*}
+					\overline{u}(\eta) 
+					\leq \fint_{\partial B_{r}(\eta)} u(x) \, dS_x 
+					&\leq \frac{1}{| \partial B_r |} \left( \int_{\partial B_r(\eta) \cap B_\rho (\xi)} v(x) \, dS_x + \int_{\partial B_{r}(\eta) \backslash B_{\rho}(\xi)} u(x) \, dS_x \right) \\
+					&= \fint_{\partial B_{r}(\eta)} \overline{u}(x) \, dS_x , \,\, \forall \overline{B_{r}(\eta)} \subset \Omega
+				\end{align*}
+				故$\overline{u}$ 在$\eta$ 点下调和. 
+			\end{itemize}
+			综上, $\overline{u} \in \sigma(\Omega)$. 
+		\end{proof}
+	\end{thm}
+
+\newpage
+
+\subsection{Perron's Method (一般有界区域上求解Dirichlet问题)}
+	经过了前面几个小节的铺垫, 在这一小节我们将正式来介绍\textbf{Perron's Method}, 其直接将一般区域上Dirichlet问题的解给构造了出来, 并且我们将对其合理性进行证明. 首先给出\textbf{Barrier} 的定义. 
+	
+	\vspace*{1em}
+	
+	\begin{defn}\label{def 3.6.2}
+		Suppose $\Omega$ bounded. 对于$\forall \eta \in \partial \Omega$, 若$\exists Q_\eta \in \sigma(\Omega)$, $\st$ 
+		\begin{align*}
+			Q_\eta(\eta) = 0 \,\, \text{and} \,\, Q_\eta(x) < 0 , \,\, \forall x \in \partial \Omega \backslash \{ \eta \}
+		\end{align*}
+		则称$Q_\eta$ 为点$\eta$ 处的\underline{\textcolor{blue}{\textbf{Barrier}}}. If $\exists$ barrier at $\eta$, 称$\eta$ \underline{\textcolor{blue}{\textbf{in regular}}}. 
+		
+		\vspace*{2em}
+		
+		\begin{rmk}
+			对于任一有界区域$\Omega$, 其边界$\partial \Omega$ 上任一点不一定有Barrier. 
+		\end{rmk}
+	\end{defn}
+	
+	\vspace*{6em}
+	
+	对于\underline{\textbf{一般有界区域Dirichlet问题}}
+	\begin{align*}
+		\begin{dcases*}
+			\Delta u = 0 \,\, \Omega \\
+			u = f \,\, \partial \Omega
+		\end{dcases*}
+	\end{align*}
+	下面我们将给出\textbf{该问题的解 (忽略边界上不含Barrier的点)}. 
+	
+	\newpage
+	
+	\begin{thm}\label{thm 3.6.5}
+		\textbf{[Perron's Method (一般有界区域上求解Dirichlet问题)]}. \\
+		对于一般有界区域上的Dirichlet问题
+		\begin{align*}
+			\begin{dcases*}
+				\Delta u = 0 \,\, \Omega \\
+				u = f \,\, \partial \Omega
+			\end{dcases*}
+		\end{align*}
+		设$f \in C(\partial \Omega)$, $| \, f \, | \leq M$. 记
+		\begin{align*}
+			\sigma_{f}(\Omega) \coloneqq \Big\{ u \in \sigma(\Omega) \mid u \Big|_{\partial \Omega} \leq f \Big\}
+		\end{align*}
+		Define 
+		\begin{align*}
+			w(x) = \sup_{u \in \sigma_{f}(\Omega)} u(x) , \,\, \forall x \in \Omega
+		\end{align*}
+		Then $w$ satisfies：
+		
+		\begin{enumerate}
+			\item[(\rmnum{1}).] $\Delta w = 0$ on $\Omega$ 
+			
+			\item[(\rmnum{2}).] Suppose $\forall \eta \in \partial \Omega$. If there exists a barrier at $\eta$, then
+			\begin{align*}
+				\lim_{\substack{x \to \eta \\ x \in \Omega}} w(x) = f(\eta)
+			\end{align*}
+		\end{enumerate}
+		
+		\vspace*{8em}
+		
+		\begin{rmk}
+			\begin{itemize}
+				\item 取$u \equiv -M$, 则$u \in \sigma_{f}(\Omega)$. 故$\sigma_{f}(\Omega) \neq \varnothing$ 非空. 
+				
+				\vspace*{2em}
+				
+				\item $w(x)$ is well-defined：
+				\begin{itemize}
+					\item $w(x) < +\infty , \,\, \forall x \in \Omega$：\\
+					$\forall u \in \sigma_f(\Omega)$, $u \in \sigma(\Omega)$ 下调和. 根据\textbf{下调和函数极值原理 (Thm \ref{thm 3.6.1})}, 
+					\begin{align*}
+						\max_{\overline{\Omega}} u = \max_{\partial \Omega} u \leq f \leq M , \,\, \forall u \in \sigma_{f}(\Omega)
+					\end{align*}
+					故$w(x) \leq M < +\infty , \,\, \forall x \in \Omega$ 有上界. 
+					
+					\vspace*{2em}
+					
+					\item $w(x) > -\infty , \,\, \forall x \in \Omega$：\\
+					因为函数$u \equiv -M \in \sigma_{f}(\Omega)$, 而$w = \underset{u \in \sigma_{f}(\Omega)}{\sup} u$, 所以$w(x) \geq -M > -\infty , \,\, \forall x \in \Omega$ 有下界. 
+				\end{itemize}
+			\end{itemize}
+		\end{rmk}
+		
+		\newpage
+		
+		\begin{proof}
+			\begin{enumerate}
+				\item[\textcolor{red}{(\rmnum{1}).}] \textcolor{red}{\underline{\textbf{$\Delta w = 0$ on $\Omega$}}}：$\forall \xi \in \Omega ,$ $\exists B_{\rho}(\xi) \subset \Omega$, \underline{下证$\Delta w = 0$ on $B_{\tfrac{\rho}{2}}(\xi)$}：
+				
+				\vspace*{1em}
+				
+				由于$w(\xi) = \underset{u \in \sigma_{f}(\Omega)}{\sup} u(\xi)$, 因此$\exists u_m \in \sigma_{f}(\Omega)$, $u_{m}(\xi) \leq w(\xi)$, $\st$
+				\begin{align*}
+					u_{m}(\xi) \to w(\xi) \,\, \text{as} \,\, m \to \infty
+				\end{align*}
+				下面对$u_m$ 在$B_{\rho}(\xi)$ 上进行\underline{\textbf{调和提升 (Harmonic Lifting)}}. 令
+				\begin{align*}
+					\overline{u_m} = 
+					\begin{dcases*}
+						u_m \,\, \Omega \backslash B_{\rho}(\xi) \\
+						v_m \,\, B_{\rho}(\xi)
+					\end{dcases*} , \,\, \text{其中} \,\, 
+					\begin{dcases*}
+						\Delta v_m = 0 \,\, B_{\rho}(\xi) \\
+						v_m = u_m \,\, \partial B_{\rho}(\xi)
+					\end{dcases*}
+				\end{align*}
+				根据\textbf{调和提升的性质 (Thm \ref{thm 3.6.4})}, $\overline{u_m} \in \sigma_{f}(\Omega)$ 且
+				\begin{align*}
+					u_m \leq \overline{u_m} \leq w \,\, \text{on} \,\, \Omega 
+					\hspace{1em} \Rightarrow \hspace{1em} 
+					\overline{u_m}(\xi) \to w(\xi) \,\, \text{as} \,\, m \to \infty
+				\end{align*}
+				由于$\overline{u_m}$ 在$B_{\rho}(\xi)$ 调和, 且$| \overline{u_m} | \leq w \leq M$ 一致有界, \\
+				因此根据\textbf{一致有界调和函数列有一致收敛子列 (Thm \ref{thm 3.6.3})}, 对于$B_{\tfrac{2}{3}\rho}(\xi) \subset\subset B_{\rho}(\xi)$, \\
+				$\exists \{ \overline{u_{m_k}} \}_{k = 1}^{\infty} \subset \{ \overline{u_m} \}_{m = 1}^{\infty}$, $\st$
+				\begin{align*}
+					\overline{u_{m_k}} \rightrightarrows v \,\, \text{uniformly on} \,\, B_{\tfrac{2}{3}\rho}(\xi) , \,\, \text{其中} \,\, \Delta v = 0 \,\, \text{on} \,\, B_{\tfrac{2}{3}\rho}(\xi)
+				\end{align*}
+				\underline{现在我们只需证明$v = w$ on $B_{\tfrac{2}{3} \rho}(\xi)$}：($\Rightarrow$ 从而得到$\Delta v = \Delta w = 0$ on $B_{\tfrac{\rho}{2}}(\xi)$)
+				
+				\vspace*{4em}
+				
+				\underline{下证$v = w$ on $B_{\tfrac{2}{3} \rho}(\xi)$}：根据极限的唯一性, $v(\xi) = w(\xi) = \underset{k \to \infty}{\lim} \overline{u_{m_k}}(\xi)$. 
+				
+				\vspace*{1em}
+				
+				因为$\overline{u_{m_k}} \leq w$, 所以$v \leq w$. \\
+				反证法. 假设$\exists \eta \in B_{\tfrac{2}{3}\rho}(\xi)$, $\st$ 
+				\begin{align*}
+					v(\eta) < w(\eta)
+				\end{align*}
+				与前文类似. 由于$w(\eta) = \underset{u \in \sigma_{f}(\Omega)}{\sup} u(\eta)$, 因此$\exists \widetilde{u_m} \in \sigma_{f}(\Omega)$, $\widetilde{u_{m}}(\eta) \leq w(\eta)$, $\st$
+				\begin{align*}
+					\widetilde{u_{m}}(\eta) \to w(\eta) \,\, \text{as} \,\, m \to \infty
+				\end{align*}
+				此处我们不妨设$\widetilde{u_m} \geq \overline{u_m}$ on $\Omega$. 
+				\begin{center}
+					(否则可令$\widetilde{u_m} \coloneqq \max \{ \widetilde{u_m} , \overline{u_m} \}$, 这样仍能保证$\widetilde{u_m} \in \sigma_{f}(\Omega)$\footnote{$\widetilde{u_m} \in \sigma_{f}(\Omega)$ 可由\textbf{最大值max函数保持下调和 (Prop \ref{prop 3.6.1})} 保证. } 且$\overline{u_m}(\eta) \to w(\eta)$ as $m \to \infty$)
+				\end{center}
+				
+				\newpage
+				
+				下面对$\widetilde{u_m}$ 在$B_{\rho}(\xi)$ 上进行\underline{\textbf{调和提升 (Harmonic Lifting)}}. 令
+				\begin{align*}
+					\widehat{u_m} = 
+					\begin{dcases*}
+						\widetilde{u_m} \,\, \Omega \backslash B_{\rho}(\xi) \\
+						\widetilde{v_m} \,\, B_{\rho}(\xi)
+					\end{dcases*} , \,\, \text{其中} \,\, 
+					\begin{dcases*}
+						\Delta \widetilde{v_m} = 0 \,\, B_{\rho}(\xi) \\
+						\widetilde{v_m} = \widetilde{u_m} \,\, \partial B_{\rho}(\xi)
+					\end{dcases*}
+				\end{align*}
+				根据\textbf{调和提升的性质 (Thm \ref{thm 3.6.4})}, $\widehat{u_m} \in \sigma_{f}(\Omega)$ 且
+				\begin{align*}
+					\overline{u_m} \leq \widetilde{u_m} \leq \widehat{u_m} \leq w \,\, \text{on} \,\, \Omega 
+					\hspace{1em} \Rightarrow \hspace{1em} 
+					\widehat{u_m}(\eta) \to w(\eta) \,\, \text{as} \,\, m \to \infty
+				\end{align*}
+				由于$\widehat{u_{m_k}}$ 在$B_{\rho}(\xi)$ 调和, 且$| \widehat{u_{m_k}} | \leq w \leq M$ 一致有界, \\
+				因此根据\textbf{一致有界调和函数列有一致收敛子列 (Thm \ref{thm 3.6.3})}, 对于$B_{\tfrac{2}{3}\rho}(\xi) \subset\subset B_{\rho}(\xi)$, \\
+				$\exists \{ \widehat{u_{m_{k_j}}} \}_{j = 1}^{\infty} \subset \{ \widehat{u_{m_k}} \}_{k = 1}^{\infty}$, $\st$
+				\begin{align*}
+					\widehat{u_{m_{k_j}}} \rightrightarrows \widehat{v} \,\, \text{uniformly on} \,\, B_{\tfrac{2}{3}\rho}(\xi) , \,\, \text{其中} \,\, \Delta \widehat{v} = 0 \,\, \text{on} \,\, B_{\tfrac{2}{3}\rho}(\xi)
+				\end{align*}
+				由于$\eta \in B_{\tfrac{2}{3} \rho}(\xi)$, 因此根据极限的唯一性, $\widehat{v}(\eta) = w(\eta) = \underset{j \to \infty}{\lim} \widehat{u_{m_{k_j}}}(\eta)$. \\
+				因为
+				\begin{align*}
+					\widehat{u_m} \geq \widetilde{u_m} \geq \overline{u_m} \,\, \text{on} \,\, \Omega
+				\end{align*}
+				且
+				\begin{align*}
+					\widehat{u_{m_{k_j}}} \rightrightarrows \widehat{v} , \,\, \overline{u_{m_k}} \rightrightarrows v \,\, \text{on} \,\, B_{\tfrac{2}{3} \rho}(\xi)
+				\end{align*}
+				所以
+				\begin{align*}
+					\widehat{v} \geq v \,\, \text{in} \,\, B_{\tfrac{2}{3} \rho}(\xi)
+				\end{align*}
+				故$\widehat{v}(\xi) \geq v(\xi) = w(\xi)$. 由于$\widehat{v} \leq w$, 因此$\widehat{v}(\xi) = v(\xi) = w(\xi)$. \\
+				由于$v - \widehat{v}$ 在$B_{\tfrac{2}{3} \rho}(\xi)$ 调和, 而
+				\begin{align*}
+					\begin{dcases*}
+						v - \widehat{v} \leq 0 \,\, B_{\tfrac{2}{3} \rho}(\xi) \\
+						(v - \widehat{v})(\xi) = 0
+					\end{dcases*}
+				\end{align*}
+				因此根据\textbf{强极值原理 (Strong Maximum Principle, Thm \ref{thm 3.4.4})}, 
+				\begin{align*}
+					v \equiv \widehat{v} \,\, \text{on} \,\, B_{\tfrac{2}{3} \rho}(\xi)
+				\end{align*}
+				而这与假设$v(\eta) < w(\eta) = \widehat{v}(\eta)$ 矛盾. \\
+				综上所述, $v = w$ on $B_{\tfrac{2}{3} \rho}(\xi) \,\, \Rightarrow \,\,$ 从而得到$\Delta w = \Delta v = 0$ on $B_{\tfrac{\rho}{2}}(\xi)$, $\forall \xi \in \Omega$, 即
+				\begin{align*}
+					\Delta w = 0 \,\, \text{on} \,\, \Omega
+				\end{align*}
+				
+				\newpage
+				
+				\item[\textcolor{red}{(\rmnum{2}).}] \textcolor{red}{\underline{\textbf{证明：For $\forall \eta \in \partial \Omega$. If there exists a barrier at $\eta$, then}}}
+				\begin{align*}
+					\textcolor{red}{\underline{\lim_{\substack{x \to \eta \\ x \in \Omega}} w(x) = f(\eta)}}
+				\end{align*}
+				
+				记$\eta$ 点处Barrier为$Q_\eta(x)$. 由于$Q_\eta , f \in C(\partial \Omega)$, 因此$\exists$ sufficiently large $K > 0$, $\st$
+				\begin{align*}
+					\begin{dcases*}
+						K Q_\eta(x) + f(\eta) \leq f(x) , \,\, \forall x \in \partial \Omega \backslash \{ \eta \} \\
+						-K Q_{\eta}(x) + f(\eta) \geq f(x) , \,\, \forall x \in \partial \Omega \backslash \{ \eta \}
+					\end{dcases*}
+				\end{align*}
+				由于$f \in C(\partial \Omega)$, 因此对于$\forall \varepsilon > 0$, $\exists \delta > 0$, $\st$
+				\begin{align*}
+					| f(x) - f(\eta) | < \varepsilon , \,\, \forall x \in \partial \Omega \cap B_{\delta}(\eta)
+				\end{align*}
+				i.e.
+				\begin{align*}
+					f(\eta) - \varepsilon < f(x) < f(\eta) + \varepsilon , \,\, \forall x \in \partial \Omega \cap B_{\delta}(\eta)
+				\end{align*}
+				于是
+				\begin{align*}
+					\begin{dcases*}
+						K Q_\eta(x) + f(\eta) - \varepsilon \leq f(x) , \,\, \forall x \in \partial \Omega \\
+						-K Q_{\eta}(x) + f(\eta) + \varepsilon \geq f(x) , \,\, \forall x \in \partial \Omega 
+					\end{dcases*}
+				\end{align*}
+				
+				\vspace*{2em}
+				
+				下面分别对两个不等式左侧的函数讨论：
+				
+				\vspace*{1em}
+			
+				\begin{itemize}
+					\item 对于第一个不等式左侧函数, 根据\textbf{Barrier定义 (Def \ref{def 3.6.2})}可得, 
+					\[ K Q_\eta(x) + f(\eta) - \varepsilon \in \sigma_{f}(\Omega) \]
+					于是根据$w$ 的定义, 
+					\begin{align*}
+						K Q_\eta(x) + f(\eta) - \varepsilon \leq w(x) , \,\, \forall x \in \overline{\Omega}
+					\end{align*}
+				
+					\vspace*{2em}
+					
+					\item 对于第二个不等式左侧函数：\\
+					For $\forall v \in \sigma_{f}(\Omega)$ 下调和, 由于$-K Q_{\eta}(x) + f(\eta) + \varepsilon$ 上调和, 且
+					\begin{align*}
+						-K Q_{\eta}(x) + f(\eta) + \varepsilon \Big|_{\partial \Omega} \geq f(x) \geq v(x) \Big|_{\partial \Omega}
+					\end{align*}
+					因此根据\textbf{下调和函数极值原理 (Thm \ref{thm 3.6.1})}, $v - \Big( -K Q_{\eta}(x) + f(\eta) + \varepsilon \Big)$ 下调和, 且
+					\begin{align*}
+						-K Q_{\eta}(x) + f(\eta) + \varepsilon \geq v(x) \,\, \text{on} \,\, \overline{\Omega} , \,\, \forall v \in \sigma_{f}(\Omega)
+					\end{align*}
+					遍历$\sigma_{f}(\Omega)$ 中的所有元素$v$, 得到
+					\begin{align*}
+						-K Q_{\eta}(x) + f(\eta) + \varepsilon \geq w(x) , \,\, \forall x \in \overline{\Omega}
+					\end{align*}
+				\end{itemize}
+				
+				\newpage
+				
+				综上, 我们有
+				\begin{align*}
+					K Q_\eta(x) + f(\eta) - \varepsilon \leq w(x) \leq -K Q_{\eta}(x) + f(\eta) + \varepsilon , \,\, \forall x \in \overline{\Omega} , \,\, \forall \varepsilon > 0
+				\end{align*}
+				Letting $\varepsilon \to 0^+$, 
+				\begin{align*}
+					K Q_\eta(x) + f(\eta) \leq w(x) \leq -K Q_{\eta}(x) + f(\eta) , \,\, \forall x \in \overline{\Omega}
+				\end{align*}
+				Letting $x \to \eta$, 即得到
+				\begin{align*}
+					\lim_{\substack{x \to \eta \\ x \in \Omega}} w(x) = f(\eta)
+				\end{align*}
+			\end{enumerate}
+		\end{proof}
+	\end{thm}
+
 
 
 
