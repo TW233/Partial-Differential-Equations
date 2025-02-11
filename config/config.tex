@@ -92,5 +92,6 @@
 %罗马数字 \rmnum{}是小写罗马数字, \Rmnum{}是大写罗马数字
 \makeatletter
 \newcommand{\rmnum}[1]{\romannumeral #1}
-\newcommand{\Rmnum}[1]{\expandafter@slowromancap\romannumeral #1@}
+\newcommand{\Rmnum}[1]{\MakeUppercase{\romannumeral #1}}
+%\newcommand{\Rmnum}[1]{\expandafter@slowromancap\romannumeral #1@}
 \makeatother

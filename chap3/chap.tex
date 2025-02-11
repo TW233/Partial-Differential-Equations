@@ -992,7 +992,7 @@
 		
 		\begin{proof}
 			\begin{center}
-				\textbf{[思路：Step1：先证明Green's Function存在并通过式(\ref{3.3})给出Poisson公式. \\
+				\textbf{[思路：Step 1：先证明Green's Function存在并通过式(\ref{3.3})给出Poisson公式. \\
 					Step 2：证明给出的Poisson公式满足题目所需条件. ]}
 			\end{center}
 			
@@ -1225,7 +1225,7 @@
 
 \newpage
 
-\section{Perron's Method (一般有界区域上求解Dirichlet问题)}
+\section{Perron's Method (一般区域上求解Dirichlet问题)}
 	这一节我们将给出\textbf{一般区域上Dirichlet Problem的构造性求解}. 在此之前, 我们先来做一些准备工作, 重新定义\textbf{下调和函数}, 并给出其相关性质. 
 	
 \vspace*{2em}
@@ -1264,7 +1264,7 @@
 					\end{align*}
 					对半径积分可得球体上的均值不等式
 					\begin{align*}
-						u(\xi) \leq \fint_{B_{\rho}(\xi)} u(x) \, dS_x , \,\, \forall \rho \leq r
+						u(\xi) \leq \fint_{B_{\rho}(\xi)} u(x) \, dx , \,\, \forall \rho \leq r
 					\end{align*}
 					由于$u$ 在$\xi$ 点连续, 因此$\exists \rho_0 < r$, $\st$
 					\begin{align*}
@@ -1451,7 +1451,7 @@
 
 \newpage
 
-\subsection{Perron's Method (一般有界区域上求解Dirichlet问题)}
+\subsection{Perron's Method (一般区域上求解Dirichlet问题)}
 	经过了前面几个小节的铺垫, 在这一小节我们将正式来介绍\textbf{Perron's Method}, 其直接将一般区域上Dirichlet问题的解给构造了出来, 并且我们将对其合理性进行证明. 首先给出\textbf{Barrier} 的定义. 
 	
 	\vspace*{1em}
@@ -1466,13 +1466,13 @@
 		\vspace*{2em}
 		
 		\begin{rmk}
-			对于任一有界区域$\Omega$, 其边界$\partial \Omega$ 上任一点不一定有Barrier. 
+			对于任一区域$\Omega$, 其边界$\partial \Omega$ 上任一点不一定有Barrier. 
 		\end{rmk}
 	\end{defn}
 	
 	\vspace*{6em}
 	
-	对于\underline{\textbf{一般有界区域Dirichlet问题}}
+	对于\underline{\textbf{一般区域Dirichlet问题}}
 	\begin{align*}
 		\begin{dcases*}
 			\Delta u = 0 \,\, \Omega \\
@@ -1484,8 +1484,8 @@
 	\newpage
 	
 	\begin{thm}\label{thm 3.6.5}
-		\textbf{[Perron's Method (一般有界区域上求解Dirichlet问题)]}. \\
-		对于一般有界区域上的Dirichlet问题
+		\textbf{[Perron's Method (一般区域上求解Dirichlet问题)]}. \\
+		对于一般区域上的Dirichlet问题
 		\begin{align*}
 			\begin{dcases*}
 				\Delta u = 0 \,\, \Omega \\

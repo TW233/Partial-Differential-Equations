@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.9)  23 JAN 2025 00:25
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.9)  12 FEB 2025 01:46
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -854,7 +854,7 @@ Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;-ss05
 -Regular.otf
 
 (./main.aux (./config/cover.aux) (./chap1/chap.aux) (./chap2/chap.aux)
-(./chap3/chap.aux) (./appendix/chap.aux))
+(./chap3/chap.aux) (./chap4/chap.aux) (./appendix/chap.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 5.
@@ -1726,22 +1726,41 @@ File: figure/3.5-2.jpg Graphic file (type bmp)
 File: figure/3.5-3.jpg Graphic file (type bmp)
 <figure/3.5-3.jpg>
  [78] [79] [80] [81] [82] [83] [84] [85] [86] [87] [88]) [89]
-\openout2 = `appendix/chap.aux'.
+\openout2 = `chap4/chap.aux'.
 
 
-(./appendix/chap.tex
-附录 A
+(./chap4/chap.tex
+第四章
 [90
 
 
 
 
-] [91] [92] [93] [94] [95] [96] [97] [98]
+] [91] [92]
+
+LaTeX Warning: Reference `thm' on page 93 undefined on input line 130.
+
+[93] [94] [95]
+Overfull \hbox (17.33925pt too wide) detected at line 309
+[]
+ []
+
+[96] [97]) [98]
+\openout2 = `appendix/chap.aux'.
+
+ (./appendix/chap.tex
+附录 A
+[99
+
+
+
+
+] [100] [101] [102] [103] [104] [105] [106] [107]
 File: figure/2.3-4.jpg Graphic file (type bmp)
 <figure/2.3-4.jpg>
 File: figure/2.3-5.jpg Graphic file (type bmp)
 <figure/2.3-5.jpg>
- [99] [100] [101]
+ [108] [109] [110]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 386.
@@ -1754,11 +1773,11 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 386.
 
-[102]
+[111]
 附录 B
 File: figure/A.1-1.png Graphic file (type bmp)
 <figure/A.1-1.png>
-[103
+[112
 
 ]
 File: figure/B.2-1.jpg Graphic file (type bmp)
@@ -1768,7 +1787,7 @@ Overfull \hbox (48.37263pt too wide) in paragraph at lines 470--471
  [][] 
  []
 
-[104]
+[113]
 Requested font "[TeXGyreTermesX-Bold.otf]/OT:script=latn;language=dflt;-ss05;+t
 num;+lnum;mapping=tex-text;" at 8.0pt
  -> e:/Latex/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX
@@ -1781,7 +1800,7 @@ num;+lnum;mapping=tex-text;" at 6.0pt
 -Bold.otf
 Requested font "SimHei/OT:script=hani;language=dflt;" at 6.0pt
  -> C:/Windows/fonts/simhei_0.ttf
- [105] [106]
+ [114] [115]
 Overfull \hbox (35.28354pt too wide) in paragraph at lines 545--546
 []\TU/SimSun(0)/m/n/12 定 理 中 \TU/TeXGyreTermesX(0)/m/n/12 (i) \TU/SimSun(0)/m/n
 /12 可 作 为 \TU/TeXGyreTermesX(0)/m/n/12 (ii) \TU/SimSun(0)/m/n/12 的 直 接 推 论\TU/T
@@ -1792,18 +1811,21 @@ eXGyreTermesX(0)/m/n/12 . \TU/SimSun(0)/m/n/12 即 可 令 $[]$ 中 除 第 $\OM
 /m/n/12 )$\TU/TeXGyreTermesX(0)/m/n/12 ,
  []
 
-[107] [108]) [109] (./main.aux (./config/cover.aux) (./chap1/chap.aux)
-(./chap2/chap.aux) (./chap3/chap.aux) (./appendix/chap.aux))
+[116] [117]) [118] (./main.aux (./config/cover.aux) (./chap1/chap.aux)
+(./chap2/chap.aux) (./chap3/chap.aux) (./chap4/chap.aux) (./appendix/chap.aux))
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F6012EEAD6DB946D2047B999B7CE0E99;12032.
+(rerunfilecheck)             Checksum: 484EA34CF26A78E87CE317BB7C137155;12755.
  ) 
 Here is how much of TeX's memory you used:
- 20925 strings out of 476179
- 443046 string characters out of 5810426
- 765451 words of memory out of 5000000
- 41199 multiletter control sequences out of 15000+600000
+ 20958 strings out of 476179
+ 443855 string characters out of 5810426
+ 766772 words of memory out of 5000000
+ 41225 multiletter control sequences out of 15000+600000
  508555 words of font info for 208 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  94i,22n,103p,490b,854s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (114 pages).
+Output written on main.pdf (123 pages).

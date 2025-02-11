@@ -5,124 +5,424 @@
 	\else
 	\fi
 	%  ############################ 正文部分
-\chapter{线性算子与线性泛函}
+\chapter{Hyperbolic Equations in Higher Dimensions}
+
+	\begin{center}
+		这一章我们将给出\textbf{高维波动方程的解}, 并利用\textbf{高维能量不等式}证明其解的唯一性. 
+	\end{center}
 	
-\section{线性算子$\&$ 线性泛函}
-	这一节我们主要来给出\textbf{线性算子}及\textbf{线性泛函}相关概念的定义. \textbf{线性算子}为高等代数中学过的\textbf{线性变换 (线性映射)}的推广, 即更多的在\textbf{无穷维线性空间}上进行讨论. 而\textbf{线性泛函}是\textbf{线性算子}的一个特例, 即将线性泛函的陪域取作数域, 相当于定义域较大的函数, 即为函数的推广. 
+\section{Euler-Darboux-Poisson Equation}
 	
-	\vspace{1em}
+	\vspace*{2em}
 	
-	\begin{defn}\label{def 4.1.1}
-		设$X , Y$ 为定义在数域$\mathbb{K}$ 上的线性空间. 若映射$T : X \longrightarrow Y$ 为线性映射, 即
-		\[ T(\alpha x + \beta y) = \alpha T(x) + \beta T(y) , \,\, \forall x , y \in X , \,\, \forall \alpha , \beta \in \mathbb{K} \]
-		则称$T$ 为$X$ 到$Y$ 上的一个\underline{\textcolor{blue}{\textbf{线性算子}}}. 特别地, 若$Y = \mathbb{K} \in \{ \R , \C \}$, 则称$T$ 为\underline{\textcolor{blue}{\textbf{线性泛函}}}. 
+	\begin{thm}\label{thm 4.1.1}
+		\textbf{[Euler-Darboux-Poisson Equation]}. \\
+		Suppose $u \in C^2\Big( \R^n \times (0 , \infty) \Big) \cap C \Big( \R^n \times [0 , \infty) \Big)$ satisfies 
+		\begin{align*}
+			u_{tt} - c^2 \Delta u = 0 \,\, \text{on} \,\, \R^n \times (0 , \infty)
+		\end{align*}
+		Then 
+		\begin{align}
+			c^2 \left[ \frac{\partial^2}{\partial r^2} M_{u}(x ; r , t) + \frac{n - 1}{r} \frac{\partial}{\partial r} M_u(x ; r , t) \right] 
+			= \frac{\partial^2}{\partial t^2} M_u(x ; r , t) \label{4.1}
+		\end{align}
 		
-		\vspace{4em}
+		\vspace*{4em}
 		
 		\begin{rmk}
 			\begin{itemize}
-				\item 此处我们沿用高代与范畴论中的记号, 将从线性空间$X$ 到$Y$ 上的所有\textbf{线性算子}构成的空间记作\textbf{$Hom(X , Y)$}. 不难说明$Hom(X , Y)$ 也是个定义在数域$\mathbb{K}$ 上的\textbf{线性空间}. 
-				
-				\vspace*{4em}
-				
-				\item 回顾高代中有关\textbf{有限维线性空间的对偶空间}的结论：
-				\begin{center}
-					\textbf{数域$\mathbb{K}$ 上有限维线性空间的所有线性泛函构成空间 (对偶空间)同构于$\mathbb{K}^n$}. 
-				\end{center} 
+				\item 此处给出了\textbf{球面平均}的记号：$\forall h \in C(\R^n)$, 
+				\begin{align*}
+					M_h(x , r) \coloneqq \fint_{\partial B_{r}(x)} h(y) \, dS_y
+				\end{align*}
+				而\textbf{式(\ref{4.1})}中的“$M_u(x ; r , t)$”则是将$x$ 固定, $r , t$ 作为变量, i.e. 
+				\begin{align*}
+					M_u(x ; r , t) 
+					= \fint_{\partial B_r(x)} u(y , t) \, dS_y 
+					= \fint_{\partial B_r} u(x + y , t) \, dS_y
+				\end{align*}
 				
 				\vspace*{2em}
 				
-				\begin{proof}
-					设$X$ 为数域$\mathbb{K}$ 上$n$ 维线性空间, $\{ e_i \}_{i = 1}^n \subset X$ 为一组基. \\
-					Then for $\forall f \in Hom(X , \mathbb{K})$, 
-					\[ f(x) = f \left( \sum_{i = 1}^n x_i e_i \right) = \sum_{i = 1}^n x_i f(e_i) , \,\, \forall x = \sum_{i = 1}^n x_i e_i \in X \]
-					Consider the mapping 
-					\begin{align}
-						T : Hom(X , \mathbb{K}) &\longrightarrow \mathbb{K}^n \\
-						f &\longmapsto \Big( f(e_1) , \,\, \cdots , \,\, f(e_n) \Big)
-					\end{align}
-					It's not hard to prove that $T$ is an isomorphism between $Hom(X , \mathbb{K})$ and $\mathbb{K}^n$, i.e. 
-					\[ Hom(X , \mathbb{K}) \cong \mathbb{K}^n \]
-				\end{proof}
+				\item 利用\textbf{E-D-P公式}可求得任意\textbf{奇数维}波动方程的解. 
 			\end{itemize}
 		\end{rmk}
-	\end{defn}
-	
-	\vspace*{6em}
-	
-	对于线性空间$X$ 到$Y$ 上的线性算子$Hom(X , Y)$, 为了考虑其连续性, 下面将$X , Y$ 限制为$B^*$ 空间, 给出\textbf{连续算子}的定义. 
-	
-	\vspace*{1em}
-	
-	\begin{defn}\label{def 4.1.2}
-		设$X , Y \in B^{*}$, $T \in Hom(X , Y)$. 若$T$ 连续, 即在$X$ 中每点处连续, 则称$T$ 为\underline{\textcolor{blue}{\textbf{连续算子}}}, 记$X$ 到$Y$ 的连续算子全体为\underline{\textcolor{blue}{\textbf{$\, L(X , Y)$}}}. 特别地, 若$Y = \mathbb{K} \in \{ \R , \C \}$, 记\underline{\textcolor{blue}{\textbf{$\, X^* = L(X , \mathbb{K})$}}}. 
 		
-		\vspace*{4em}
+		\newpage
 		
-		\begin{rmk}
-			\begin{itemize}
-				\item 事实上, 此处记号$X^*$ 是对高代中\textbf{对偶空间}概念的推广, 即\uwave{当$X$ 为\textbf{有限维}线性空间时, $X^* = L(X , \mathbb{K})$ 就是$X$ 上的对偶空间}, 故更多讨论无穷维的情况. 这一点由下述命题保证：
-				\begin{center}
-					\textbf{有限维$B^*$ 空间$(X , \Vert \cdot \Vert)$ 上的线性函数$f : X \longrightarrow \mathbb{K}$ 连续}. 
-				\end{center}
+		\begin{proof}
+			$\forall h \in C^2(\R^n)$, 
+			\begin{align*}
+				M_h(x , r) 
+				&= \fint_{\partial B_r(x)} h(y) \, dS_y 
+				= \frac{1}{w_n r^{n - 1}} \int_{\partial B_r} h(x + y) \, dS_y 
+				= \frac{1}{w_n} \int_{\partial B_1} h(x + ry) \, dS_y \\
+				&\left( = \frac{1}{w_n} \int_{\partial B_1} h(x - ry) \, dS_y , \,\, \text{事实上此时即可将$r$ 的定义域由$(0 , \infty)$ 扩充至$\R$ } \right)
+			\end{align*}
+			将$M_h(x , r)$ 对$r$ 求偏导, 得到
+			\begin{align*}
+				\frac{\partial}{\partial r} M_h(x , r) 
+				&= \frac{\partial}{\partial r} \frac{1}{w_n} \int_{\partial B_1} h(x + ry) \, dS_y \\
+				&= \frac{1}{w_n} \int_{\partial B_1} \left( \sum_{i = 1}^n h_i(x + ry) \cdot y_i \right) \, dS_y 
+				= \frac{1}{w_n} \int_{\partial B_1} \frac{1}{r} \cdot \frac{\partial h(x + ry)}{\partial n_y} \, dS_y
+			\end{align*}
+			根据\textbf{Gauss-Green公式 (Cor \ref{cor B.4.3} (\rmnum{1}))}, 
+			\begin{align*}
+				\frac{\partial}{\partial r} M_h(x , r) 
+				&= \frac{1}{w_n} \int_{B_1} \frac{1}{r} \cdot \Delta_y h(x + ry) \, dy \\
+				&= \frac{1}{w_n} \int_{B_1} r \cdot \Delta_{(ry)} h(x + ry) \, dy \\
+				&= \frac{1}{w_n} \int_{B_1} r \cdot \Delta_{x} h(x + ry) \, dy \\
+				&= \Delta_{x} \frac{r}{w_n} \int_{B_1} h(x + ry) \, dy \\
+				&= \Delta_x \frac{r}{w_n} \int_{B_r} h(x + y) \cdot \frac{1}{r^n} \, dy 
+				= \Delta_x r^{1 - n} \cdot \frac{1}{w_n} \int_{B_r} h(x + y) \, dy
+			\end{align*}
+			i.e. 
+			\begin{align*}
+				r^{n - 1} \frac{\partial}{\partial r} M_h(x , r) 
+				= \frac{1}{w_n} \Delta_x \int_{B_r} h(x + y) \, dy
+			\end{align*}
+			两侧对$r$ 求偏导, 
+			\begin{align*}
+				\frac{\partial}{\partial r} \left( r^{n - 1} \frac{\partial}{\partial r} M_h(x , r) \right) 
+				= \frac{1}{w_n} \Delta_x \int_{\partial B_r} h(x + y) \, dS_y
+			\end{align*}
+			两侧除以$r^{n - 1}$, 右侧可得到球面平均的形式, 即
+			\begin{align*}
+				\frac{1}{r^{n - 1}} \frac{\partial}{\partial r} \left( r^{n - 1} \frac{\partial}{\partial r} M_h(x , r) \right) 
+				= \Delta_x M_h(x , r)
+			\end{align*}
+			i.e. 
+			\begin{align*}
+				\frac{\partial^2}{\partial r^2} M_h(x , r) + \frac{n - 1}{r} \frac{\partial}{\partial r} M_h(x , r) 
+				= \Delta_x M_h(x , r)
+			\end{align*}
+			
+			\newpage
+			
+			对于$u(x , t) \in C^2\Big( \R^n \times (0 , \infty) \Big) \cap C \Big( \R^n \times [0 , \infty) \Big)$ with 
+			\begin{align*}
+				u_{tt} - c^2 \Delta u = 0 \,\, \text{on} \,\, \R^n \times (0 , \infty)
+			\end{align*}
+			Fix $t \in (0 , \infty)$. 将$u(x ; t)$ 替换$h(x)$, 计算前文得到的等式右侧式子
+			\begin{align*}
+				\Delta_x M_u(x ; r , t) 
+				&= \Delta_x \fint_{\partial B_r(x)} u(y , t) \, dS_y \\
+				&= \Delta_x \fint_{\partial B_r} u(x + y , t) \, dS_y \\
+				&= \fint_{\partial B_r} \Delta_x u(x + y , t) \, dS_y \\
+				&= \frac{1}{c^2} \fint_{\partial B_r} u_{tt} (x + y , t) \, dS_y 
+				= \frac{1}{c^2} \frac{\partial^2}{\partial t^2} M_{u}(x ; r , t)
+			\end{align*}
+			代入$\dfrac{\partial^2}{\partial r^2} M_h(x , r) + \dfrac{n - 1}{r} \dfrac{\partial}{\partial r} M_h(x , r) 
+			= \Delta_x M_h(x , r)$, 得到
+			\begin{align*}
+				c^2 \left[ \frac{\partial^2}{\partial r^2} M_{u}(x ; r , t) + \frac{n - 1}{r} \frac{\partial}{\partial r} M_u(x ; r , t) \right] 
+				= \frac{\partial^2}{\partial t^2} M_u(x ; r , t)
+			\end{align*}
+		\end{proof}
+	\end{thm}
+	
+\newpage
+	
+\section{Kirchhoff Formula (n = 3时波动方程初值问题求解)}
+	
+	\vspace*{2em}
+	
+	这一节我们通过\textbf{E-D-P Equation (Thm \ref{thm 4.1.1})}, 来求解3维波动方程的初值问题, 并且结合后续的\textbf{高维能量不等式 (Thm \ref{thm})}, 可得到解的唯一性. 
+	
+	\vspace*{10em}
+	
+	\begin{thm}\label{thm 4.2.1}
+		\textbf{[Kirchhoff Formula (n = 3时波动方程初值问题求解)]}. \\
+		Suppose $f \in C^3(\R^3) , \,\, g \in C^2(\R^3)$. 对于初值问题 
+		\begin{align*}
+			\begin{dcases*}
+				u_{tt} - c^2 \Delta u = 0 \,\, \text{on} \,\, \R^3 \times (0 , \infty) \\
+				u \Big|_{t = 0} = f \\
+				u_t \Big|_{t = 0} = g
+			\end{dcases*}
+		\end{align*}
+		Then  
+		\begin{align}
+			u(x , t) 
+			= \frac{\partial}{\partial t} \left( \frac{1}{4 \pi c^2 t} \int_{\partial B_{ct}(x)} f(y) \, dS_y \right) + \frac{1}{4 \pi c^2 t} \int_{\partial B_{ct}(x)} g(y) \, dS_y \label{4.2}
+		\end{align}
+		is a unique solultion in $C^2 \Big( \R^n \times (0 , \infty) \Big) \cap C\Big( \R^n \times [0 , \infty) \Big)$. 
+		
+		\newpage
+		
+		\begin{proof}
+			\begin{center}
+				\textbf{[思路：Step 1：先证明解若存在则必为式(\ref{4.2})的形式. \\
+					\hspace{4em}Step 2：证明式(\ref{4.2})满足波动方程及初值条件. ]}
+			\end{center}
+			
+			\vspace*{1em}
+			
+			\begin{enumerate}
+				\item[\underline{\textbf{Step 1}}]：\underline{\textbf{证明解若存在则必为式(\ref{4.2})的形式}}：\\
+				For $\forall h(r , t) \in C^2(\R \times (0 , \infty))$, 通过计算可得
+				\begin{align*}
+					\frac{\partial^2}{\partial r^2} h + \frac{2}{r} \frac{\partial}{\partial r} h 
+					= \left[ \frac{\partial^2}{\partial r^2} \Big( rh \Big) \right] \cdot \frac{1}{r}
+				\end{align*}
+				根据\textbf{E-D-P等式 (Thm \ref{thm 4.1.1})}, 将E-D-P等式两侧同时乘$r$, 可得
+				\begin{align*}
+					\frac{\partial^2}{\partial t^2} \Big( r h \Big) 
+					= c^2 r \left( \frac{\partial^2}{\partial r^2} h + \frac{2}{r} \frac{\partial}{\partial r} h \right) 
+					= c^2 \frac{\partial^2}{\partial r^2} \Big( r h \Big) 
+				\end{align*}
+				将$h(r , t)$ 替换为$M_u(x ; r , t)$, i.e.
+				\begin{align*}
+					\frac{\partial^2}{\partial t^2} \Big( r M_u(x ; r , t) \Big) 
+					= c^2 \frac{\partial^2}{\partial r^2} \Big( r M_u(x ; r , t) \Big)
+				\end{align*}
+				即$r M_u(x ; r , t)$ 关于变量$r , t$ 满足一维波动方程. 若已知其满足初始条件：
+				\begin{align*}
+					\left. \Big[ r M_u(x ; r , t) \Big] \right|_{t = 0} 
+					= F(x , r) , \,\, 
+					\left. \Big[ rM_{u}(x ; r , t) \Big]_t \right|_{t = 0} 
+					= G(x , r)
+				\end{align*}
+				则根据\textbf{D'Alembert公式 (Thm \ref{thm 2.3.1})}, 即可求解得到：
+				\begin{align*}
+					rM_{u}(x ; r , t) 
+					&= \frac{1}{2} \Big[ F(x , r + ct) + F(x , r - ct) \Big] + \frac{1}{2c} \int_{r - ct}^{r + ct} G(x , \xi) \, d\xi \\
+					M_{u}(x ; r , t) 
+					&= \frac{1}{2r} \Big[ F(x , r + ct) + F(x , r - ct) \Big] + \frac{1}{2cr} \int_{r - ct}^{r + ct} G(x , \xi) \, d\xi
+				\end{align*}
+				下面分别进行两步操作：\underline{\textbf{(1).假定F, G已知, 求出u；(2).求出F, G.}}
 				
 				\vspace*{1em}
 				
-				\begin{proof}
-					根据\textbf{有限维$B^*$ 空间范数的等价性 (Thm \ref{thm 2.2.2})} 容易证明, 于是$Hom(X , \mathbb{K}) = X^*$.  
-				\end{proof}
-				
-				\vspace*{6em}
-				
-				\item 对于$\forall T \in Hom(X , \mathbb{K})$, 根据$T$ 的线性性, 不难得到$T \in L(X , Y) \,\, \Leftrightarrow \,\, T$ 在$x = 0$ 处连续. 
-			\end{itemize}
-		\end{rmk}
-	\end{defn}
-	
-	\newpage
-	
-	下面再给出\textbf{有界算子}的概念. 
-	
-	\vspace*{1em}
-	
-	\begin{defn}\label{def 4.1.3}
-		设$X , Y \in B^*$ 且$T \in Hom(X , Y)$. 如果$T$ 将任何有界集映为有界集, 则称$T$ 为\underline{\textcolor{blue}{\textbf{有界 (线性)算子}}}. 
-		
-		\vspace*{4em}
-		
-		\begin{rmk}
-			此处给出$T$ 有界的几个\textbf{等价定义}, 即对于$\forall T \in Hom(X , Y)$, 
-			\begin{center}
-				\textbf{$T$ 有界 $\,\, \Leftrightarrow \,\, $ 单位球 (面)的像有界 $\,\, \Leftrightarrow \,\, \exists M > 0 , \,\, \st \Vert T x \Vert \leq M \, \Vert x \Vert , \,\, \forall x \in X$}
-			\end{center}
-			
-			\vspace*{2em}
-			
-			\begin{proof}
-				\begin{itemize}
-					\item $T$ 有界 $\,\, \Leftrightarrow \,\, $ 单位球 (面)的像有界：必要性显然. 下面证充分性$\Leftarrow$：$\exists M > 0$, $\st$
-					\[ \Vert Tx \Vert \leq M \, \Vert x \Vert = M , \,\, \forall x \in B(0 , 1) \]
-					$\forall A \subset X$ bounded, i.e. $\exists r > 0$, $\st A \subset B(0 , r)$. Then by the linearity of $T \in Hom(X , Y)$, 
-					\[ \Vert T x \Vert 
-					= \Big\Vert T \Big( \Vert x \Vert \cdot \frac{x}{\Vert x \Vert} \Big) \Big\Vert 
-					= \Vert x \Vert \cdot \Big\Vert T \Big( \frac{x}{\Vert x \Vert} \Big) \Big\Vert 
-					\leq r \cdot M < \infty , \,\, \forall x \in A \]
-					Therefore, $T(A) \subset \mathbb{K}$ bounded. $T$ bounded. 
+				\begin{enumerate}
+					\item[\textbf{(1)}]. \textbf{\underline{假定$F , G$ 已知 (根据后续计算, 可知$F , G$ 关于$r$ 为奇函数)}}：
+					\begin{align*}
+						M_{u}(x ; r , t) 
+						= \fint_{\partial B_{r}(x)} u(y , t) \, dS_y \to u(x , t) \,\, \text{as} \,\, r \to 0^+
+					\end{align*}
 					
-					\vspace*{8em}
+					\begin{itemize}
+						\item 由于$F$ 关于$r$ 为奇函数 (根据步(2)计算可得), 因此
+						\begin{align*}
+							F(x , r - ct) = -F(x , ct - r)
+						\end{align*}
+						于是
+						\begin{align*}
+							\frac{F(x , r + ct) - F(x , ct - r)}{2r} 
+							= D_2 F(x , ct) 
+							= \left. \frac{\partial}{\partial r} F(x , r) \right|_{r = ct}
+						\end{align*}
+						
+						\newpage
+						
+						\item 对于$\underset{r \to 0^+}{\lim} \dfrac{1}{2cr} \int_{r - ct}^{r + ct} G(x , \xi) \, d\xi$, For fixed $c , t$, when $| r |$ sufficiently small, $r - ct < 0$, 此时
+						\begin{align*}
+							\int_{r - ct}^{r + ct} \sim 
+							= \int_{ct - r}^{ct + r} \sim + \int_{r - ct}^{ct - r} \sim
+						\end{align*}
+						由于$G$ 为奇函数, 因此$\int_{r - ct}^{r + ct} G(x , \xi) \, d\xi = 0$, 
+						\begin{align*}
+							\int_{r - ct}^{r + ct} G(x , \xi) \, d\xi 
+							= \int_{ct - r}^{ct + r} G(x , \xi) \, d\xi
+						\end{align*}
+						从而
+						\begin{align*}
+							\lim_{r \to 0^+} \frac{1}{2cr} \int_{r - ct}^{r + ct} G(x , \xi) \, d\xi 
+							= \lim_{r \to 0^+} \frac{1}{2cr} \int_{ct - r}^{ct + r} G(x , \xi) \, d\xi 
+							= \frac{1}{c} G(x , ct)
+						\end{align*}
+					\end{itemize}
 					
-					\item 单位球 (面)的像有界 $\,\, \Leftrightarrow \,\, \exists M > 0 , \,\, \st \Vert T x \Vert \leq M \, \Vert x \Vert , \,\, \forall x \in X$：\\
-					充分性显然. 下面证明必要性$\Rightarrow$：$\exists M > 0$, $\st$
-					\[ \Vert Tx \Vert \leq M , \,\, \forall x \in \partial B(0 , 1) \]
-					Then for $\forall x \in X$, 
-					\[ \Big\Vert T\Big( \frac{x}{\Vert x \Vert} \Big) \Big\Vert 
-					= \frac{\Vert Tx \Vert}{\Vert x \Vert}
-					\leq M , \,\, \forall x \in M \]
-					i.e. $\Vert Tx \Vert \leq M \, \Vert x \Vert , \,\, \forall x \in X$.
-				\end{itemize}
-			\end{proof}
-		\end{rmk}
-	\end{defn}
+					\vspace*{2em}
+					
+					综上, 根据
+					\begin{align*}
+						M_{u}(x ; r , t) 
+						= \frac{1}{2r} \Big[ F(x , r + ct) + F(x , r - ct) \Big] + \frac{1}{2cr} \int_{r - ct}^{r + ct} G(x , \xi) \, d\xi
+					\end{align*}
+					Letting $r \to 0^+$, then 
+					\begin{align*}
+						u(x , t) 
+						&= D_2 F(x , ct) + \frac{1}{c} G(x , ct) \\
+						&= \left. \frac{\partial}{\partial r} F(x , r) \right|_{r = ct} + \frac{1}{c} G(x , ct)
+					\end{align*}
+					
+					\vspace*{4em}
+					
+					\item[\textbf{(2)}]. \underline{\textbf{求出F, G}}：$\left. \Big( r M_u(x ; r , t) \Big) \right|_{t = 0} 
+					= F(x , r) , \,\, 
+					\left. \Big( rM_{u}(x ; r , t) \Big)_t \right|_{t = 0} 
+					= G(x , r)$. \\
+					因此
+					\begin{align*}
+						F(x , r) 
+						= r M_u(x ; r , t) \Big|_{t = 0} 
+						= r \fint_{\partial B_r(x)} u(y , 0) \, dS_y 
+						= r \fint_{\partial B_r(x)} f(y) \, dS_y
+					\end{align*}
+					对$F(x , r)$ 求$r$ 的偏导, 
+					\begin{align*}
+						\left. \frac{\partial}{\partial r} F(x , r) \right|_{r = ct} 
+						&= \left. \frac{\partial}{\partial r} \left( r \cdot \fint_{\partial B_{r}(x)} f(y) \, dS_y \right) \right|_{r = ct} \\
+						&= \frac{\partial}{\partial t} \left( t \cdot \fint_{\partial B_{ct}(x)} f(y) \, dS_y \right)
+					\end{align*}
+					同理可求得$G$
+					\begin{align*}
+						G(x , ct) 
+						&= \left. \Big( rM_{u}(x ; r , t) \Big)_t \right|_{\substack{t = 0 \\ r = ct}} \\
+						&=  \left. \left( r \fint_{\partial B_r(x)} u(y , t) \, dS_y \right) \right|_{\substack{t = 0 \\ r = ct}} \\
+						&= \left. \left( r \fint_{\partial B_r(x)} g(y) \, dS_y \right) \right|_{r = ct} 
+						= ct \cdot \fint_{\partial B_{ct}(x)} g(y) \, dS_y
+					\end{align*}
+				\end{enumerate}
+				
+				\newpage
+				
+				综上, 我们证明了若解存在, 则必为\textbf{式(\ref{4.2})}的形式：
+				\begin{align*}
+					u(x , t) 
+					= D_2 F(x , ct) + G(x , ct) 
+					&= \frac{\partial}{\partial t} \left( t \cdot \fint_{\partial B_{ct}(x)} f(y) \, dS_y \right) 
+					+ t \cdot \fint_{\partial B_{ct}(x)} g(y) \, dS_y \\
+					&= \frac{\partial}{\partial t} \left( \frac{1}{4\pi c^2 t} \int_{\partial B_{ct}(x)} f(y) \, dS_y \right) 
+					+ \frac{1}{4\pi c^2 t} \int_{\partial B_{ct}(x)} g(y) \, dS_y 
+				\end{align*}
+				
+				\vspace*{4em}
+				
+				\item[\underline{\textbf{Step 2}}]：\underline{\textbf{证明式(\ref{4.2})是解}}：下面分别证明$u$ 满足边界条件及波动方程：
+				
+				\vspace*{1em}
+				
+				\begin{enumerate}
+					\item[\textbf{(1)}]. \underline{\textbf{证明边界条件}}：$u\Big|_{t = 0} = f , \,\, u_t \Big|_{t = 0} = g$：
+					
+					\vspace*{1em}
+					
+					对于$u\Big|_{t = 0}$, 
+					\begin{align*}
+						\frac{\partial}{\partial t} \left( \frac{1}{4\pi c^2 t} \int_{\partial B_{ct}(x)} f(y) \, dS_y \right) 
+						&= \frac{\partial}{\partial t} \left( \frac{1}{4\pi c^2 t} \int_{\partial B_1} f(x + cty) \cdot (ct)^2 \, dS_y \right) \\
+						&= \frac{\partial}{\partial t} \left( \frac{t}{4\pi} \int_{\partial B_1} f(x + cty) \, dS_y \right) \\
+						&= \frac{1}{4\pi} \int_{\partial B_1} f(x + cty) \, dS_y 
+						+ \frac{t}{4\pi} \int_{\partial B_1} \left( \sum_{i = 1}^3 D_{i} f(x + cty) \cdot c y_i \right) \, dS_y
+					\end{align*}
+					Letting $t \to 0^+$, we get 
+					\begin{align*}
+						\frac{\partial}{\partial t} \left( \frac{1}{4\pi c^2 t} \int_{\partial B_{ct}(x)} f(y) \, dS_y \right) \to f(x) \,\, \text{as} \,\, t \to 0^+
+					\end{align*}
+					Since
+					\begin{align*}
+						\lim_{t \to 0^+} \frac{1}{4\pi c^2 t} \int_{\partial B_{ct}(x)} g(y) \, dS_y  
+						= 0
+					\end{align*}
+					Then $u \Big|_{t = 0} = f(x)$. 
+					
+					\newpage
+					
+					对于$u_t \Big|_{t = 0}$, 
+					\begin{align*}
+						\frac{\partial^2}{\partial t^2} \left( \frac{1}{4\pi c^2 t} \int_{\partial B_{ct}(x)} f(y) \, dS_y \right) 
+						= R(x , t) + 2 \cdot \frac{1}{4 \pi} \int_{\partial B_{1}} \left( \sum_{i = 1}^3 D_{i} f(x + cty) \cdot c y_i \right) \, dS_y
+					\end{align*}
+					其中$R(x , t)$ 为求导后的其余项, 满足$R(x , t) \to 0$ as $t \to 0^+$. \\
+					根据\textbf{控制收敛定理 (Dominated Convergence Theorem)\footnote{详见\textbf{《Real Analysis, Modern Techniques and Their Applications (Second Edition)》 -- Gerald B. Folland -- \\
+								Theorem 2.24}}}, 
+					\begin{align*}
+						\lim_{t \to 0^+} \int_{\partial B_1} \Big( f_i(x + cty) \cdot c y_i \Big) \, dS_y 
+						&= \int_{\partial B_1} \left( \lim_{t \to 0^+} f_i(x + cty) \cdot c y_i \right) \, dS_y \\
+						&= f_i(x) \cdot \int_{\partial B_1} c y_i \, dS_y 
+						= 0 , \,\, \forall i = 1 \sim n
+					\end{align*}
+					于是
+					\begin{align*}
+						\lim_{t \to 0^+} \frac{\partial^2}{\partial t^2} \left( \frac{1}{4\pi c^2 t} \int_{\partial B_{ct}(x)} f(y) \, dS_y \right) 
+						= 0
+					\end{align*}
+					而由于
+					\begin{align*}
+						\frac{\partial}{\partial t} \left( \frac{1}{4\pi c^2 t} \int_{\partial B_{ct}(x)} g(y) \, dS_y \right) 
+						\to g(x) \,\, \text{as} \,\, t \to 0^+
+					\end{align*}
+					因此$u_t \Big|_{t = 0} = g(x)$. 
+					
+					\vspace*{4em}
+					
+					\item[\textbf{(2)}]. \underline{\textbf{证明$u$ 满足波动方程}}：
+					
+					\vspace*{1em}
+					
+					只需证明$\dfrac{\partial}{\partial t} \left( \dfrac{1}{4\pi c^2 t} \int_{\partial B_{ct}(x)} f(y) \, dS_y \right)$ 和$\dfrac{1}{4\pi c^2 t} \int_{\partial B_{ct}(x)} g(y) \, dS_y$ 分别满足波动方程：
+					
+					\vspace*{1em}
+					
+					下面我们只证明前者, 后者可类似证明：即证
+					\begin{align*}
+						\frac{\partial^2}{\partial t^2} \left[ \frac{\partial}{\partial t}\left( \frac{t}{4\pi} \int_{\partial B_1} f(x + cty) \, dS_y \right) \right] 
+						&= c^2 \sum_{i = 1}^3 \frac{\partial^2}{\partial x_{i}^2} \left[ \dfrac{t}{4\pi} \int_{\partial B_1} g(x + cty) \, dS_y \right] \\
+						\text{Denoted as} \,\, \MakeUppercase{\rmnum{1}} &= \MakeUppercase{\rmnum{2}}
+					\end{align*}
+					将$\Rmnum{1}$ 中$\dfrac{\partial^2}{\partial t^2}$ 与$\dfrac{\partial}{\partial t}$ 交换, 
+					\begin{align*}
+						\Rmnum{1} 
+						= \frac{\partial}{\partial t} \left( \frac{t}{4\pi} \int_{\partial B_1} \frac{\partial^2}{\partial t^2} f(x + cty) \, dS_y \right) 
+						+ \frac{\partial}{\partial t} \left( 2 \cdot \frac{1}{4\pi} \int_{\partial B_1} \frac{\partial}{\partial t} f(x + cty) \, dS_y  \right)
+					\end{align*}
+					
+					\newpage
+					
+					而
+					\begin{align*}
+						\frac{\partial}{\partial t} f(x + cty) 
+						= \sum_{i = 1}^3 f_i \cdot cy_i 
+						\hspace{1em} , \hspace{1em} 
+						\frac{\partial}{\partial t} \left( \frac{\partial}{\partial t} f(x + cty) \right) 
+						= \sum_{i = 1}^3 \sum_{j = 1}^3 f_{ij} \cdot cy_i \cdot cy_j
+					\end{align*}
+					因此要证$\Rmnum{1} = \Rmnum{2}$, 只需证：
+					\begin{align*}
+						\int_{\partial B_1} 
+						\left[ 
+						\sum_{i = 1}^3 \sum_{j = 1}^3 \Big( f_{ij} \cdot c^2 \cdot y_i \cdot y_j \Big) 
+						+ \frac{2}{t} \sum_{i = 1}^3 \Big( f_i \cdot cy_i \Big) 
+						\right] \, dS_y 
+						= c^2 \int_{\partial B_1} \sum_{i = 1}^3 f_{ii}(x + cty) \, dS_y
+					\end{align*}
+					i.e. 
+					\begin{align*}
+						\int_{\partial B_1} \Big( \frac{\partial^2}{\partial t^2} f + \frac{2}{t} \cdot \frac{\partial}{\partial t} f \Big) \, dS_y 
+						= \int_{\partial B_1} \Delta_x f \, dS_y
+					\end{align*}
+					根据\textbf{球面坐标轴Laplace算子与直角坐标轴Laplace算子的关系}, 记$\Delta_s$ 为球面上Laplace算子 
+					\begin{align*}
+						\Delta 
+						&= \frac{\partial^2}{\partial r^2} + \frac{2}{r} \cdot \frac{\partial}{\partial r} + \frac{1}{r^2} \Delta_s \\
+						\Delta_s 
+						&= \frac{1}{\sqrt{g}} \cdot \frac{\partial}{\partial z_i} \left( \sqrt{g} \cdot g^{ij} \cdot \frac{\partial}{\partial z_j} \right)
+					\end{align*}
+					而$\int_{\partial B_1} \dfrac{1}{r^2} \Delta_s f = 0$, 从而
+					\begin{align*}
+						\int_{\partial B_1} \Big( \frac{\partial^2}{\partial t^2} f + \frac{2}{t} \cdot \frac{\partial}{\partial t} f \Big) \, dS_y 
+						= \int_{\partial B_1} \Delta_x f \, dS_y
+					\end{align*}
+					故得证. 
+				\end{enumerate}
+			\end{enumerate}
+		\end{proof}
+	\end{thm}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	%  ############################
